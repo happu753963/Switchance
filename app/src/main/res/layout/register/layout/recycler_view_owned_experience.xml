@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@color/colorSkillMiddle"
+        android:orientation="horizontal"
+        android:layout_margin="3dp"
+        android:paddingLeft="5dp">
+
+        <TextView
+            android:id="@+id/txt_ownedExperience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:text="asd" />
+
+        <ImageButton
+            android:id="@+id/btn_add"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@android:color/transparent"
+            android:cropToPadding="false"
+            android:gravity="center"
+            android:padding="10dp"
+            android:paddingLeft="10dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/delete" />
+    </LinearLayout>
+
+</LinearLayout>

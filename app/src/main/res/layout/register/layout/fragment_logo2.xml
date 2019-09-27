@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".logo">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <androidx.gridlayout.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                app:columnCount="2"
+                app:orientation="horizontal"
+                >
+
+                <LinearLayout
+                    android:id="@+id/ln_person1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/edit_text_oval"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/p1_logo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/chameleon"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/p1_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:text="hongming123"
+                        android:textColor="@color/colorBlack" />
+
+                    <TextView
+                        android:id="@+id/p1_department"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="工學院"
+                        android:textColor="@color/colorBlack" />
+
+                    <androidx.gridlayout.widget.GridLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        app:columnCount="3"
+                        app:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/p1_skill_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="程式"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p1_skill_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="網球"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p1_skill_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="健身"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p1_skill_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="攝影"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p1_skill_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="觀星"
+                            android:textColor="@color/colorBlack" />
+                    </androidx.gridlayout.widget.GridLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln_person2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/edit_text_oval"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/p2_logo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/goose"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/p2_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:text="sunxuan8"
+                        android:textColor="@color/colorBlack" />
+
+                    <TextView
+                        android:id="@+id/p2_department"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="管理學院"
+                        android:textColor="@color/colorBlack" />
+
+                    <androidx.gridlayout.widget.GridLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        app:columnCount="3"
+                        app:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/p2_skill_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="唱歌"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p2_skill_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="調酒"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p2_skill_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="鋼琴"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p2_skill_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="攝影"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p2_skill_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="游泳"
+                            android:textColor="@color/colorBlack" />
+                    </androidx.gridlayout.widget.GridLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln_person3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/edit_text_oval"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/p3_logo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/fox"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/p3_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:text="weiwei98"
+                        android:textColor="@color/colorBlack" />
+
+                    <TextView
+                        android:id="@+id/p3_department"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="電機資訊學院"
+                        android:textColor="@color/colorBlack" />
+
+                    <androidx.gridlayout.widget.GridLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        app:columnCount="3"
+                        app:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/p3_skill_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="火舞"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p3_skill_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="程式"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p3_skill_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="英語"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p3_skill_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillDark"
+                            android:text="電腦"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p3_skill_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillDark"
+                            android:text="ipad"
+                            android:textColor="@color/colorBlack" />
+                    </androidx.gridlayout.widget.GridLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln_person4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/edit_text_oval"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/p4_logo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/hedgehog"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/p4_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:text="hedgehog1998"
+                        android:textColor="@color/colorBlack" />
+
+                    <TextView
+                        android:id="@+id/p4_department"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="文學院"
+                        android:textColor="@color/colorBlack" />
+
+                    <androidx.gridlayout.widget.GridLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        app:columnCount="3"
+                        app:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/p4_skill_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="街舞"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p4_skill_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="潛水"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p4_skill_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="桌球"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p4_skill_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillMiddle"
+                            android:text="留學"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p4_skill_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillMiddle"
+                            android:text="打工"
+                            android:textColor="@color/colorBlack" />
+                    </androidx.gridlayout.widget.GridLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln_person5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/edit_text_oval"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/p5_logo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/lion"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/p5_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:text="lion_168"
+                        android:textColor="@color/colorBlack" />
+
+                    <TextView
+                        android:id="@+id/p5_department"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="理學院"
+                        android:textColor="@color/colorBlack" />
+
+                    <androidx.gridlayout.widget.GridLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        app:columnCount="3"
+                        app:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/p5_skill_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="射箭"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p5_skill_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="吉他"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p5_skill_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillMiddle"
+                            android:text="面試"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p5_skill_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillDark"
+                            android:text="吉他"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p5_skill_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillDark"
+                            android:text="直笛"
+                            android:textColor="@color/colorBlack" />
+                    </androidx.gridlayout.widget.GridLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln_person6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_oval"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/p6_logo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/fox"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/p6_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:text="hahafox"
+                        android:textColor="@color/colorBlack" />
+
+                    <TextView
+                        android:id="@+id/p6_department"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="規劃與設計學院"
+                        android:textColor="@color/colorBlack" />
+
+                    <androidx.gridlayout.widget.GridLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        app:columnCount="3"
+                        app:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/p6_skill_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="素描"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p6_skill_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="雕刻"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p6_skill_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="拼布"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p6_skill_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillLight"
+                            android:text="攝影"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/p6_skill_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/colorSkillDark"
+                            android:text="黏土"
+                            android:textColor="@color/colorBlack" />
+                    </androidx.gridlayout.widget.GridLayout>
+                </LinearLayout>
+
+            </androidx.gridlayout.widget.GridLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

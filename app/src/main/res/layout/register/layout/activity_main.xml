@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="8"
+    android:orientation="vertical"
+    android:padding="50dp"
+    tools:context=".MainActivity"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="6"
+        android:orientation="vertical"
+        android:weightSum="6">
+
+        <TextView
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="4"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="「交換技能、以物易物、交流經歷」 "
+            android:textColor="#FA0F0E0E"
+            android:textSize="16dp" />
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:orientation="vertical"
+    android:weightSum="2"
+    android:layout_weight="2"
+    android:layout_gravity="center">
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="190dp"
+        android:layout_height="54dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:backgroundTint="#F8CBAD"
+        android:text="現在就加入"
+        android:textSize="14sp" />
+
+
+    <Button
+        android:id="@+id/btn_logIn"
+        android:layout_width="191dp"
+        android:layout_height="53dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text="已經有帳戶了嗎?  登入 "
+        android:textSize="14sp" />
+</LinearLayout>
+
+
+
+</LinearLayout>
