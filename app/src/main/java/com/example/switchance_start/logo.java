@@ -86,7 +86,7 @@ public class logo extends Fragment {
             public void onClick(View v) {
 
 //                Intent intent = new Intent();
-//                intent.setClass(envelope.this, ChatRoom.class);
+//                intent.setClass(ChatList.this, ChatRoom.class);
 
                 Intent intent = new Intent(getActivity(), OtherUser.class);
                 startActivity(intent);

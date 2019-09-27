@@ -19,7 +19,7 @@ public class PageAdapter extends FragmentPagerAdapter {
             case 0:
                 return new logo();
             case 1:
-                return new envelope();
+                return new ChatList();
             case 2:
                 return new Personal();
             default:

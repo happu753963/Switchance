@@ -10,7 +10,7 @@ import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class HomePage extends AppCompatActivity
-        implements logo.OnFragmentInteractionListener, envelope.OnFragmentInteractionListener, Personal.OnFragmentInteractionListener {
+        implements logo.OnFragmentInteractionListener, ChatList.OnFragmentInteractionListener, Personal.OnFragmentInteractionListener {
 
     Toolbar toolbar;
     TabLayout tabLayout;
