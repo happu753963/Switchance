@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "573216940922",
+    "firebase_url": "https://switchance-e8900.firebaseio.com",
+    "project_id": "switchance-e8900",
+    "storage_bucket": "switchance-e8900.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:573216940922:android:0e226c71bc5f9fc0f66cc3",
+        "android_client_info": {
+          "package_name": "com.example.switchance_start"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "573216940922-u9u1j55nupjhmvhrrfftq4hbu6l5p9fu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRfBOIyNvqGHDlYVio26irh1S6YFZhBOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "573216940922-u9u1j55nupjhmvhrrfftq4hbu6l5p9fu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
