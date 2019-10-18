@@ -14,12 +14,17 @@ import android.widget.Toast;
 
 import com.example.switchance_start.MainActivity;
 import com.example.switchance_start.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
     ImageButton btn_back;
     ImageButton btn_icon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 

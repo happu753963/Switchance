@@ -9,11 +9,18 @@ import android.widget.Button;
 
 import com.example.switchance_start.register.LogInActivity;
 import com.example.switchance_start.register.RegisterActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference myRef=database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/ex2");
+        myRef.child("messenge").setValue("haha");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
