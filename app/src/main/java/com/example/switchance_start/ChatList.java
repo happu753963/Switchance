@@ -31,6 +31,7 @@ public class ChatList extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     ImageView imageView5;
     Button button2;
+    //test
 
     // TODO: Rename and change types of parameters
     private String mParam1;
