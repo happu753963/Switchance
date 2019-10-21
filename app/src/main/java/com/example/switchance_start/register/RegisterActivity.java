@@ -86,25 +86,28 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("icon").setValue(icon);
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("gender").setValue(spin_gender.getSelectedItem().toString());
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("birthday").setValue(edtxt_birthday.getText().toString());
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("school").setValue(spin_school.getSelectedItem().toString());
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("department").setValue(spin_department.getSelectedItem().toString());
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("mail").setValue(edtxt_schoolMail.getText().toString());
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("password").setValue(edtxt_password.getText().toString());
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("name").setValue(edtxt_name.getText().toString());
+//                myRef.child("user_info").child(edtxt_account.getText().toString()).child("icon").setValue(icon);
+//                myRef.child("user_info").child(edtxt_account.getText().toString()).child("gender").setValue(spin_gender.getSelectedItem().toString());
+//                myRef.child("user_info").child(edtxt_account.getText().toString()).child("birthday").setValue(edtxt_birthday.getText().toString());
+//                myRef.child("user_info").child(edtxt_account.getText().toString()).child("school").setValue(spin_school.getSelectedItem().toString());
+//                myRef.child("user_info").child(edtxt_account.getText().toString()).child("department").setValue(spin_department.getSelectedItem().toString());
+//                myRef.child("user_info").child(edtxt_account.getText().toString()).child("mail").setValue(edtxt_schoolMail.getText().toString());
+//                myRef.child("user_info").child(edtxt_account.getText().toString()).child("password").setValue(edtxt_password.getText().toString());
+//                myRef.child("user_info").child(edtxt_account.getText().toString()).child("name").setValue(edtxt_name.getText().toString());
 
-//                myRef.child("user_info").child("xuansun").child("icon").setValue(R.drawable.lion);
-//                myRef.child("user_info").child("xuansun").child("gender").setValue("女");
-//                myRef.child("user_info").child("xuansun").child("birthday").setValue("20190724");
-//                myRef.child("user_info").child("xuansun").child("school").setValue("國立成功大學");
-//                myRef.child("user_info").child("xuansun").child("department").setValue("管理學院");
-//                myRef.child("user_info").child("xuansun").child("mail").setValue("ncku123@ncku.edu.tw");
-//                myRef.child("user_info").child("xuansun").child("password").setValue("878787");
-//                myRef.child("user_info").child("xuansun").child("name").setValue("sunxuanxuan");
+                myRef.child("user_info").child("xuansun").child("icon").setValue(R.drawable.lion);
+                myRef.child("user_info").child("xuansun").child("gender").setValue("女");
+                myRef.child("user_info").child("xuansun").child("birthday").setValue("20190724");
+                myRef.child("user_info").child("xuansun").child("school").setValue("國立成功大學");
+                myRef.child("user_info").child("xuansun").child("department").setValue("管理學院");
+                myRef.child("user_info").child("xuansun").child("mail").setValue("ncku123@ncku.edu.tw");
+                myRef.child("user_info").child("xuansun").child("password").setValue("878787");
+                myRef.child("user_info").child("xuansun").child("name").setValue("sunxuanxuan");
 
                 Intent intent = new Intent();
+                //把資料丟給下一頁
+//                intent.putExtra("account",edtxt_account.getText().toString());
+                intent.putExtra("account","xuansun");
                 intent.setClass(RegisterActivity.this, OwnedSkillActivity.class);
                 startActivity(intent);
 //                RegisterActivity.this.finish();

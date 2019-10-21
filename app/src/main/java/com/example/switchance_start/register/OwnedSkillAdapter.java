@@ -42,6 +42,10 @@ public class OwnedSkillAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return ownedskillList.size();
     }
 
+    public ArrayList getArrayList () {
+        return ownedskillList;
+    }
+
     public void addItem(OwnedSkill skill) {
         ownedskillList.add(skill);
         notifyDataSetChanged();

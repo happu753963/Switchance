@@ -1,19 +1,19 @@
 package com.example.switchance_start.register;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
 
-import com.example.switchance_start.MainActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.switchance_start.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class OwnedSkillActivity extends AppCompatActivity {
 
@@ -31,15 +31,23 @@ public class OwnedSkillActivity extends AppCompatActivity {
     RecyclerView recyclerViewOwnedItem;
     EditText edtxtItem;
     ImageButton addOwnedItem;
+    String account;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owned_skill);
 
-        ImageButton btn_back= (ImageButton)findViewById(R.id.btn_back);
-        Button btn_next= (Button)findViewById(R.id.btn_next);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/");
 
-        btn_back.setOnClickListener(new Button.OnClickListener(){
+        account = getIntent().getStringExtra("account");
+
+        ImageButton btn_back = (ImageButton) findViewById(R.id.btn_back);
+        Button btn_next = (Button) findViewById(R.id.btn_next);
+
+
+        btn_back.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -50,11 +58,24 @@ public class OwnedSkillActivity extends AppCompatActivity {
             }
         });
 
-        btn_next.setOnClickListener(new Button.OnClickListener(){
+        btn_next.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ownedSkillAdapter.addItem(new OwnedSkill("吃飯"));
+                ownedSkillAdapter.addItem(new OwnedSkill("寫食記"));
+
+                ownedExperienceAdapter.addItem(new OwnedExperience("留學"));
+                ownedExperienceAdapter.addItem(new OwnedExperience("實習"));
+
+                ownedItemAdapter.addItem(new OwnedItem("碗"));
+                ownedItemAdapter.addItem(new OwnedItem("吉他"));
+                myRef.child("user_info").child(account).child("ownedSkill").setValue(ownedSkillAdapter.getArrayList());
+                myRef.child("user_info").child(account).child("ownedExperience").setValue(ownedExperienceAdapter.getArrayList());
+                myRef.child("user_info").child(account).child("ownedItem").setValue(ownedItemAdapter.getArrayList());
+
 
                 Intent intent = new Intent();
+                intent.putExtra("account","xuansun");
                 intent.setClass(OwnedSkillActivity.this, InterestedSkillActivity.class);
                 startActivity(intent);
 //                OwnedSkillActivity.this.finish();

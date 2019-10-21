@@ -42,6 +42,10 @@ public class OwnedExperienceAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         return ownedExperienceList.size();
     }
 
+    public ArrayList getArrayList () {
+        return ownedExperienceList;
+    }
+
     public void addItem(OwnedExperience experience) {
         ownedExperienceList.add(experience);
         notifyDataSetChanged();

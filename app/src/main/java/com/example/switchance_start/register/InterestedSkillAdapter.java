@@ -41,6 +41,10 @@ public class InterestedSkillAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         return interestedskillList.size();
     }
 
+    public ArrayList getArrayList () {
+        return interestedskillList;
+    }
+
     public void addItem(InterestedSkill skill) {
         interestedskillList.add(skill);
         notifyDataSetChanged();

@@ -41,6 +41,10 @@ public class InterestedItemAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         return interestedItemList.size();
     }
 
+    public ArrayList getArrayList () {
+        return interestedItemList;
+    }
+
     public void addItem(InterestedItem item) {
         interestedItemList.add(item);
         notifyDataSetChanged();

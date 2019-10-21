@@ -42,6 +42,10 @@ public class OwnedItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return ownedItemList.size();
     }
 
+    public ArrayList getArrayList () {
+        return ownedItemList;
+    }
+
     public void addItem(OwnedItem item) {
         ownedItemList.add(item);
         notifyDataSetChanged();

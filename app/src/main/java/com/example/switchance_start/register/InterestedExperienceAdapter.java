@@ -42,6 +42,10 @@ public class InterestedExperienceAdapter extends RecyclerView.Adapter<RecyclerVi
         return interestedExperienceList.size();
     }
 
+    public ArrayList getArrayList () {
+        return interestedExperienceList;
+    }
+
     public void addItem(InterestedExperience experience) {
         interestedExperienceList.add(experience);
         notifyDataSetChanged();
