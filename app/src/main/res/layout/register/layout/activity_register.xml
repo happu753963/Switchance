@@ -85,8 +85,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/colorBlack"
-                    android:text="出生日期" />
+                    android:text="出生日期"
+                    android:textColor="@color/colorBlack" />
 
                 <EditText
                     android:id="@+id/edtxt_birthday"
@@ -101,8 +101,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/colorBlack"
-                    android:text="學校" />
+                    android:text="學校"
+                    android:textColor="@color/colorBlack" />
 
                 <Spinner
                     android:id="@+id/spin_school"
@@ -114,8 +114,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/colorBlack"
-                    android:text="系別" />
+                    android:text="系別"
+                    android:textColor="@color/colorBlack" />
 
                 <Spinner
                     android:id="@+id/spin_department"
@@ -127,8 +127,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/colorBlack"
-                    android:text="學校信箱" />
+                    android:text="學校信箱"
+                    android:textColor="@color/colorBlack" />
 
                 <EditText
                     android:id="@+id/edtxt_schoolMail"
@@ -143,8 +143,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/colorBlack"
-                    android:text="密碼" />
+                    android:text="密碼"
+                    android:textColor="@color/colorBlack" />
 
                 <EditText
                     android:id="@+id/edtxt_password"
@@ -159,8 +159,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/colorBlack"
-                    android:text="確認密碼" />
+                    android:text="確認密碼"
+                    android:textColor="@color/colorBlack" />
 
                 <EditText
                     android:id="@+id/edtxt_doubleCheck"
@@ -175,8 +175,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/colorBlack"
-                    android:text="本名" />
+                    android:text="本名"
+                    android:textColor="@color/colorBlack" />
 
                 <EditText
                     android:id="@+id/edtxt_name"
@@ -187,15 +187,15 @@
                     android:inputType="textPersonName" />
 
                 <TextView
-                    android:id="@+id/txt_nickName"
+                    android:id="@+id/txt_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/colorBlack"
-                    android:text="筆名" />
+                    android:text="帳號"
+                    android:textColor="@color/colorBlack" />
 
                 <EditText
-                    android:id="@+id/edtxt_Nickname"
+                    android:id="@+id/edtxt_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

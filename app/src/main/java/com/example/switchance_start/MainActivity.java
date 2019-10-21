@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        //設定firebase
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         DatabaseReference myRef=database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/ex2");
         myRef.child("messenge").setValue("haha");
