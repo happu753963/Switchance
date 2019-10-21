@@ -64,14 +64,14 @@ public class InterestedSkillActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                interestedSkillAdapter.addItem(new InterestedSkill("攝影"));
-                interestedSkillAdapter.addItem(new InterestedSkill("寫程式"));
-
-                interestedExperienceAdapter.addItem(new InterestedExperience("打工"));
-                interestedExperienceAdapter.addItem(new InterestedExperience("換宿"));
-
-                interestedItemAdapter.addItem(new InterestedItem("鈴鼓"));
-                interestedItemAdapter.addItem(new InterestedItem("唱歌神器"));
+//                interestedSkillAdapter.addItem(new InterestedSkill("攝影"));
+//                interestedSkillAdapter.addItem(new InterestedSkill("寫程式"));
+//
+//                interestedExperienceAdapter.addItem(new InterestedExperience("打工"));
+//                interestedExperienceAdapter.addItem(new InterestedExperience("換宿"));
+//
+//                interestedItemAdapter.addItem(new InterestedItem("鈴鼓"));
+//                interestedItemAdapter.addItem(new InterestedItem("唱歌神器"));
                 myRef.child("user_info").child(account).child("interestedSkill").setValue(interestedSkillAdapter.getArrayList());
                 myRef.child("user_info").child(account).child("interestedExperience").setValue(interestedExperienceAdapter.getArrayList());
                 myRef.child("user_info").child(account).child("interestedItem").setValue(interestedItemAdapter.getArrayList());

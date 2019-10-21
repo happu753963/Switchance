@@ -61,21 +61,23 @@ public class OwnedSkillActivity extends AppCompatActivity {
         btn_next.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ownedSkillAdapter.addItem(new OwnedSkill("吃飯"));
-                ownedSkillAdapter.addItem(new OwnedSkill("寫食記"));
-
-                ownedExperienceAdapter.addItem(new OwnedExperience("留學"));
-                ownedExperienceAdapter.addItem(new OwnedExperience("實習"));
-
-                ownedItemAdapter.addItem(new OwnedItem("碗"));
-                ownedItemAdapter.addItem(new OwnedItem("吉他"));
+//                ownedSkillAdapter.addItem(new OwnedSkill("吃飯"));
+//                ownedSkillAdapter.addItem(new OwnedSkill("寫食記"));
+//
+//                ownedExperienceAdapter.addItem(new OwnedExperience("留學"));
+//                ownedExperienceAdapter.addItem(new OwnedExperience("實習"));
+//
+//                ownedItemAdapter.addItem(new OwnedItem("碗"));
+//                ownedItemAdapter.addItem(new OwnedItem("吉他"));
                 myRef.child("user_info").child(account).child("ownedSkill").setValue(ownedSkillAdapter.getArrayList());
                 myRef.child("user_info").child(account).child("ownedExperience").setValue(ownedExperienceAdapter.getArrayList());
                 myRef.child("user_info").child(account).child("ownedItem").setValue(ownedItemAdapter.getArrayList());
 
 
                 Intent intent = new Intent();
-                intent.putExtra("account","xuansun");
+//                intent.putExtra("account","xuansun");
+                intent.putExtra("account",account);
+
                 intent.setClass(OwnedSkillActivity.this, InterestedSkillActivity.class);
                 startActivity(intent);
 //                OwnedSkillActivity.this.finish();
