@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -84,16 +85,44 @@ public class RegisterActivity extends AppCompatActivity {
         btn_next.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
+                    //icon有default
 
-
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("icon").setValue(icon);
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("gender").setValue(spin_gender.getSelectedItem().toString());
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("birthday").setValue(edtxt_birthday.getText().toString());
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("school").setValue(spin_school.getSelectedItem().toString());
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("department").setValue(spin_department.getSelectedItem().toString());
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("mail").setValue(edtxt_schoolMail.getText().toString());
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("password").setValue(edtxt_password.getText().toString());
-                myRef.child("user_info").child(edtxt_account.getText().toString()).child("name").setValue(edtxt_name.getText().toString());
+                    if(edtxt_account.getText().toString().matches(" ") ) {
+                        Toast toast = Toast.makeText(RegisterActivity.this, "帳號不可為空白!", Toast.LENGTH_LONG);
+                        toast.show();}
+                    else if(spin_gender.getSelectedItem().toString().matches("") ) {
+                        Toast toast = Toast.makeText(RegisterActivity.this, "性別不可為空白!", Toast.LENGTH_LONG);
+                        toast.show();}
+                    else if(edtxt_birthday.getText().toString().matches("") ) {
+                            Toast toast = Toast.makeText(RegisterActivity.this, "生日不可為空白!", Toast.LENGTH_LONG);
+                            toast.show();}
+                    else if(spin_school.getSelectedItem().toString().matches("") ) {
+                        Toast toast = Toast.makeText(RegisterActivity.this, "學校不可為空白!", Toast.LENGTH_LONG);
+                        toast.show();}
+                    else if(spin_department.getSelectedItem().toString().matches("") ) {
+                        Toast toast = Toast.makeText(RegisterActivity.this, "系所不可為空白!", Toast.LENGTH_LONG);
+                        toast.show();}
+                    else if(edtxt_schoolMail.getText().toString().matches("") ) {
+                        Toast toast = Toast.makeText(RegisterActivity.this, "信箱不可為空白!", Toast.LENGTH_LONG);
+                        toast.show();}
+                    else if(edtxt_password.getText().toString().matches("") ) {
+                        Toast toast = Toast.makeText(RegisterActivity.this, "密碼不可為空白!", Toast.LENGTH_LONG);
+                        toast.show();}
+                    else if(edtxt_doubleCheck.getText().toString().matches("") ) {
+                        Toast toast = Toast.makeText(RegisterActivity.this, "確認密碼不可為空白!", Toast.LENGTH_LONG);
+                        toast.show();}
+                    else if(edtxt_name.getText().toString().matches("") ) {
+                        Toast toast = Toast.makeText(RegisterActivity.this, "姓名不可為空白!", Toast.LENGTH_LONG);
+                        toast.show();}
+                    else {
+                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("icon").setValue(icon);
+                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("gender").setValue(spin_gender.getSelectedItem().toString());
+                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("birthday").setValue(edtxt_birthday.getText().toString());
+                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("school").setValue(spin_school.getSelectedItem().toString());
+                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("department").setValue(spin_department.getSelectedItem().toString());
+                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("mail").setValue(edtxt_schoolMail.getText().toString());
+                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("password").setValue(edtxt_password.getText().toString());
+                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("name").setValue(edtxt_name.getText().toString());
 
 //                myRef.child("user_info").child("xuansun").child("icon").setValue(R.drawable.lion);
 //                myRef.child("user_info").child("xuansun").child("gender").setValue("女");
@@ -104,13 +133,14 @@ public class RegisterActivity extends AppCompatActivity {
 //                myRef.child("user_info").child("xuansun").child("password").setValue("878787");
 //                myRef.child("user_info").child("xuansun").child("name").setValue("sunxuanxuan");
 
-                Intent intent = new Intent();
-                //把資料丟給下一頁
-                intent.putExtra("account",edtxt_account.getText().toString());
+                        Intent intent = new Intent();
+                        //把資料丟給下一頁
+                        intent.putExtra("account", edtxt_account.getText().toString());
 //                intent.putExtra("account","xuansun");
-                intent.setClass(RegisterActivity.this, OwnedSkillActivity.class);
-                startActivity(intent);
+                        intent.setClass(RegisterActivity.this, OwnedSkillActivity.class);
+                        startActivity(intent);
 //                RegisterActivity.this.finish();
+                    }
             }
         });
 
