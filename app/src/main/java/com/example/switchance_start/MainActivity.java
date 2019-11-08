@@ -2,6 +2,7 @@ package com.example.switchance_start;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,9 @@ import com.example.switchance_start.register.LogInActivity;
 import com.example.switchance_start.register.RegisterActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
 //                MainActivity.this.finish();
             }
         });
+
+
+
+
+
+
     }
 
 

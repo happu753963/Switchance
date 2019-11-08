@@ -1,7 +1,11 @@
 package com.example.switchance_start.register;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,6 +22,12 @@ import com.example.switchance_start.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class RegisterActivity extends AppCompatActivity {
     ImageButton btn_back;
     ImageButton btn_icon;
@@ -32,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
     Spinner spin_school;
     Spinner spin_department;
     int icon;
+    private static final String TAG = RegisterActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +144,27 @@ public class RegisterActivity extends AppCompatActivity {
 //                myRef.child("user_info").child("xuansun").child("password").setValue("878787");
 //                myRef.child("user_info").child("xuansun").child("name").setValue("sunxuanxuan");
 
+
+
+                        //內存個人註冊設定
+                        SharedPreferences pref = getSharedPreferences("temp_storge", MODE_PRIVATE);     //呼叫getSharedPreferences()方法，產生一個檔名為temp_storge.xml的設定儲存檔，並只供本專案(app)可讀取，物件名稱為pref。
+                        pref.edit()
+                                .putString("ACCOUNT", edtxt_account.getText().toString())  //呼叫edit()方法取得編輯器物件，此時使用匿名方式呼叫Editor的putString()方法將字串的內容寫入設定檔，資料標籤為”ACCOUNT”。
+                                .putInt("ICON", icon)
+                                .putString("GENDER", spin_gender.getSelectedItem().toString())
+                                .putString("BIRTHDAY", edtxt_birthday.getText().toString())
+                                .putString("SCHOOL", spin_school.getSelectedItem().toString())
+                                .putString("DEPARTMENT", spin_department.getSelectedItem().toString())
+                                .putString("EMAIL", edtxt_schoolMail.getText().toString())
+                                .putString("PASSWORD", edtxt_password.getText().toString())
+                                .putString("NAME", edtxt_name.getText().toString())
+                                .commit();      //最後必須呼叫commit()方法，此時資料才真正寫入到設定檔中。
+
+
+
+
+
+
                         Intent intent = new Intent();
                         //把資料丟給下一頁
                         intent.putExtra("account", edtxt_account.getText().toString());
@@ -141,6 +173,8 @@ public class RegisterActivity extends AppCompatActivity {
                         startActivity(intent);
 //                RegisterActivity.this.finish();
                     }
+
+
             }
         });
 

@@ -1,14 +1,29 @@
 package com.example.switchance_start;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 
 /**
@@ -68,6 +83,34 @@ public class Personal extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_personal2, container, false);
     }
+
+private static final String TAG = Personal.class.getSimpleName();
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        //從內部儲存中讀取檔案
+        TextView editname;
+        editname = getActivity().findViewById(R.id.txt_name);
+
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("temp_storge", Context.MODE_PRIVATE);
+        String account = preferences.getString("ACCOUNT", "nothing"); //取得標籤”ACCOUNT”的設定值，getString方法的第二個參數是預設值(default)，當讀取不到或設定檔內無該設定值時，會傳回這個預設值，本例預設是空字串。
+        editname.setText(account);
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
