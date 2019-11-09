@@ -90,14 +90,21 @@ private static final String TAG = Personal.class.getSimpleName();
         super.onViewCreated(view, savedInstanceState);
 
 
-        //從內部儲存中讀取檔案
-        TextView editname;
-        editname = getActivity().findViewById(R.id.txt_name);
+        //從內部註冊時儲存的資料讀取檔案
+        TextView name;
+        name = getActivity().findViewById(R.id.txt_name);
 
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("temp_storge", Context.MODE_PRIVATE);
-        String account = preferences.getString("ACCOUNT", "nothing"); //取得標籤”ACCOUNT”的設定值，getString方法的第二個參數是預設值(default)，當讀取不到或設定檔內無該設定值時，會傳回這個預設值，本例預設是空字串。
-        editname.setText(account);
-
+        SharedPreferences preferences_register = this.getActivity().getSharedPreferences("Register", Context.MODE_PRIVATE);
+        SharedPreferences preferences_login = this.getActivity().getSharedPreferences("Log_in", Context.MODE_PRIVATE);
+        String check = preferences_register.getString("CHECK","");
+        if (check.matches("0")) {       //若是註冊進入APP
+            String account = preferences_register.getString("ACCOUNT", "nothing"); //取得標籤”ACCOUNT”的設定值，getString方法的第二個參數是預設值(default)，當讀取不到或設定檔內無該設定值時，會傳回這個預設值，本例預設是空字串。
+            name.setText(account);
+        }
+        else {                      //若是登入進入APP
+            String account = preferences_login.getString("EMAIL", "nothing");
+            name.setText(account);
+        }
 
 
 

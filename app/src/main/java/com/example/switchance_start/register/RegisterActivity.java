@@ -147,18 +147,19 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                         //內存個人註冊設定
-                        SharedPreferences pref = getSharedPreferences("temp_storge", MODE_PRIVATE);     //呼叫getSharedPreferences()方法，產生一個檔名為temp_storge.xml的設定儲存檔，並只供本專案(app)可讀取，物件名稱為pref。
-                        pref.edit()
-                                .putString("ACCOUNT", edtxt_account.getText().toString())  //呼叫edit()方法取得編輯器物件，此時使用匿名方式呼叫Editor的putString()方法將字串的內容寫入設定檔，資料標籤為”ACCOUNT”。
-                                .putInt("ICON", icon)
-                                .putString("GENDER", spin_gender.getSelectedItem().toString())
-                                .putString("BIRTHDAY", edtxt_birthday.getText().toString())
-                                .putString("SCHOOL", spin_school.getSelectedItem().toString())
-                                .putString("DEPARTMENT", spin_department.getSelectedItem().toString())
-                                .putString("EMAIL", edtxt_schoolMail.getText().toString())
-                                .putString("PASSWORD", edtxt_password.getText().toString())
-                                .putString("NAME", edtxt_name.getText().toString())
-                                .commit();      //最後必須呼叫commit()方法，此時資料才真正寫入到設定檔中。
+                        SharedPreferences preferences_register = getSharedPreferences("Register", MODE_PRIVATE);     //呼叫getSharedPreferences()方法，產生一個檔名為temp_storge.xml的設定儲存檔，並只供本專案(app)可讀取，物件名稱為pref。
+                        preferences_register.edit()
+                                            .putString("ACCOUNT", edtxt_account.getText().toString())  //呼叫edit()方法取得編輯器物件，此時使用匿名方式呼叫Editor的putString()方法將字串的內容寫入設定檔，資料標籤為”ACCOUNT”。
+                                            .putInt("ICON", icon)
+                                            .putString("GENDER", spin_gender.getSelectedItem().toString())
+                                            .putString("BIRTHDAY", edtxt_birthday.getText().toString())
+                                            .putString("SCHOOL", spin_school.getSelectedItem().toString())
+                                            .putString("DEPARTMENT", spin_department.getSelectedItem().toString())
+                                            .putString("EMAIL", edtxt_schoolMail.getText().toString())
+                                            .putString("PASSWORD", edtxt_password.getText().toString())
+                                            .putString("NAME", edtxt_name.getText().toString())
+                                            .putString("CHECK", "0") //檢查碼(確認是從註冊進入APP)
+                                            .commit();      //最後必須呼叫commit()方法，此時資料才真正寫入到設定檔中。
 
 
 

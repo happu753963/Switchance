@@ -3,9 +3,11 @@ package com.example.switchance_start.register;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.switchance_start.HomePage;
@@ -36,6 +38,22 @@ public class LogInActivity extends AppCompatActivity {
         btn_logIn.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
+
+                //內存登入時輸入資料
+                EditText mail = findViewById(R.id.edtxt_schoolEmail);
+                EditText password = findViewById(R.id.edtxt_password);
+                SharedPreferences preferences_login = getSharedPreferences("Log_in", MODE_PRIVATE);     //呼叫getSharedPreferences()方法，產生一個檔名為temp_storge.xml的設定儲存檔，並只供本專案(app)可讀取，物件名稱為pref。
+                preferences_login.edit()
+                        .putString("EMAIL",mail.getText().toString())
+                        .putString("PASSWORD", password.getText().toString())
+                        .commit();      //最後必須呼叫commit()方法，此時資料才真正寫入到設定檔中。
+
+                SharedPreferences preferences_register = getSharedPreferences("Register", MODE_PRIVATE);
+                preferences_register.edit()
+                        .putString("CHECK", "1") //檢查碼(確認是從登入進入APP)
+                        .commit();      //最後必須呼叫commit()方法，此時資料才真正寫入到設定檔中。
+
+
 
                 Intent intent = new Intent();
                 intent.setClass(LogInActivity.this, HomePage.class);
