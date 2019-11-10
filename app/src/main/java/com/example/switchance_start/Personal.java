@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -98,13 +101,20 @@ private static final String TAG = Personal.class.getSimpleName();
         SharedPreferences preferences_login = this.getActivity().getSharedPreferences("Log_in", Context.MODE_PRIVATE);
         String check = preferences_register.getString("CHECK","");
         if (check.matches("0")) {       //若是註冊進入APP
-            String account = preferences_register.getString("ACCOUNT", "nothing"); //取得標籤”ACCOUNT”的設定值，getString方法的第二個參數是預設值(default)，當讀取不到或設定檔內無該設定值時，會傳回這個預設值，本例預設是空字串。
+            String account = preferences_register.getString("ACCOUNT", "nothing"); //取得標籤”ACCOUNT”的設定值，getString方法的第二個參數是預設值(default)，當讀取不到或設定檔內無該設定值時，會傳回這個預設值
             name.setText(account);
         }
         else {                      //若是登入進入APP
-            String account = preferences_login.getString("EMAIL", "nothing");
+            String account = preferences_login.getString("ACCOUNT", "nothing");
             name.setText(account);
         }
+
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/");
+
+
 
 
 

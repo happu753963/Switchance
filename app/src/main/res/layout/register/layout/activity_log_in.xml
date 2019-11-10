@@ -57,14 +57,14 @@
         android:weightSum="6">
 
         <EditText
-            android:id="@+id/edtxt_schoolEmail"
+            android:id="@+id/edtxt_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="學校信箱"
-            android:inputType="textEmailAddress"
+            android:hint="帳號"
+            android:inputType="textPersonName"
             android:textSize="14sp" />
 
         <EditText
