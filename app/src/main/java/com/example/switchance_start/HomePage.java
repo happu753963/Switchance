@@ -17,11 +17,8 @@ public class HomePage extends AppCompatActivity
     TabItem tabLogo;
     TabItem tabEnvelope;
     TabItem tabPerson;
-    ViewPager viewPager;
 
     PageAdapter pageAdapter;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +31,8 @@ public class HomePage extends AppCompatActivity
         tabLogo = findViewById(R.id.tabLogo);
         tabEnvelope = findViewById(R.id.tabEnvelope);
         tabPerson = findViewById(R.id.tabPerson);
-        viewPager = findViewById(R.id.viewPager);
 
         pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-
-
-        viewPager.setAdapter(pageAdapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
     }
 
     public void onFragmentInteraction(Uri uri) {

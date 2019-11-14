@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.switchance_start.MainActivity;
 import com.example.switchance_start.R;
+import com.example.switchance_start.model.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -126,14 +127,19 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast toast = Toast.makeText(RegisterActivity.this, "姓名不可為空白!", Toast.LENGTH_LONG);
                         toast.show();}
                     else {
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("icon").setValue(icon);
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("gender").setValue(spin_gender.getSelectedItem().toString());
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("birthday").setValue(edtxt_birthday.getText().toString());
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("school").setValue(spin_school.getSelectedItem().toString());
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("department").setValue(spin_department.getSelectedItem().toString());
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("mail").setValue(edtxt_schoolMail.getText().toString());
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("password").setValue(edtxt_password.getText().toString());
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("name").setValue(edtxt_name.getText().toString());
+                        String id = myRef.push().getKey();
+                        UserInfo userInfo = new UserInfo(id, icon, spin_gender.getSelectedItem().toString(), edtxt_birthday.getText().toString(),
+                                spin_school.getSelectedItem().toString(), spin_department.getSelectedItem().toString(), edtxt_schoolMail.getText().toString(),
+                                edtxt_password.getText().toString(), edtxt_name.getText().toString(), edtxt_account.getText().toString());
+                        myRef.child("user_info").child(id).setValue(userInfo);
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("icon").setValue(icon);
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("gender").setValue(spin_gender.getSelectedItem().toString());
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("birthday").setValue(edtxt_birthday.getText().toString());
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("school").setValue(spin_school.getSelectedItem().toString());
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("department").setValue(spin_department.getSelectedItem().toString());
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("mail").setValue(edtxt_schoolMail.getText().toString());
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("password").setValue(edtxt_password.getText().toString());
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("name").setValue(edtxt_name.getText().toString());
 
 //                myRef.child("user_info").child("xuansun").child("icon").setValue(R.drawable.lion);
 //                myRef.child("user_info").child("xuansun").child("gender").setValue("女");
