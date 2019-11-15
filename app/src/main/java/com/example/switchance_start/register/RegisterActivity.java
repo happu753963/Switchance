@@ -43,6 +43,9 @@ public class RegisterActivity extends AppCompatActivity {
     Spinner spin_department;
     int icon;
     private static final String TAG = RegisterActivity.class.getSimpleName();
+    public static FirebaseDatabase database = FirebaseDatabase.getInstance();
+    public static final DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +53,8 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/");
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        final DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/");
 
 
         edtxt_schoolMail = (EditText) findViewById(R.id.edtxt_schoolMail);

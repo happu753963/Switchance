@@ -9,17 +9,26 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.switchance_start.register.RegisterActivity;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -27,6 +36,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 
 /**
@@ -87,36 +97,76 @@ public class Personal extends Fragment {
         return inflater.inflate(R.layout.fragment_personal2, container, false);
     }
 
+
 private static final String TAG = Personal.class.getSimpleName();
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
 
-        //從內部註冊時儲存的資料讀取檔案
+        //從內部註冊或登入時儲存的資料讀取檔案
         TextView name;
         name = getActivity().findViewById(R.id.txt_name);
+        final String account;
 
         SharedPreferences preferences_register = this.getActivity().getSharedPreferences("Register", Context.MODE_PRIVATE);
         SharedPreferences preferences_login = this.getActivity().getSharedPreferences("Log_in", Context.MODE_PRIVATE);
         String check = preferences_register.getString("CHECK","");
         if (check.matches("0")) {       //若是註冊進入APP
-            String account = preferences_register.getString("ACCOUNT", "nothing"); //取得標籤”ACCOUNT”的設定值，getString方法的第二個參數是預設值(default)，當讀取不到或設定檔內無該設定值時，會傳回這個預設值
+            account = preferences_register.getString("ACCOUNT", "nothing"); //取得標籤”ACCOUNT”的設定值，getString方法的第二個參數是預設值(default)，當讀取不到或設定檔內無該設定值時，會傳回這個預設值
             name.setText(account);
         }
         else {                      //若是登入進入APP
-            String account = preferences_login.getString("ACCOUNT", "nothing");
+            account = preferences_login.getString("ACCOUNT", "nothing");
             name.setText(account);
         }
 
-
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/");
+        DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com");
+
+        ListView ListView_interestedSkill = getActivity().findViewById(R.id.ListView_interestedSkill);
 
 
+        final ArrayAdapter<String> adapter =
+                new ArrayAdapter<String>(getActivity(),
+                        android.R.layout.simple_list_item_1);
+        ListView_interestedSkill.setAdapter(adapter);
+        adapter.clear();
 
+        myRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NotNull DataSnapshot dataSnapshot, @NotNull String s) {
 
+                adapter.add(
+                        String.valueOf(dataSnapshot.child(" abc").child("ownedExperience").child("0").child("ownedExperience").getValue())
+                );
+
+                Log.d(TAG,"-----------"+String.valueOf(dataSnapshot.child(" abc").child("ownedExperience").child("0").child("ownedExperience").getValue()));
+
+            }
+
+            @Override
+            public void onChildChanged(@NotNull DataSnapshot dataSnapshot, @NotNull String s) {
+                adapter.remove(
+                        String.valueOf(dataSnapshot.child(" abc").child("ownedExperience").child("0").child("ownedExperience").getValue())
+                );
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
     }
