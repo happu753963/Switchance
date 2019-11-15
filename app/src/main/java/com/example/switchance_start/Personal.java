@@ -128,7 +128,7 @@ private static final String TAG = Personal.class.getSimpleName();
 
 
         final ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(getActivity(),
+                new ArrayAdapter<String>(getContext(),
                         android.R.layout.simple_list_item_1);
         ListView_interestedSkill.setAdapter(adapter);
         adapter.clear();
@@ -137,19 +137,27 @@ private static final String TAG = Personal.class.getSimpleName();
             @Override
             public void onChildAdded(@NotNull DataSnapshot dataSnapshot, @NotNull String s) {
 
-                adapter.add(
-                        String.valueOf(dataSnapshot.child(" abc").child("ownedExperience").child("0").child("ownedExperience").getValue())
-                );
+                if (String.valueOf(dataSnapshot.child("sunxuan8 ").child("ownedExperience").child("0").child("ownedExperience").getValue()) != "null") {
 
-                Log.d(TAG,"-----------"+String.valueOf(dataSnapshot.child(" abc").child("ownedExperience").child("0").child("ownedExperience").getValue()));
+                    adapter.add(
+                            String.valueOf(dataSnapshot.child("sunxuan8 ").child("ownedExperience").child("0").child("ownedExperience").getValue())
+                    );
+
+                    Log.d(TAG, "-----------" + String.valueOf(dataSnapshot.child("sunxuan8 ").child("ownedExperience").child("0").child("ownedExperience").getValue()));
+                    Log.d("Test", "-++++++" + dataSnapshot.child("sunxuan8 ").child("ownedExperience").child("0").child("ownedExperience").getValue());
+
+                }
 
             }
 
             @Override
             public void onChildChanged(@NotNull DataSnapshot dataSnapshot, @NotNull String s) {
-                adapter.remove(
-                        String.valueOf(dataSnapshot.child(" abc").child("ownedExperience").child("0").child("ownedExperience").getValue())
+                adapter.clear();
+                if (String.valueOf(dataSnapshot.child("sunxuan8 ").child("ownedExperience").child("0").child("ownedExperience").getValue()) != "null") {
+                adapter.add(
+                        String.valueOf(dataSnapshot.child("sunxuan8 ").child("ownedExperience").child("0").child("ownedExperience").getValue())
                 );
+            }
             }
 
             @Override
