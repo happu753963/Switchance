@@ -1,8 +1,14 @@
 package com.example.switchance_start.register;
 
-public class OwnedExperience {
+import java.io.Serializable;
+
+public class OwnedExperience implements Serializable {
 
     String ownedExperience;
+
+    public OwnedExperience() {
+
+    }
 
     public OwnedExperience(String ownedExperience) {
         this.ownedExperience = ownedExperience;
