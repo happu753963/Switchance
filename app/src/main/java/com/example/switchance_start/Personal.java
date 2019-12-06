@@ -125,41 +125,49 @@ private static final String TAG = Personal.class.getSimpleName();
         DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com");
 
         ListView ListView_interestedSkill = getActivity().findViewById(R.id.ListView_interestedSkill);
+        ListView ListView_interestedExperence = getActivity().findViewById(R.id.ListView_interestedExperience);
+        ListView ListView_interestedItem = getActivity().findViewById(R.id.ListView_interestedItem);
+
 
 
         final ArrayAdapter<String> adapter =
                 new ArrayAdapter<String>(getContext(),
                         android.R.layout.simple_list_item_1);
         ListView_interestedSkill.setAdapter(adapter);
+        ListView_interestedItem.setAdapter(adapter);
+        ListView_interestedExperence.setAdapter(adapter);
         adapter.clear();
+
 
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NotNull DataSnapshot dataSnapshot, @NotNull String s) {
+                for (int num = 0 ; num < 10 ; num++) {
 
-                if (String.valueOf(dataSnapshot.child("sunxuan8 ").child("ownedExperience").child("0").child("ownedExperience").getValue()) != "null") {
+                    if (String.valueOf(dataSnapshot.child(account).child("ownedExperience").child(String.valueOf(num)).child("ownedExperience").getValue()) != "null") {
 
-                    adapter.add(
-                            String.valueOf(dataSnapshot.child("sunxuan8 ").child("ownedExperience").child("0").child("ownedExperience").getValue())
-                    );
+                        adapter.add(
+                                String.valueOf(dataSnapshot.child(account).child("ownedExperience").child(String.valueOf(num)).child("ownedExperience").getValue())
+                        );
 
-                    Log.d(TAG, "-----------" + String.valueOf(dataSnapshot.child("sunxuan8 ").child("ownedExperience").child("0").child("ownedExperience").getValue()));
-                    Log.d("Test", "-++++++" + dataSnapshot.child("sunxuan8 ").child("ownedExperience").child("0").child("ownedExperience").getValue());
+                        Log.d(TAG, "-----------" + account);
 
+
+                    }
                 }
-
             }
 
             @Override
             public void onChildChanged(@NotNull DataSnapshot dataSnapshot, @NotNull String s) {
                 adapter.clear();
-                if (String.valueOf(dataSnapshot.child("sunxuan8 ").child("ownedExperience").child("0").child("ownedExperience").getValue()) != "null") {
-                adapter.add(
-                        String.valueOf(dataSnapshot.child("sunxuan8 ").child("ownedExperience").child("0").child("ownedExperience").getValue())
-                );
+                for (int num = 0; num < 10; num++) {
+                    if (String.valueOf(dataSnapshot.child(account).child("ownedExperience").child(String.valueOf(num)).child("ownedExperience").getValue()) != "null") {
+                        adapter.add(
+                                String.valueOf(dataSnapshot.child(account).child("ownedExperience").child(String.valueOf(num)).child("ownedExperience").getValue())
+                        );
+                    }
+                }
             }
-            }
-
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
