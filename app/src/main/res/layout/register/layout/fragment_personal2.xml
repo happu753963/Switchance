@@ -52,17 +52,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/colorBlack"
                     android:paddingTop="15dp"
-                    android:textSize="20sp"
-                    android:text="codingQQ"/>
+                    android:text="codingQQ"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txt_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="希望時間"
                     android:paddingTop="15dp"
+                    android:text="希望時間"
                     android:textColor="@color/colorBlack"
                     android:textSize="20sp" />
 
@@ -70,39 +70,66 @@
                     android:id="@+id/txt_ansTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorBlack"
-                    android:text="周末下午" />
+                    android:text="周末下午"
+                    android:textColor="@color/colorBlack" />
 
                 <TextView
                     android:id="@+id/txt_place"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorBlack"
                     android:paddingTop="15dp"
                     android:text="希望地點"
+                    android:textColor="@color/colorBlack"
                     android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txt_ansPlace"
                     android:layout_width="111dp"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorBlack"
-                    android:text="成大光復校區" />
+                    android:text="成大光復校區"
+                    android:textColor="@color/colorBlack" />
 
                 <TextView
-                    android:id="@+id/txt_owned"
+                    android:id="@+id/txt_interested"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorBlack"
                     android:paddingTop="15dp"
-                    android:textSize="20sp"
-                    android:text="擁有" />
+                    android:text="感興趣"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp" />
 
-                <ListView
-                    android:id="@+id/ListView_interestedSkill"
-                    android:layout_width="match_parent"
-                    android:layout_height="308dp"
-                    android:layout_weight="1" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:orientation="horizontal">
+
+                    <ListView
+                        android:id="@+id/ListView_interestedSkill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/colorSkillLight">
+
+                    </ListView>
+
+                    <ListView
+                        android:id="@+id/ListView_interestedItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/colorSkillMiddle">
+
+                    </ListView>
+
+                    <ListView
+                        android:id="@+id/ListView_interestedExperience"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/colorSkillDark" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -118,13 +145,13 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txt_interested"
+                        android:id="@+id/txt_owned"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
                         android:paddingTop="15dp"
+                        android:text="擁有"
                         android:textColor="@color/colorBlack"
-                        android:text="感興趣" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -138,6 +165,7 @@
                 android:text="編輯"
                 android:layout_marginTop="50dp"
                 android:textColor="@color/colorBlack" />
+
         </LinearLayout>
     </ScrollView>
 
