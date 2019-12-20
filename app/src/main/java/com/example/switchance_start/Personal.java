@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Debug;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -125,46 +126,90 @@ private static final String TAG = Personal.class.getSimpleName();
         DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com");
 
         ListView ListView_interestedSkill = getActivity().findViewById(R.id.ListView_interestedSkill);
-        ListView ListView_interestedExperence = getActivity().findViewById(R.id.ListView_interestedExperience);
+        ListView ListView_interestedExperience = getActivity().findViewById(R.id.ListView_interestedExperience);
         ListView ListView_interestedItem = getActivity().findViewById(R.id.ListView_interestedItem);
+        ListView ListView_ownedSkill = getActivity().findViewById(R.id.ListView_ownedSkill);
+        ListView ListView_ownedExperience = getActivity().findViewById(R.id.ListView_ownedExperience);
+        ListView ListView_ownedItem = getActivity().findViewById(R.id.ListView_ownedItem);
 
+        //建立好adapter
+        final ArrayAdapter<String> adapter_interestedExperience = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1);
+        final ArrayAdapter<String> adapter_interestedSkill = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1);
+        final ArrayAdapter<String> adapter_interestedItem = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1);
+        final ArrayAdapter<String> adapter_ownedExperience = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1);
+        final ArrayAdapter<String> adapter_ownedSkill = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1);
+        final ArrayAdapter<String> adapter_ownedItem = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1);
 
+        //把adapter放進ListView
+        ListView_interestedSkill.setAdapter(adapter_interestedSkill);
+        ListView_interestedItem.setAdapter(adapter_interestedItem);
+        ListView_interestedExperience.setAdapter(adapter_interestedExperience);
+        ListView_ownedSkill.setAdapter(adapter_ownedSkill);
+        ListView_ownedItem.setAdapter(adapter_ownedItem);
+        ListView_ownedExperience.setAdapter(adapter_ownedExperience);
 
-        final ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_list_item_1);
-        ListView_interestedSkill.setAdapter(adapter);
-        ListView_interestedItem.setAdapter(adapter);
-        ListView_interestedExperence.setAdapter(adapter);
-        adapter.clear();
+        //清空adapter
+        adapter_interestedExperience.clear();
+        adapter_interestedSkill.clear();
+        adapter_interestedItem.clear();
+        adapter_ownedSkill.clear();
+        adapter_ownedItem.clear();
+        adapter_ownedExperience.clear();
 
-
+        //把firebase資料加進adapter，以及隨時更新資料
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NotNull DataSnapshot dataSnapshot, @NotNull String s) {
                 for (int num = 0 ; num < 10 ; num++) {
-
-                    if (String.valueOf(dataSnapshot.child(account).child("ownedExperience").child(String.valueOf(num)).child("ownedExperience").getValue()) != "null") {
-
-                        adapter.add(
-                                String.valueOf(dataSnapshot.child(account).child("ownedExperience").child(String.valueOf(num)).child("ownedExperience").getValue())
-                        );
-
-                        Log.d(TAG, "-----------" + account);
-
-
+                    if (String.valueOf(dataSnapshot.child(account).child("interestedExperience").child(String.valueOf(num)).child("interestedExperience").getValue()) != "null") {
+                        adapter_interestedExperience.add(String.valueOf(dataSnapshot.child(account).child("interestedExperience").child(String.valueOf(num)).child("interestedExperience").getValue()));
                     }
+                    if (String.valueOf(dataSnapshot.child(account).child("interestedSkill").child(String.valueOf(num)).child("interestedSkill").getValue()) != "null") {
+                        adapter_interestedSkill.add(String.valueOf(dataSnapshot.child(account).child("interestedSkill").child(String.valueOf(num)).child("interestedSkill").getValue()));
+                    }
+                    if (String.valueOf(dataSnapshot.child(account).child("interestedItem").child(String.valueOf(num)).child("interestedItem").getValue()) != "null") {
+                        adapter_interestedItem.add(String.valueOf(dataSnapshot.child(account).child("interestedItem").child(String.valueOf(num)).child("interestedItem").getValue()));
+                    }
+                    if (String.valueOf(dataSnapshot.child(account).child("ownedExperience").child(String.valueOf(num)).child("ownedExperience").getValue()) != "null") {
+                        adapter_ownedExperience.add(String.valueOf(dataSnapshot.child(account).child("ownedExperience").child(String.valueOf(num)).child("ownedExperience").getValue()));
+                    }
+                    if (String.valueOf(dataSnapshot.child(account).child("ownedSkill").child(String.valueOf(num)).child("ownedSkill").getValue()) != "null") {
+                        adapter_ownedSkill.add(String.valueOf(dataSnapshot.child(account).child("ownedSkill").child(String.valueOf(num)).child("ownedSkill").getValue()));
+                    }
+                    if (String.valueOf(dataSnapshot.child(account).child("ownedItem").child(String.valueOf(num)).child("ownedItem").getValue()) != "null") {
+                        adapter_ownedItem.add(String.valueOf(dataSnapshot.child(account).child("ownedItem").child(String.valueOf(num)).child("ownedItem").getValue()));
+                    }
+
                 }
+//                Log.d("count",String.valueOf(adapter.getItemViewType()));
             }
 
             @Override
             public void onChildChanged(@NotNull DataSnapshot dataSnapshot, @NotNull String s) {
-                adapter.clear();
+                adapter_interestedExperience.clear();
+                adapter_interestedSkill.clear();
+                adapter_interestedItem.clear();
+                adapter_ownedSkill.clear();
+                adapter_ownedItem.clear();
+                adapter_ownedExperience.clear();
                 for (int num = 0; num < 10; num++) {
+                    if (String.valueOf(dataSnapshot.child(account).child("interestedExperience").child(String.valueOf(num)).child("interestedExperience").getValue()) != "null") {
+                        adapter_interestedExperience.add(String.valueOf(dataSnapshot.child(account).child("interestedExperience").child(String.valueOf(num)).child("interestedExperience").getValue()));
+                    }
+                    if (String.valueOf(dataSnapshot.child(account).child("interestedSkill").child(String.valueOf(num)).child("interestedSkill").getValue()) != "null") {
+                        adapter_interestedSkill.add(String.valueOf(dataSnapshot.child(account).child("interestedSkill").child(String.valueOf(num)).child("interestedSkill").getValue()));
+                    }
+                    if (String.valueOf(dataSnapshot.child(account).child("interestedItem").child(String.valueOf(num)).child("interestedItem").getValue()) != "null") {
+                        adapter_interestedItem.add(String.valueOf(dataSnapshot.child(account).child("interestedItem").child(String.valueOf(num)).child("interestedItem").getValue()));
+                    }
                     if (String.valueOf(dataSnapshot.child(account).child("ownedExperience").child(String.valueOf(num)).child("ownedExperience").getValue()) != "null") {
-                        adapter.add(
-                                String.valueOf(dataSnapshot.child(account).child("ownedExperience").child(String.valueOf(num)).child("ownedExperience").getValue())
-                        );
+                        adapter_ownedExperience.add(String.valueOf(dataSnapshot.child(account).child("ownedExperience").child(String.valueOf(num)).child("ownedExperience").getValue()));
+                    }
+                    if (String.valueOf(dataSnapshot.child(account).child("ownedSkill").child(String.valueOf(num)).child("ownedSkill").getValue()) != "null") {
+                        adapter_ownedSkill.add(String.valueOf(dataSnapshot.child(account).child("ownedSkill").child(String.valueOf(num)).child("ownedSkill").getValue()));
+                    }
+                    if (String.valueOf(dataSnapshot.child(account).child("ownedItem").child(String.valueOf(num)).child("ownedItem").getValue()) != "null") {
+                        adapter_ownedItem.add(String.valueOf(dataSnapshot.child(account).child("ownedItem").child(String.valueOf(num)).child("ownedItem").getValue()));
                     }
                 }
             }
@@ -183,6 +228,8 @@ private static final String TAG = Personal.class.getSimpleName();
 
             }
         });
+
+
 
 
     }
