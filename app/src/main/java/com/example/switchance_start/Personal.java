@@ -109,6 +109,9 @@ private static final String TAG = Personal.class.getSimpleName();
         TextView name;
         name = getActivity().findViewById(R.id.txt_name);
         final String account;
+        final String[] img_icon = new String[1];   //icon碼
+
+
 
         SharedPreferences preferences_register = this.getActivity().getSharedPreferences("Register", Context.MODE_PRIVATE);
         SharedPreferences preferences_login = this.getActivity().getSharedPreferences("Log_in", Context.MODE_PRIVATE);
@@ -124,6 +127,7 @@ private static final String TAG = Personal.class.getSimpleName();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com");
+
 
         ListView ListView_interestedSkill = getActivity().findViewById(R.id.ListView_interestedSkill);
         ListView ListView_interestedExperience = getActivity().findViewById(R.id.ListView_interestedExperience);
@@ -156,6 +160,9 @@ private static final String TAG = Personal.class.getSimpleName();
         adapter_ownedItem.clear();
         adapter_ownedExperience.clear();
 
+        final ImageView icon = getActivity().findViewById(R.id.img_icon);
+
+
         //把firebase資料加進adapter，以及隨時更新資料
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -182,6 +189,29 @@ private static final String TAG = Personal.class.getSimpleName();
 
                 }
 //                Log.d("count",String.valueOf(adapter.getItemViewType()));
+                img_icon[0] = String.valueOf(dataSnapshot.child(account).child("icon").getValue());      //firebase抓icon資料
+                switch (img_icon[0]){
+                    case "2131165282":  //雞
+                        icon.setImageResource(R.drawable.chicken);
+                        break;
+                    case "2131165280":  //變色龍
+                        icon.setImageResource(R.drawable.chameleon);
+                        break;
+                    case "2131165324":  //獅子
+                        icon.setImageResource(R.drawable.lion);
+                        break;
+                    case "2131165315":  //刺蝟
+                        icon.setImageResource(R.drawable.hedgehog);
+                        break;
+                    case "2131165314":  //鵝
+                        icon.setImageResource(R.drawable.goose);
+                        break;
+                    case "0":  //狐狸
+                        icon.setImageResource(R.drawable.fox);
+                        break;
+
+                }
+                Log.d("~~~~~~~~~~~~~~~~~~~~~~~~~~~~`img_icon:",String.valueOf(img_icon[0]));
             }
 
             @Override
@@ -212,6 +242,7 @@ private static final String TAG = Personal.class.getSimpleName();
                         adapter_ownedItem.add(String.valueOf(dataSnapshot.child(account).child("ownedItem").child(String.valueOf(num)).child("ownedItem").getValue()));
                     }
                 }
+
             }
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
