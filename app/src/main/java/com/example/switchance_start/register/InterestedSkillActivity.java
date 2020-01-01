@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import com.example.switchance_start.HomePage;
 import com.example.switchance_start.MainActivity;
 import com.example.switchance_start.R;
+import com.example.switchance_start.model.Constant;
+import com.example.switchance_start.model.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -36,25 +38,25 @@ public class InterestedSkillActivity extends AppCompatActivity {
     RecyclerView recyclerViewInterestedItem;
     EditText edtxtItem;
     ImageButton addInterestedItem;
-    DatabaseReference myRef;
-    String account;
+    DatabaseReference databaseUserinfos;
+    //String id;
+    UserInfo userInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insterested_skill);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/");
-        account = getIntent().getStringExtra("account");
+        databaseUserinfos = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL).child(Constant.CHILD_REF_USERINFO);
+
+        //id = getIntent().getStringExtra("id");
+        userInfo = (UserInfo) getIntent().getSerializableExtra("userInfo");
 
         setBtn_back();
         setBtn_next();
         initInterestedSkillView();
         initInterestedExperienceView();
         initInterestedItemView();
-
-
     }
 
     private void setBtn_next() {
@@ -72,10 +74,20 @@ public class InterestedSkillActivity extends AppCompatActivity {
 //
 //                interestedItemAdapter.addItem(new InterestedItem("鈴鼓"));
 //                interestedItemAdapter.addItem(new InterestedItem("唱歌神器"));
-                myRef.child("user_info").child(account).child("interestedSkill").setValue(interestedSkillAdapter.getArrayList());
-                myRef.child("user_info").child(account).child("interestedExperience").setValue(interestedExperienceAdapter.getArrayList());
-                myRef.child("user_info").child(account).child("interestedItem").setValue(interestedItemAdapter.getArrayList());
+                //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("interestedSkill").setValue(interestedSkillAdapter.getArrayList());
+                //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("interestedExperience").setValue(interestedExperienceAdapter.getArrayList());
+                //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("interestedItem").setValue(interestedItemAdapter.getArrayList());
+				if(interestedSkillAdapter.getItemCount() > 0) {
+					userInfo.setInterestedSkills(interestedSkillAdapter.getArrayList());
+				}
+				if(interestedExperienceAdapter.getItemCount() > 0) {
+					userInfo.setInterestedExperiences(interestedExperienceAdapter.getArrayList());
+				}
+				if(interestedItemAdapter.getItemCount() > 0) {
+					userInfo.setInterestedItems(interestedItemAdapter.getArrayList());
+				}
 
+                databaseUserinfos.child(userInfo.getId()).setValue(userInfo);
 //                Intent intent = new Intent();
 //                intent.setClass(InterestedSkillActivity.this, HomePage.class);
 //                startActivity(intent);
@@ -85,12 +97,9 @@ public class InterestedSkillActivity extends AppCompatActivity {
                 intent.setClass(InterestedSkillActivity.this, HomePage.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-
-
             }
         });
     }
-
 
     private void setBtn_back() { //返回鍵
         btn_back = (ImageButton) findViewById(R.id.btn_back);
@@ -134,7 +143,6 @@ public class InterestedSkillActivity extends AppCompatActivity {
             }
         });
     }
-
 
     public void initInterestedExperienceView() {
         interestedExperienceAdapter = new InterestedExperienceAdapter(this);

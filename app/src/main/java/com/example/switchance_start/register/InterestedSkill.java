@@ -1,7 +1,13 @@
 package com.example.switchance_start.register;
 
-public class InterestedSkill {
+import java.io.Serializable;
+
+public class InterestedSkill implements Serializable {
     String interestedSkill;
+
+    public InterestedSkill() {
+
+    }
 
     public InterestedSkill(String interestedSkill) {
         this.interestedSkill = interestedSkill;

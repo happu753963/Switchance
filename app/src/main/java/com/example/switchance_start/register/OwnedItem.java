@@ -1,8 +1,14 @@
 package com.example.switchance_start.register;
 
-public class OwnedItem {
+import java.io.Serializable;
+
+public class OwnedItem implements Serializable {
 
     String ownedItem;
+
+    public OwnedItem() {
+
+    }
 
     public OwnedItem(String ownedItem) {
         this.ownedItem = ownedItem;

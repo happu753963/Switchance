@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.switchance_start.MainActivity;
 import com.example.switchance_start.R;
+import com.example.switchance_start.model.Constant;
+import com.example.switchance_start.model.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -42,6 +44,9 @@ public class RegisterActivity extends AppCompatActivity {
     Spinner spin_school;
     Spinner spin_department;
     int icon;
+
+    DatabaseReference databaseUserinfos;
+
     private static final String TAG = RegisterActivity.class.getSimpleName();
     public static FirebaseDatabase database = FirebaseDatabase.getInstance();
     public static final DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/");
@@ -55,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
 //        final DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/");
+        databaseUserinfos = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL).child(Constant.CHILD_REF_USERINFO);
 
 
         edtxt_schoolMail = (EditText) findViewById(R.id.edtxt_schoolMail);
@@ -129,14 +135,19 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast toast = Toast.makeText(RegisterActivity.this, "姓名不可為空白!", Toast.LENGTH_LONG);
                         toast.show();}
                     else {
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("icon").setValue(icon);
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("gender").setValue(spin_gender.getSelectedItem().toString());
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("birthday").setValue(edtxt_birthday.getText().toString());
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("school").setValue(spin_school.getSelectedItem().toString());
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("department").setValue(spin_department.getSelectedItem().toString());
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("mail").setValue(edtxt_schoolMail.getText().toString());
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("password").setValue(edtxt_password.getText().toString());
-                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("name").setValue(edtxt_name.getText().toString());
+                        String id = databaseUserinfos.push().getKey();
+                        UserInfo userInfo = new UserInfo(id, icon, spin_gender.getSelectedItem().toString(), edtxt_birthday.getText().toString(),
+                                spin_school.getSelectedItem().toString(), spin_department.getSelectedItem().toString(), edtxt_schoolMail.getText().toString(),
+                                edtxt_password.getText().toString(), edtxt_name.getText().toString(), edtxt_account.getText().toString());
+                        databaseUserinfos.child(id).setValue(userInfo);
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("icon").setValue(icon);
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("gender").setValue(spin_gender.getSelectedItem().toString());
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("birthday").setValue(edtxt_birthday.getText().toString());
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("school").setValue(spin_school.getSelectedItem().toString());
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("department").setValue(spin_department.getSelectedItem().toString());
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("mail").setValue(edtxt_schoolMail.getText().toString());
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("password").setValue(edtxt_password.getText().toString());
+//                        myRef.child("user_info").child(edtxt_account.getText().toString()).child("name").setValue(edtxt_name.getText().toString());
 
 //                myRef.child("user_info").child("xuansun").child("icon").setValue(R.drawable.lion);
 //                myRef.child("user_info").child("xuansun").child("gender").setValue("女");
@@ -147,11 +158,10 @@ public class RegisterActivity extends AppCompatActivity {
 //                myRef.child("user_info").child("xuansun").child("password").setValue("878787");
 //                myRef.child("user_info").child("xuansun").child("name").setValue("sunxuanxuan");
 
-
-
                         //內存個人註冊設定
                         SharedPreferences preferences_register = getSharedPreferences("Register", MODE_PRIVATE);     //呼叫getSharedPreferences()方法，產生一個檔名為temp_storge.xml的設定儲存檔，並只供本專案(app)可讀取，物件名稱為pref。
                         preferences_register.edit()
+                                            .putString("ID", id)  //呼叫edit()方法取得編輯器物件，此時使用匿名方式呼叫Editor的putString()方法將字串的內容寫入設定檔，資料標籤為”ACCOUNT”。
                                             .putString("ACCOUNT", edtxt_account.getText().toString())  //呼叫edit()方法取得編輯器物件，此時使用匿名方式呼叫Editor的putString()方法將字串的內容寫入設定檔，資料標籤為”ACCOUNT”。
                                             .putInt("ICON", icon)
                                             .putString("GENDER", spin_gender.getSelectedItem().toString())
@@ -164,21 +174,15 @@ public class RegisterActivity extends AppCompatActivity {
                                             .putString("CHECK", "0") //檢查碼(確認是從註冊進入APP)
                                             .commit();      //最後必須呼叫commit()方法，此時資料才真正寫入到設定檔中。
 
-
-
-
-
-
                         Intent intent = new Intent();
                         //把資料丟給下一頁
-                        intent.putExtra("account", edtxt_account.getText().toString());
+                        //intent.putExtra("id", id);
+                        intent.putExtra("userInfo", userInfo);
 //                intent.putExtra("account","xuansun");
                         intent.setClass(RegisterActivity.this, OwnedSkillActivity.class);
                         startActivity(intent);
 //                RegisterActivity.this.finish();
                     }
-
-
             }
         });
 

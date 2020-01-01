@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.switchance_start.model.Constant;
 import com.example.switchance_start.register.LogInActivity;
 import com.example.switchance_start.register.RegisterActivity;
 import com.google.firebase.database.DatabaseReference;
@@ -22,8 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         //設定firebase
-        FirebaseDatabase database=FirebaseDatabase.getInstance();
-        DatabaseReference myRef=database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/ex2");
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL);
         myRef.child("messenge").setValue("haha");
 
         super.onCreate(savedInstanceState);
@@ -43,25 +43,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         btn_logIn.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, LogInActivity.class);
                 startActivity(intent);
 //                MainActivity.this.finish();
             }
         });
-
-
-
-
-
-
     }
-
-
-
 }

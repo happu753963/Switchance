@@ -21,8 +21,6 @@ public class HomePage extends AppCompatActivity
 
     PageAdapter pageAdapter;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +36,8 @@ public class HomePage extends AppCompatActivity
 
         pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
 
-
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
     }
 
     public void onFragmentInteraction(Uri uri) {
