@@ -62,6 +62,7 @@ public class UserInfo implements Serializable {
     /**
      * 擁有的技能
      */
+<<<<<<< Updated upstream
     private List<OwnedSkill> ownedSkills;
     /**
      * 擁有的經歷
@@ -91,6 +92,37 @@ public class UserInfo implements Serializable {
         interestedSkills = new ArrayList<>();
         interestedExperiences = new ArrayList<>();
         interestedItems = new ArrayList<>();
+=======
+    private List<OwnedSkill> ownedSkill;
+    /**
+     * 擁有的經歷
+     */
+    private List<OwnedExperience> ownedExperience;
+    /**
+     * 擁有的物品
+     */
+    private List<OwnedItem> ownedItem;
+    /**
+     * 感興趣的技能
+     */
+    private List<InterestedSkill> interestedSkill;
+    /**
+     * 感興趣的經歷
+     */
+    private List<InterestedExperience> interestedExperience;
+    /**
+     * 感興趣的物品
+     */
+    private List<InterestedItem> interestedItem;
+
+    public UserInfo() {
+        ownedSkill = new ArrayList<>();
+        ownedExperience = new ArrayList<>();
+        ownedItem = new ArrayList<>();
+        interestedSkill = new ArrayList<>();
+        interestedExperience = new ArrayList<>();
+        interestedItem = new ArrayList<>();
+>>>>>>> Stashed changes
     }
 
     public UserInfo(String id, int icon, String gender, String birthday, String school, String department, String mail, String password, String name, String account) {
@@ -187,6 +219,7 @@ public class UserInfo implements Serializable {
         this.account = account;
     }
 
+<<<<<<< Updated upstream
     public List<OwnedSkill> getOwnedSkills() {
         return ownedSkills;
     }
@@ -233,13 +266,66 @@ public class UserInfo implements Serializable {
 
     public void setInterestedItems(List<InterestedItem> interestedItems) {
         this.interestedItems = interestedItems;
+=======
+    public List<OwnedSkill> getOwnedSkill() {
+        return ownedSkill;
+    }
+
+    public void setOwnedSkill(List<OwnedSkill> ownedSkill) {
+        this.ownedSkill = ownedSkill;
+    }
+
+    public List<OwnedExperience> getOwnedExperience() {
+        return ownedExperience;
+    }
+
+    public void setOwnedExperience(List<OwnedExperience> ownedExperience) {
+        this.ownedExperience = ownedExperience;
+    }
+
+    public List<OwnedItem> getOwnedItem() {
+        return ownedItem;
+    }
+
+    public void setOwnedItem(List<OwnedItem> ownedItem) {
+        this.ownedItem = ownedItem;
+    }
+
+    public List<InterestedSkill> getInterestedSkill() {
+        return interestedSkill;
+    }
+
+    public void setInterestedSkill(List<InterestedSkill> interestedSkill) {
+        this.interestedSkill = interestedSkill;
+    }
+
+    public List<InterestedExperience> getInterestedExperience() {
+        return interestedExperience;
+    }
+
+    public void setInterestedExperience(List<InterestedExperience> interestedExperience) {
+        this.interestedExperience = interestedExperience;
+    }
+
+    public List<InterestedItem> getInterestedItem() {
+        return interestedItem;
+    }
+
+    public void setInterestedItem(List<InterestedItem> interestedItem) {
+        this.interestedItem = interestedItem;
+>>>>>>> Stashed changes
     }
 
     @Exclude
     public List<String> getOwnedSkillList() {
         List<String> result = new ArrayList<>();
+<<<<<<< Updated upstream
         if(ownedSkills != null) {
             for(OwnedSkill ownedSkill : ownedSkills) {
+=======
+        if(ownedSkill != null) {
+            for(OwnedSkill ownedSkill : ownedSkill) {
+>>>>>>> Stashed changes
                 result.add(ownedSkill.getOwnedSkill());
             }
         }
