@@ -10,10 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import com.example.switchance_start.HomePage;
-import com.example.switchance_start.MainActivity;
 import com.example.switchance_start.R;
 import com.example.switchance_start.model.Constant;
 import com.example.switchance_start.model.UserInfo;

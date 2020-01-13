@@ -33,10 +33,6 @@ public class UserInfoList extends ArrayAdapter<UserInfo> {
 
         ImageView imageViewIcon = (ImageView) listViewItem.findViewById((R.id.imageViewIcon));
         TextView textViewName = (TextView) listViewItem.findViewById(R.id.textViewName);
-<<<<<<< Updated upstream
-        TextView textViewDepartment = (TextView) listViewItem.findViewById(R.id.textViewDepartment);
-=======
->>>>>>> Stashed changes
         GridView gridViewOwnedSkill = (GridView) listViewItem.findViewById((R.id.gridViewOwnedSkill));
 
         UserInfo userInfo = userInfos.get(position);
@@ -61,10 +57,6 @@ public class UserInfoList extends ArrayAdapter<UserInfo> {
                 break;
         }
         textViewName.setText(userInfo.getName());
-<<<<<<< Updated upstream
-        textViewDepartment.setText(userInfo.getDepartment());
-=======
->>>>>>> Stashed changes
         gridViewOwnedSkill.setAdapter(new ArrayAdapter<String>(this.context, R.layout.layout_simple_list, userInfo.getOwnedSkillList()));
 
         return listViewItem;

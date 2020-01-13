@@ -5,13 +5,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.nfc.Tag;
 import android.os.Bundle;
-import android.text.util.Linkify;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -22,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.switchance_start.MainActivity;
 import com.example.switchance_start.R;
+import com.example.switchance_start.model.Constant;
+import com.example.switchance_start.model.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -35,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     ImageButton btn_back;
     ImageButton btn_icon;
     EditText edtxt_schoolMail;
-    DatePicker datePicker;
+    EditText edtxt_birthday;
     EditText edtxt_password;
     EditText edtxt_doubleCheck;
     EditText edtxt_name;
@@ -45,12 +44,10 @@ public class RegisterActivity extends AppCompatActivity {
     Spinner spin_school;
     Spinner spin_department;
     int icon;
-    boolean checkMail;
+
+    DatabaseReference databaseUserinfos;
 
     private static final String TAG = RegisterActivity.class.getSimpleName();
-    public static FirebaseDatabase database = FirebaseDatabase.getInstance();
-    public static final DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/");
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,41 +55,25 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        final DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/");
+        databaseUserinfos = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL).child(Constant.CHILD_REF_USERINFO);
 
 
         edtxt_schoolMail = (EditText) findViewById(R.id.edtxt_schoolMail);
-        datePicker = (DatePicker) findViewById(R.id.datePicker);
+
+//        edtxt_birthday = (EditText) findViewById(R.id.edtxt_birthday);
+
         edtxt_password = (EditText) findViewById(R.id.edtxt_password);
+
         edtxt_doubleCheck = (EditText) findViewById(R.id.edtxt_doubleCheck);
+
         edtxt_name = (EditText) findViewById(R.id.edtxt_name);
+
         edtxt_account = (EditText) findViewById(R.id.edtxt_account);
+
+
         btn_back = (ImageButton) findViewById(R.id.btn_back);
         btn_icon = (ImageButton) findViewById(R.id.btn_icon);
         Button btn_next = (Button) findViewById(R.id.btn_next);
-
-
-        edtxt_schoolMail.setOnKeyListener(new EditText.OnKeyListener(){
-
-            @Override
-            public boolean onKey(View arg0, int arg1, KeyEvent arg2) {
-                // TODO Auto-generated method stub
-                if (Linkify.addLinks(edtxt_schoolMail.getText(), Linkify.EMAIL_ADDRESSES))
-                {
-                    checkMail=true;
-//                    Toast toast = Toast.makeText(RegisterActivity.this, "mail輸入正確", Toast.LENGTH_LONG);
-//                    toast.show();
-                }
-                else
-                {
-                    checkMail=false;
-//                    Toast toast = Toast.makeText(RegisterActivity.this, "請完整輸入Mail", Toast.LENGTH_LONG);
-//                    toast.show();
-                }
-                return false;
-            }
-        });
 
         btn_back.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -119,12 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
         btn_next.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //icon有default
-                // 取得DatePicker並轉換字串
-                int year = datePicker.getYear();
-                int month = datePicker.getMonth()+1;
-                int day =datePicker.getDayOfMonth();
-                String birthday = year + "-" + month + "-" + day;
+                    //icon有default
 
                 if(edtxt_account.getText().toString().matches(" ") ) {
                     Toast toast = Toast.makeText(RegisterActivity.this, "帳號不可為空白!", Toast.LENGTH_LONG);
@@ -162,16 +138,12 @@ public class RegisterActivity extends AppCompatActivity {
                     toast.show();
                 }
 
-                else {
-
-                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("icon").setValue(icon);
-                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("gender").setValue(spin_gender.getSelectedItem().toString());
-                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("birthday").setValue(birthday);
-                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("school").setValue(spin_school.getSelectedItem().toString());
-                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("department").setValue(spin_department.getSelectedItem().toString());
-                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("mail").setValue(edtxt_schoolMail.getText().toString());
-                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("password").setValue(edtxt_password.getText().toString());
-                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("name").setValue(edtxt_name.getText().toString());
+                    else {
+                        String id = databaseUserinfos.push().getKey();
+                        UserInfo userInfo = new UserInfo(id, icon, spin_gender.getSelectedItem().toString(), edtxt_birthday.getText().toString(),
+                                spin_school.getSelectedItem().toString(), spin_department.getSelectedItem().toString(), edtxt_schoolMail.getText().toString(),
+                                edtxt_password.getText().toString(), edtxt_name.getText().toString(), edtxt_account.getText().toString());
+                        databaseUserinfos.child(id).setValue(userInfo);
 
 //                myRef.child("user_info").child("xuansun").child("icon").setValue(R.drawable.lion);
 //                myRef.child("user_info").child("xuansun").child("gender").setValue("女");
@@ -182,32 +154,31 @@ public class RegisterActivity extends AppCompatActivity {
 //                myRef.child("user_info").child("xuansun").child("password").setValue("878787");
 //                myRef.child("user_info").child("xuansun").child("name").setValue("sunxuanxuan");
 
-                    //內存個人註冊設定
-                    SharedPreferences preferences_register = getSharedPreferences("Register", MODE_PRIVATE);     //呼叫getSharedPreferences()方法，產生一個檔名為temp_storge.xml的設定儲存檔，並只供本專案(app)可讀取，物件名稱為pref。
-                    preferences_register.edit()
-                            .putString("ACCOUNT", edtxt_account.getText().toString())  //呼叫edit()方法取得編輯器物件，此時使用匿名方式呼叫Editor的putString()方法將字串的內容寫入設定檔，資料標籤為”ACCOUNT”。
-                            .putInt("ICON", icon)
-                            .putString("GENDER", spin_gender.getSelectedItem().toString())
-                            .putString("BIRTHDAY", birthday)
-                            .putString("SCHOOL", spin_school.getSelectedItem().toString())
-                            .putString("DEPARTMENT", spin_department.getSelectedItem().toString())
-                            .putString("EMAIL", edtxt_schoolMail.getText().toString())
-                            .putString("PASSWORD", edtxt_password.getText().toString())
-                            .putString("NAME", edtxt_name.getText().toString())
-                            .putString("CHECK", "0") //檢查碼(確認是從註冊進入APP)
-                            .commit();      //最後必須呼叫commit()方法，此時資料才真正寫入到設定檔中。
+                        //內存個人註冊設定
+                        SharedPreferences preferences_register = getSharedPreferences("Register", MODE_PRIVATE);     //呼叫getSharedPreferences()方法，產生一個檔名為temp_storge.xml的設定儲存檔，並只供本專案(app)可讀取，物件名稱為pref。
+                        preferences_register.edit()
+                                            .putString("ID", id)  //呼叫edit()方法取得編輯器物件，此時使用匿名方式呼叫Editor的putString()方法將字串的內容寫入設定檔，資料標籤為”ACCOUNT”。
+                                            .putString("ACCOUNT", edtxt_account.getText().toString())  //呼叫edit()方法取得編輯器物件，此時使用匿名方式呼叫Editor的putString()方法將字串的內容寫入設定檔，資料標籤為”ACCOUNT”。
+                                            .putInt("ICON", icon)
+                                            .putString("GENDER", spin_gender.getSelectedItem().toString())
+                                            .putString("BIRTHDAY", edtxt_birthday.getText().toString())
+                                            .putString("SCHOOL", spin_school.getSelectedItem().toString())
+                                            .putString("DEPARTMENT", spin_department.getSelectedItem().toString())
+                                            .putString("EMAIL", edtxt_schoolMail.getText().toString())
+                                            .putString("PASSWORD", edtxt_password.getText().toString())
+                                            .putString("NAME", edtxt_name.getText().toString())
+                                            .putString("CHECK", "0") //檢查碼(確認是從註冊進入APP)
+                                            .commit();      //最後必須呼叫commit()方法，此時資料才真正寫入到設定檔中。
 
-
-                    Intent intent = new Intent();
-                    //把資料丟給下一頁
-                    intent.putExtra("account", edtxt_account.getText().toString());
+                        Intent intent = new Intent();
+                        //把資料丟給下一頁
+                        //intent.putExtra("id", id);
+                        intent.putExtra("userInfo", userInfo);
 //                intent.putExtra("account","xuansun");
-                    intent.setClass(RegisterActivity.this, OwnedSkillActivity.class);
-                    startActivity(intent);
+                        intent.setClass(RegisterActivity.this, OwnedSkillActivity.class);
+                        startActivity(intent);
 //                RegisterActivity.this.finish();
-                }
-
-
+                    }
             }
         });
 
