@@ -51,10 +51,10 @@ public class logo extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-	
-	GridView gridViewUserinfos;
-    
-	List<UserInfo> userinfos;
+
+    GridView gridViewUserinfos;
+
+    List<UserInfo> userinfos;
     DatabaseReference databaseUserinfos;
 
     public logo() {
@@ -96,12 +96,12 @@ public class logo extends Fragment {
     }
 
     @Override
-	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-		gridViewUserinfos = (GridView) view.findViewById(R.id.gridViewUserinfos);
+        gridViewUserinfos = (GridView) view.findViewById(R.id.gridViewUserinfos);
 
-		databaseUserinfos = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL).child(Constant.CHILD_REF_USERINFO);
-		userinfos = new ArrayList<>();
+        databaseUserinfos = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL).child(Constant.CHILD_REF_USERINFO);
+        userinfos = new ArrayList<>();
 //        p2_logo = (ImageView) view.findViewById(R.id.p2_logo);
 //        p2_logo.setOnClickListener(new ImageView.OnClickListener() {
 //            @Override
@@ -116,11 +116,11 @@ public class logo extends Fragment {
 //        });
     }
 
-	@Override
-	public void onStart() {
-		super.onStart();
-		
-		//attaching value event listener
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        //attaching value event listener
         databaseUserinfos.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -131,10 +131,7 @@ public class logo extends Fragment {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     //getting userinfo
                     UserInfo userinfo = postSnapshot.getValue(UserInfo.class);
-<<<<<<< Updated upstream
-=======
                     Log.v("id", userinfo.getId());
->>>>>>> Stashed changes
 
                     //adding artist to the list
                     userinfos.add(userinfo);
@@ -149,10 +146,6 @@ public class logo extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                         Intent intent = new Intent(getActivity(), OtherUser.class);
-<<<<<<< Updated upstream
-=======
-                        intent.putExtra("userInfo", userinfos.get(position));
->>>>>>> Stashed changes
                         startActivity(intent);
                     }
                 });
@@ -163,9 +156,9 @@ public class logo extends Fragment {
 
             }
         });
-	}
+    }
 
-        // TODO: Rename method, update argument and hook method into UI event
+    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

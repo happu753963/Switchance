@@ -153,14 +153,15 @@ public class RegisterActivity extends AppCompatActivity {
                 else if(edtxt_name.getText().toString().matches("") ) {
                     Toast toast = Toast.makeText(RegisterActivity.this, "姓名不可為空白!", Toast.LENGTH_LONG);
                     toast.show();}
-                else if(edtxt_password != edtxt_doubleCheck){
-                    Toast toast = Toast.makeText(RegisterActivity.this, "確認密碼錯誤", Toast.LENGTH_LONG);
-                    toast.show();
-                }
                 else if(checkMail == false){
                     Toast toast = Toast.makeText(RegisterActivity.this, "信箱格式不符", Toast.LENGTH_LONG);
                     toast.show();
                 }
+                else if(!edtxt_password.equals(edtxt_doubleCheck)){
+                    Toast toast = Toast.makeText(RegisterActivity.this, "確認密碼錯誤", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+
                 else {
 
                     myRef.child("user_info").child(edtxt_account.getText().toString()).child("icon").setValue(icon);

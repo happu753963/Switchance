@@ -134,9 +134,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="textEmailAddress"
-                    android:singleLine="true" />
+                    android:autoLink="email"
+                    />
 
                 <TextView
                     android:id="@+id/txt_password"
