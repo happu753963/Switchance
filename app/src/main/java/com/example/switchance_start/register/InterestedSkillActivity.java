@@ -78,13 +78,13 @@ public class InterestedSkillActivity extends AppCompatActivity {
                 //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("interestedExperience").setValue(interestedExperienceAdapter.getArrayList());
                 //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("interestedItem").setValue(interestedItemAdapter.getArrayList());
 				if(interestedSkillAdapter.getItemCount() > 0) {
-					userInfo.setInterestedSkills(interestedSkillAdapter.getArrayList());
+					userInfo.setInterestedSkill(interestedSkillAdapter.getArrayList());
 				}
 				if(interestedExperienceAdapter.getItemCount() > 0) {
-					userInfo.setInterestedExperiences(interestedExperienceAdapter.getArrayList());
+					userInfo.setInterestedExperience(interestedExperienceAdapter.getArrayList());
 				}
 				if(interestedItemAdapter.getItemCount() > 0) {
-					userInfo.setInterestedItems(interestedItemAdapter.getArrayList());
+					userInfo.setInterestedItem(interestedItemAdapter.getArrayList());
 				}
 
                 databaseUserinfos.child(userInfo.getId()).setValue(userInfo);

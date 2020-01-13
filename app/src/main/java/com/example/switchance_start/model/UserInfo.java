@@ -62,35 +62,35 @@ public class UserInfo implements Serializable {
     /**
      * 擁有的技能
      */
-    private List<OwnedSkill> ownedSkills;
+    private List<OwnedSkill> ownedSkill;
     /**
      * 擁有的經歷
      */
-    private List<OwnedExperience> ownedExperiences;
+    private List<OwnedExperience> ownedExperience;
     /**
      * 擁有的物品
      */
-    private List<OwnedItem> ownedItems;
+    private List<OwnedItem> ownedItem;
     /**
      * 感興趣的技能
      */
-    private List<InterestedSkill> interestedSkills;
+    private List<InterestedSkill> interestedSkill;
     /**
      * 感興趣的經歷
      */
-    private List<InterestedExperience> interestedExperiences;
+    private List<InterestedExperience> interestedExperience;
     /**
      * 感興趣的物品
      */
-    private List<InterestedItem> interestedItems;
+    private List<InterestedItem> interestedItem;
 
     public UserInfo() {
-        ownedSkills = new ArrayList<>();
-        ownedExperiences = new ArrayList<>();
-        ownedItems = new ArrayList<>();
-        interestedSkills = new ArrayList<>();
-        interestedExperiences = new ArrayList<>();
-        interestedItems = new ArrayList<>();
+        ownedSkill = new ArrayList<>();
+        ownedExperience = new ArrayList<>();
+        ownedItem = new ArrayList<>();
+        interestedSkill = new ArrayList<>();
+        interestedExperience = new ArrayList<>();
+        interestedItem = new ArrayList<>();
     }
 
     public UserInfo(String id, int icon, String gender, String birthday, String school, String department, String mail, String password, String name, String account) {
@@ -187,59 +187,59 @@ public class UserInfo implements Serializable {
         this.account = account;
     }
 
-    public List<OwnedSkill> getOwnedSkills() {
-        return ownedSkills;
+    public List<OwnedSkill> getOwnedSkill() {
+        return ownedSkill;
     }
 
-    public void setOwnedSkills(List<OwnedSkill> ownedSkills) {
-        this.ownedSkills = ownedSkills;
+    public void setOwnedSkill(List<OwnedSkill> ownedSkill) {
+        this.ownedSkill = ownedSkill;
     }
 
-    public List<OwnedExperience> getOwnedExperiences() {
-        return ownedExperiences;
+    public List<OwnedExperience> getOwnedExperience() {
+        return ownedExperience;
     }
 
-    public void setOwnedExperiences(List<OwnedExperience> ownedExperiences) {
-        this.ownedExperiences = ownedExperiences;
+    public void setOwnedExperience(List<OwnedExperience> ownedExperience) {
+        this.ownedExperience = ownedExperience;
     }
 
-    public List<OwnedItem> getOwnedItems() {
-        return ownedItems;
+    public List<OwnedItem> getOwnedItem() {
+        return ownedItem;
     }
 
-    public void setOwnedItems(List<OwnedItem> ownedItems) {
-        this.ownedItems = ownedItems;
+    public void setOwnedItem(List<OwnedItem> ownedItem) {
+        this.ownedItem = ownedItem;
     }
 
-    public List<InterestedSkill> getInterestedSkills() {
-        return interestedSkills;
+    public List<InterestedSkill> getInterestedSkill() {
+        return interestedSkill;
     }
 
-    public void setInterestedSkills(List<InterestedSkill> interestedSkills) {
-        this.interestedSkills = interestedSkills;
+    public void setInterestedSkill(List<InterestedSkill> interestedSkill) {
+        this.interestedSkill = interestedSkill;
     }
 
-    public List<InterestedExperience> getInterestedExperiences() {
-        return interestedExperiences;
+    public List<InterestedExperience> getInterestedExperience() {
+        return interestedExperience;
     }
 
-    public void setInterestedExperiences(List<InterestedExperience> interestedExperiences) {
-        this.interestedExperiences = interestedExperiences;
+    public void setInterestedExperience(List<InterestedExperience> interestedExperience) {
+        this.interestedExperience = interestedExperience;
     }
 
-    public List<InterestedItem> getInterestedItems() {
-        return interestedItems;
+    public List<InterestedItem> getInterestedItem() {
+        return interestedItem;
     }
 
-    public void setInterestedItems(List<InterestedItem> interestedItems) {
-        this.interestedItems = interestedItems;
+    public void setInterestedItem(List<InterestedItem> interestedItem) {
+        this.interestedItem = interestedItem;
     }
 
     @Exclude
     public List<String> getOwnedSkillList() {
         List<String> result = new ArrayList<>();
-        if(ownedSkills != null) {
-            for(OwnedSkill ownedSkill : ownedSkills) {
+        if(ownedSkill != null) {
+            for(OwnedSkill ownedSkill : ownedSkill) {
                 result.add(ownedSkill.getOwnedSkill());
             }
         }

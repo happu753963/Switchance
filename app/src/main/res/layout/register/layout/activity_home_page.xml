@@ -38,26 +38,7 @@
         app:tabIndicatorColor="#3F51B5"
         app:tabIndicatorGravity="bottom"
         app:tabSelectedTextColor="@android:color/white"
-        app:tabTextColor="@android:color/black">
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabLogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:icon="@drawable/home" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabEnvelope"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:icon="@drawable/chat" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabPerson"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:icon="@drawable/user" />
-    </com.google.android.material.tabs.TabLayout>
+        app:tabTextColor="@android:color/black"></com.google.android.material.tabs.TabLayout>
 
 
     <androidx.viewpager.widget.ViewPager

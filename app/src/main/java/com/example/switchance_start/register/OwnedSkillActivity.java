@@ -78,13 +78,13 @@ public class OwnedSkillActivity extends AppCompatActivity {
                 //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("ownedExperience").setValue(ownedExperienceAdapter.getArrayList());
                 //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("ownedItem").setValue(ownedItemAdapter.getArrayList());
 				if(ownedSkillAdapter.getItemCount() > 0) {
-					userInfo.setOwnedSkills(ownedSkillAdapter.getArrayList());
+					userInfo.setOwnedSkill(ownedSkillAdapter.getArrayList());
 				}
 				if(ownedExperienceAdapter.getItemCount() > 0) {
-					userInfo.setOwnedExperiences(ownedExperienceAdapter.getArrayList());
+					userInfo.setOwnedExperience(ownedExperienceAdapter.getArrayList());
 				}
 				if(ownedItemAdapter.getItemCount() > 0) {
-					userInfo.setOwnedItems(ownedItemAdapter.getArrayList());
+					userInfo.setOwnedItem(ownedItemAdapter.getArrayList());
 				}
 
                 databaseUserinfos.child(userInfo.getId()).setValue(userInfo);
