@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -130,6 +131,10 @@ public class logo extends Fragment {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     //getting userinfo
                     UserInfo userinfo = postSnapshot.getValue(UserInfo.class);
+<<<<<<< Updated upstream
+=======
+                    Log.v("id", userinfo.getId());
+>>>>>>> Stashed changes
 
                     //adding artist to the list
                     userinfos.add(userinfo);
@@ -144,6 +149,10 @@ public class logo extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                         Intent intent = new Intent(getActivity(), OtherUser.class);
+<<<<<<< Updated upstream
+=======
+                        intent.putExtra("userInfo", userinfos.get(position));
+>>>>>>> Stashed changes
                         startActivity(intent);
                     }
                 });

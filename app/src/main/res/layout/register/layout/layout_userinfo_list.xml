@@ -9,10 +9,23 @@
 
     <ImageView
         android:id="@+id/imageViewIcon"
+<<<<<<< Updated upstream
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:layout_gravity="center"
+=======
+<<<<<<< Updated upstream
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="5dp"
+=======
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         android:src="@drawable/fox"/>
 
     <TextView
@@ -24,6 +37,7 @@
         android:text="Chameleon"
         android:textColor="@color/colorBlack" />
 
+<<<<<<< Updated upstream
     <TextView
         android:id="@+id/textViewDepartment"
         android:layout_width="wrap_content"
@@ -31,6 +45,8 @@
         android:layout_gravity="center_horizontal"
         android:text="學院"
         android:textColor="@color/colorBlack" />
+=======
+>>>>>>> Stashed changes
 
     <GridView
         android:id="@+id/gridViewOwnedSkill"
