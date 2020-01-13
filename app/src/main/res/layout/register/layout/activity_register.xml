@@ -88,13 +88,12 @@
                     android:text="出生日期"
                     android:textColor="@color/colorBlack" />
 
-                <EditText
-                    android:id="@+id/edtxt_birthday"
-                    android:layout_width="wrap_content"
+                <DatePicker
+                    android:id="@+id/datePicker"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="8"
-                    android:inputType="date" />
+                    android:calendarViewShown="false"
+                    android:datePickerMode="spinner" />
 
                 <TextView
                     android:id="@+id/txt_school"
@@ -136,7 +135,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true" />
 
                 <TextView
                     android:id="@+id/txt_password"
