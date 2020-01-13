@@ -146,10 +146,7 @@ public class logo extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                         Intent intent = new Intent(getActivity(), OtherUser.class);
-<<<<<<< Updated upstream
-=======
                         intent.putExtra("userInfo", userinfos.get(position));
->>>>>>> Stashed changes
                         startActivity(intent);
                     }
                 });
