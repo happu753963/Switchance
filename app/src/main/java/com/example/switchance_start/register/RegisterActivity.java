@@ -3,6 +3,7 @@ package com.example.switchance_start.register;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.util.Linkify;
 import android.view.KeyEvent;
 import android.view.View;
@@ -24,6 +25,9 @@ import com.example.switchance_start.model.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RegisterActivity extends AppCompatActivity {
     ImageButton btn_back;
     ImageButton btn_icon;
@@ -39,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
     Spinner spin_department;
     int icon;
     boolean checkMail;
+    String strEmail;
 
     private static final String TAG = RegisterActivity.class.getSimpleName();
     public static FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -67,6 +72,8 @@ public class RegisterActivity extends AppCompatActivity {
         Button btn_next = (Button) findViewById(R.id.btn_next);
 
 
+
+
         edtxt_schoolMail.setOnKeyListener(new EditText.OnKeyListener() {
 
             @Override
@@ -82,6 +89,14 @@ public class RegisterActivity extends AppCompatActivity {
 //                    toast.show();
                 }
                 return false;
+
+//                    if (null==edtxt_schoolMail || "".equals(edtxt_schoolMail)) return false;
+//                    //Pattern p = Pattern.compile("\\w+@(\\w+.)+[a-z]{2,3}"); //简单匹配
+//                    Pattern p =  Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");//复杂匹配
+//                    Matcher m = p.matcher(edtxt_schoolMail);
+//                    return m.matches();
+//                }
+
             }
         });
 
@@ -173,8 +188,8 @@ public class RegisterActivity extends AppCompatActivity {
 //                myRef.child("user_info").child("xuansun").child("school").setValue("國立成功大學");
 //                myRef.child("user_info").child("xuansun").child("department").setValue("管理學院");
 //                myRef.child("user_info").child("xuansun").child("mail").setValue("ncku123@ncku.edu.tw");
-//                myRef.child("user_info").child("xuansun").child("password").setValue("878787");
-//                myRef.child("user_info").child("xuansun").child("name").setValue("sunxuanxuan");
+////                myRef.child("user_info").child("xuansun").child("password").setValue("878787");
+////                myRef.child("user_info").child("xuansun").child("name").setValue("sunxuanxuan");
 
                     //內存個人註冊設定
                     SharedPreferences preferences_register = getSharedPreferences("Register", MODE_PRIVATE);     //呼叫getSharedPreferences()方法，產生一個檔名為temp_storge.xml的設定儲存檔，並只供本專案(app)可讀取，物件名稱為pref。
@@ -268,4 +283,5 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
     }
+
 }

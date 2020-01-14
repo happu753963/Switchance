@@ -19,38 +19,50 @@ import java.io.FileOutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button btn_register;
+    Button btn_logIn;
+//    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        super.onCreate(savedInstanceState);
         //設定firebase
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL);
         myRef.child("messenge").setValue("haha");
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        Button btn_register = (Button)findViewById(R.id.btn_register);
-        Button btn_logIn= (Button)findViewById(R.id.btn_logIn);
+//        mAuth = FirebaseAuth.getInstance();
+//        FirebaseUser user = mAuth.getCurrentUser();
+//        if (user == null) {
+            setContentView(R.layout.activity_main);
 
-        btn_register.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View v) {
+            btn_register = (Button) findViewById(R.id.btn_register);
+            btn_logIn = (Button) findViewById(R.id.btn_logIn);
 
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, RegisterActivity.class);
-                startActivity(intent);
+            btn_register.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this, RegisterActivity.class);
+                    startActivity(intent);
 //                MainActivity.this.finish();
-            }
-        });
+                }
+            });
 
-        btn_logIn.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, LogInActivity.class);
-                startActivity(intent);
+            btn_logIn.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this, LogInActivity.class);
+                    startActivity(intent);
 //                MainActivity.this.finish();
-            }
-        });
+                }
+            });
+//        }else{
+//            Intent intent = new Intent();
+//            intent.setClass(MainActivity.this, logo.class);
+//            startActivity(intent);
+        }
     }
-}
+//}
