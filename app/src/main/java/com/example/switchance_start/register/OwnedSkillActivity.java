@@ -2,6 +2,7 @@ package com.example.switchance_start.register;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -77,9 +78,11 @@ public class OwnedSkillActivity extends AppCompatActivity {
                 //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("ownedSkill").setValue(ownedSkillAdapter.getArrayList());
                 //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("ownedExperience").setValue(ownedExperienceAdapter.getArrayList());
                 //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("ownedItem").setValue(ownedItemAdapter.getArrayList());
+
 				if(ownedSkillAdapter.getItemCount() > 0) {
 					userInfo.setOwnedSkill(ownedSkillAdapter.getArrayList());
 				}
+//                Log.v("ownedSkillAdapter",ownedSkillAdapter.getArrayList());
 				if(ownedExperienceAdapter.getItemCount() > 0) {
 					userInfo.setOwnedExperience(ownedExperienceAdapter.getArrayList());
 				}

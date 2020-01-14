@@ -10,7 +10,10 @@ public class Singleton {
         String mGender;
         String mSchool;
         String mDepartment;
-        int icon;
+        String mBirthday;
+        int mCheck;
+        int mIcon;
+
         //儲存唯一的物件實體
         private static Singleton instance;
 
@@ -27,22 +30,6 @@ public class Singleton {
                 instance = new Singleton();
             }
             return instance;
-        }
-
-        public String getName() {
-            return mName;
-        }
-
-        public void setName(String name) {
-            this.mName = name;
-        }
-
-        public String getID() {
-            return mID;
-        }
-
-        public void setID(String id) {
-            this.mID = id;
         }
 
         public String getmID() {
@@ -108,13 +95,29 @@ public class Singleton {
     public void setmDepartment(String mDepartment) {
         this.mDepartment = mDepartment;
     }
-    
-    public int getIcon() {
-        return icon;
+
+    public int getmIcon() {
+        return mIcon;
     }
 
-    public void setIcon(int icon) {
-        this.icon = icon;
+    public void setmIcon(int icon) {
+        this.mIcon = icon;
+    }
+
+    public String getmBirthday() {
+        return mBirthday;
+    }
+
+    public void setmBirthday(String mBirthday) {
+        this.mBirthday = mBirthday;
+    }
+
+    public int getmCheck() {
+        return mCheck;
+    }
+
+    public void setmCheck(int mCheck) {
+        this.mCheck = mCheck;
     }
 
 }

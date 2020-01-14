@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.switchance_start.MainActivity;
 import com.example.switchance_start.R;
+import com.example.switchance_start.Singleton;
 import com.example.switchance_start.model.Constant;
 import com.example.switchance_start.model.UserInfo;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText edtxt_doubleCheck;
     EditText edtxt_name;
     EditText edtxt_account;
-
+    Button btn_next;
     Spinner spin_gender;
     Spinner spin_school;
     Spinner spin_department;
@@ -57,22 +58,30 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         databaseUserinfos = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL).child(Constant.CHILD_REF_USERINFO);
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        final DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/");
+
+        initViews();
 
 
-        edtxt_schoolMail = (EditText) findViewById(R.id.edtxt_schoolMail);
-        datePicker = (DatePicker) findViewById(R.id.datePicker);
-        edtxt_password = (EditText) findViewById(R.id.edtxt_password);
-        edtxt_doubleCheck = (EditText) findViewById(R.id.edtxt_doubleCheck);
-        edtxt_name = (EditText) findViewById(R.id.edtxt_name);
-        edtxt_account = (EditText) findViewById(R.id.edtxt_account);
-        btn_back = (ImageButton) findViewById(R.id.btn_back);
-        btn_icon = (ImageButton) findViewById(R.id.btn_icon);
-        Button btn_next = (Button) findViewById(R.id.btn_next);
+        final String[] gender = {"男", "女", "其他"};
+        ArrayAdapter<String> genderList = new ArrayAdapter<>(RegisterActivity.this,
+                android.R.layout.simple_spinner_dropdown_item,
+                gender);
+        spin_gender.setAdapter(genderList);
 
+        final String[] school = {"國立成功大學", "國立臺南藝術大學", "南臺科技大學", "台南應用科技大學",
+                "台南首府大學", "嘉南藥理大學", "國立臺南大學", "國立臺南護理專科學校", "崑山科技大學", "遠東科技大學", "長榮大學"};
+        ArrayAdapter<String> schoolList = new ArrayAdapter<>(RegisterActivity.this,
+                android.R.layout.simple_spinner_dropdown_item,
+                school);
+        spin_school.setAdapter(schoolList);
 
-
+        final String[] department = {"文學院", "理學院", "工學院", "管理學院", "醫學院",
+                "社會科學院", "電機資訊學院", "規劃與設計學院", "生物科學與科技學院", "視覺藝術學院",
+                "文博學院", "音像藝術學院", "音樂學院", "商管學院", "人文學院", "設計學院"};
+        ArrayAdapter<String> departmentList = new ArrayAdapter<>(RegisterActivity.this,
+                android.R.layout.simple_spinner_dropdown_item,
+                department);
+        spin_department.setAdapter(departmentList);
 
         edtxt_schoolMail.setOnKeyListener(new EditText.OnKeyListener() {
 
@@ -173,23 +182,18 @@ public class RegisterActivity extends AppCompatActivity {
                     databaseUserinfos.child(id).setValue(userInfo);
 //                    Log.v("idid",id);
 
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("icon").setValue(icon);
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("gender").setValue(spin_gender.getSelectedItem().toString());
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("birthday").setValue(birthday);
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("school").setValue(spin_school.getSelectedItem().toString());
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("department").setValue(spin_department.getSelectedItem().toString());
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("mail").setValue(edtxt_schoolMail.getText().toString());
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("password").setValue(edtxt_password.getText().toString());
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("name").setValue(edtxt_name.getText().toString());
+                    Singleton.getInstance().setmName(edtxt_name.getText().toString());
+                    Singleton.getInstance().setmID(id);
+                    Singleton.getInstance().setmIcon(icon);
+                    Singleton.getInstance().setmBirthday(birthday);
+                    Singleton.getInstance().setmAccount(edtxt_account.getText().toString());
+                    Singleton.getInstance().setmPassword(edtxt_password.getText().toString());
+                    Singleton.getInstance().setmSchoolMail(edtxt_schoolMail.getText().toString());
+                    Singleton.getInstance().setmDepartment(spin_department.getSelectedItem().toString());
+                    Singleton.getInstance().setmGender(spin_gender.getSelectedItem().toString());
+                    Singleton.getInstance().setmSchool(spin_school.getSelectedItem().toString());
+                    Singleton.getInstance().setmCheck(0);
 
-//                myRef.child("user_info").child("xuansun").child("icon").setValue(R.drawable.lion);
-//                myRef.child("user_info").child("xuansun").child("gender").setValue("女");
-//                myRef.child("user_info").child("xuansun").child("birthday").setValue("20190724");
-//                myRef.child("user_info").child("xuansun").child("school").setValue("國立成功大學");
-//                myRef.child("user_info").child("xuansun").child("department").setValue("管理學院");
-//                myRef.child("user_info").child("xuansun").child("mail").setValue("ncku123@ncku.edu.tw");
-////                myRef.child("user_info").child("xuansun").child("password").setValue("878787");
-////                myRef.child("user_info").child("xuansun").child("name").setValue("sunxuanxuan");
 
                     //內存個人註冊設定
                     SharedPreferences preferences_register = getSharedPreferences("Register", MODE_PRIVATE);     //呼叫getSharedPreferences()方法，產生一個檔名為temp_storge.xml的設定儲存檔，並只供本專案(app)可讀取，物件名稱為pref。
@@ -208,42 +212,50 @@ public class RegisterActivity extends AppCompatActivity {
                             .commit();      //最後必須呼叫commit()方法，此時資料才真正寫入到設定檔中。
 
 
+//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("icon").setValue(icon);
+//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("gender").setValue(spin_gender.getSelectedItem().toString());
+//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("birthday").setValue(birthday);
+//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("school").setValue(spin_school.getSelectedItem().toString());
+//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("department").setValue(spin_department.getSelectedItem().toString());
+//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("mail").setValue(edtxt_schoolMail.getText().toString());
+//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("password").setValue(edtxt_password.getText().toString());
+//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("name").setValue(edtxt_name.getText().toString());
+
+//                myRef.child("user_info").child("xuansun").child("icon").setValue(R.drawable.lion);
+//                myRef.child("user_info").child("xuansun").child("gender").setValue("女");
+//                myRef.child("user_info").child("xuansun").child("birthday").setValue("20190724");
+//                myRef.child("user_info").child("xuansun").child("school").setValue("國立成功大學");
+//                myRef.child("user_info").child("xuansun").child("department").setValue("管理學院");
+//                myRef.child("user_info").child("xuansun").child("mail").setValue("ncku123@ncku.edu.tw");
+////                myRef.child("user_info").child("xuansun").child("password").setValue("878787");
+////                myRef.child("user_info").child("xuansun").child("name").setValue("sunxuanxuan");
+
                     Intent intent = new Intent();
                     //把資料丟給下一頁
                     intent.putExtra("account", edtxt_account.getText().toString());
 //                intent.putExtra("account","xuansun");
                     intent.setClass(RegisterActivity.this, OwnedSkillActivity.class);
                     startActivity(intent);
-//                RegisterActivity.this.finish();
                 }
-
-
             }
         });
 
+    }
+
+    private void initViews(){
+
+        edtxt_schoolMail = (EditText) findViewById(R.id.edtxt_schoolMail);
+        datePicker = (DatePicker) findViewById(R.id.datePicker);
+        edtxt_password = (EditText) findViewById(R.id.edtxt_password);
+        edtxt_doubleCheck = (EditText) findViewById(R.id.edtxt_doubleCheck);
+        edtxt_name = (EditText) findViewById(R.id.edtxt_name);
+        edtxt_account = (EditText) findViewById(R.id.edtxt_account);
+        btn_back = (ImageButton) findViewById(R.id.btn_back);
+        btn_icon = (ImageButton) findViewById(R.id.btn_icon);
+        btn_next = (Button) findViewById(R.id.btn_next);
         spin_gender = (Spinner) findViewById(R.id.spin_gender);
-        final String[] gender = {"男", "女", "其他"};
-        ArrayAdapter<String> genderList = new ArrayAdapter<>(RegisterActivity.this,
-                android.R.layout.simple_spinner_dropdown_item,
-                gender);
-        spin_gender.setAdapter(genderList);
-
         spin_school = (Spinner) findViewById(R.id.spin_school);
-        final String[] school = {"國立成功大學", "國立臺南藝術大學", "南臺科技大學", "台南應用科技大學",
-                "台南首府大學", "嘉南藥理大學", "國立臺南大學", "國立臺南護理專科學校", "崑山科技大學", "遠東科技大學", "長榮大學"};
-        ArrayAdapter<String> schoolList = new ArrayAdapter<>(RegisterActivity.this,
-                android.R.layout.simple_spinner_dropdown_item,
-                school);
-        spin_school.setAdapter(schoolList);
-
         spin_department = (Spinner) findViewById(R.id.spin_department);
-        final String[] department = {"文學院", "理學院", "工學院", "管理學院", "醫學院",
-                "社會科學院", "電機資訊學院", "規劃與設計學院", "生物科學與科技學院", "視覺藝術學院",
-                "文博學院", "音像藝術學院", "音樂學院", "商管學院", "人文學院", "設計學院"};
-        ArrayAdapter<String> departmentList = new ArrayAdapter<>(RegisterActivity.this,
-                android.R.layout.simple_spinner_dropdown_item,
-                department);
-        spin_department.setAdapter(departmentList);
     }
 
     @Override
