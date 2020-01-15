@@ -141,6 +141,7 @@ public class RegisterActivity extends AppCompatActivity {
                 int day = datePicker.getDayOfMonth();
                 String birthday = year + "-" + month + "-" + day;
 
+
                 if (edtxt_account.getText().toString().matches(" ")) {
                     Toast toast = Toast.makeText(RegisterActivity.this, "帳號不可為空白!", Toast.LENGTH_LONG);
                     toast.show();
@@ -233,6 +234,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Intent intent = new Intent();
                     //把資料丟給下一頁
                     intent.putExtra("account", edtxt_account.getText().toString());
+                    intent.putExtra("userInfo", userInfo);
 //                intent.putExtra("account","xuansun");
                     intent.setClass(RegisterActivity.this, OwnedSkillActivity.class);
                     startActivity(intent);
