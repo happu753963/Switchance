@@ -30,8 +30,8 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="329dp"
-            android:layout_height="300dp"
+            android:layout_width="250dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_weight="3"
             app:srcCompat="@drawable/logo" />
