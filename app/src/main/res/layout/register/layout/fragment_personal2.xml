@@ -38,7 +38,7 @@
                     android:background="@drawable/information"
                     android:paddingLeft="20dp"
                     android:paddingTop="20dp"
-                    android:text="我是胖虎我是孩子王\n我天下無敵~~~♥"
+                    android:text="填寫簡單自我介紹\n讓大家認識你吧！"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
 
