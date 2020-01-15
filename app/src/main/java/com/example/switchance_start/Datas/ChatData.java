@@ -1,14 +1,33 @@
 package com.example.switchance_start.Datas;
 
-public class ChatData {
+import com.example.switchance_start.R;
+
+import java.io.Serializable;
+
+public class ChatData implements Serializable {
     String id;
-    String messenge;
+    String message;
+    String receiver;
+    String sender;
     int icon;
 
-    public ChatData(String id, String messenge, int icon) {
+    public ChatData(){}
+
+    public ChatData(String id, int icon) {
         this.id = id;
-        this.messenge = messenge;
         this.icon = icon;
+    }
+
+    public ChatData(String id, String message, int icon) {
+        this.id = id;
+        this.message = message;
+        this.icon = icon;
+    }
+
+    public ChatData(String message, String receiver, String sender) {
+        this.message = message;
+        this.receiver = receiver;
+        this.sender = sender;
     }
 
     public String getId() {
@@ -19,12 +38,12 @@ public class ChatData {
         this.id = id;
     }
 
-    public String getMessenge() {
-        return messenge;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMessenge(String messenge) {
-        this.messenge = messenge;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public int getIcon() {
@@ -33,5 +52,21 @@ public class ChatData {
 
     public void setIcon(int icon) {
         this.icon = icon;
+    }
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 }

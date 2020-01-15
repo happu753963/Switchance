@@ -1,7 +1,7 @@
 package com.example.switchance_start.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.switchance_start.ChatRoom;
 import com.example.switchance_start.Datas.ChatData;
 import com.example.switchance_start.R;
 import com.example.switchance_start.Singleton;
@@ -31,15 +30,28 @@ public class ChatRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @NonNull
     @Override
-    public ChatRoomAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.recycler_view_envelope, parent, false);
-        return new ChatRoomAdapter.ViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view;
+        if (viewType == VIEW_TYPE_SELF_TEXT_CHAT) {
+            view = LayoutInflater.from(mContext).inflate(R.layout.recycler_view_self_chat, parent, false);
+            return new SelfChatViewHolder(view);
+        }  else if (viewType == VIEW_TYPE_FRIEND_TEXT_CHAT) {
+            view = LayoutInflater.from(mContext).inflate(R.layout.recycler_view_friend_chat, parent, false);
+            return new FriendChatViewHolder(view);
+        }
+
+        return null;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ChatData chatData = (ChatData) messageList.get(position);
-        ((ViewHolder) holder).bindToMySelf(chatData);
+        if (getItemViewType(position) == VIEW_TYPE_SELF_TEXT_CHAT) {
+            ChatData chatData = (ChatData) messageList.get(position);
+            ((SelfChatViewHolder) holder).bindToSelf(chatData);
+        } else if (getItemViewType(position) == VIEW_TYPE_FRIEND_TEXT_CHAT) {
+            ChatData chatData = (ChatData) messageList.get(position);
+            ((FriendChatViewHolder) holder).bindToSelf(chatData);
+        }
     }
 
     @Override
@@ -56,41 +68,53 @@ public class ChatRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
+    public void clearItem() {
+        messageList.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemViewType(int position) {
-        if (Singleton.getInstance().getAccount().equals(((ChatData) messageList.get(position)).getId())) {
+        if (Singleton.getInstance().getAccount().equals(((ChatData) messageList.get(position)).getSender())) {
             return VIEW_TYPE_SELF_TEXT_CHAT;
         } else {
             return VIEW_TYPE_FRIEND_TEXT_CHAT;
         }
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView img_icon;
-        TextView txt_account;
-        TextView txt_messenge;
+    class SelfChatViewHolder extends RecyclerView.ViewHolder {
+        TextView txtContent;
 
-
-        //        ImageView imageView;
-        public ViewHolder(@NonNull View itemView) {
+        public SelfChatViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemView.setOnClickListener(this);
-            img_icon = (ImageView) itemView.findViewById(R.id.img_icon);
-            txt_account = (TextView) itemView.findViewById(R.id.txt_account);
-            txt_messenge = (TextView) itemView.findViewById(R.id.txt_messenge);
+
         }
 
-        public void bindToMySelf(ChatData chatData) {
-            img_icon.setImageResource(chatData.getIcon());
-            txt_account.setText(chatData.getId());
-            txt_messenge.setText(chatData.getMessenge());
+        public void bindToSelf(ChatData chatData) {
+            txtContent = (TextView) itemView.findViewById(R.id.txtContent);
+            txtContent.setText(chatData.getMessage());
+
+        }
+    }
+
+    class FriendChatViewHolder extends RecyclerView.ViewHolder {
+        ImageView imgHeader;
+        TextView txtContent;
+
+        public FriendChatViewHolder(@NonNull View itemView) {
+            super(itemView);
+            imgHeader = (ImageView) itemView.findViewById(R.id.imgHeader);
+            txtContent = (TextView) itemView.findViewById(R.id.txtContent);
         }
 
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent();
-            intent.setClass(mContext, ChatRoom.class);
-            mContext.startActivity(intent);
+        public void bindToSelf(ChatData chatData) {
+            try {
+                txtContent.setText(chatData.getMessage());
+            } catch (Exception e) {
+                Log.v("error", e.toString());
+            }
+
+            txtContent.setText(chatData.getMessage());
         }
     }
 
