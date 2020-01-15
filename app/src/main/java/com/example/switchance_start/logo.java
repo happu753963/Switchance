@@ -86,6 +86,7 @@ public class logo extends Fragment {
         myRef.child(Constant.CHILD_REF_USERINFO).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                logoAdapter.clearItem();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     if (!postSnapshot.getKey().equals("Willy")) {
                         UserInfo userinfo = postSnapshot.getValue(UserInfo.class);

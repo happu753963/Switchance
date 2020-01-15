@@ -25,9 +25,10 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class Personal extends Fragment {
-    TextView txt_ansTime;
-    TextView txt_place;
     TextView txt_name;
+    TextView txt_ansTime;
+    TextView txt_information;
+    TextView txt_ansPlace;
     RecyclerView interestRecyclerView;
     RecyclerView ownedRecyclerView;
     PersonalInterestedExperienceAdapter personalInterestedExperienceAdapter;
@@ -58,15 +59,21 @@ public class Personal extends Fragment {
     }
 
     public void initView(View view) {
-        txt_ansTime = (TextView) view.findViewById(R.id.txt_ansTime);
-        txt_place = (TextView) view.findViewById(R.id.txt_place);
         txt_name = (TextView) view.findViewById(R.id.txt_name);
+        txt_ansTime = (TextView) view.findViewById(R.id.txt_ansTime);
+        txt_ansPlace=(TextView)view.findViewById(R.id.txt_ansPlace);
+        txt_information=(TextView)view.findViewById(R.id.txt_information);
         interestRecyclerView = (RecyclerView) view.findViewById(R.id.interestRecyclerView);
         ownedRecyclerView = (RecyclerView) view.findViewById(R.id.ownedRecyclerView);
         txt_name=(TextView)view.findViewById(R.id.txt_name);
+
         txt_name.setText(Singleton.getInstance().getName());
+        txt_ansPlace.setText(Singleton.getInstance().getPlace());
+        txt_ansTime.setText(Singleton.getInstance().getTime());
+        txt_information.setText(Singleton.getInstance().getIntroduction());
         personalInterestedExperienceAdapter = new PersonalInterestedExperienceAdapter(getActivity());
         personalInterestedOwnedAdapter = new PersonalInterestedOwnedAdapter(getActivity());
+
     }
 
     public void setAdapter() {

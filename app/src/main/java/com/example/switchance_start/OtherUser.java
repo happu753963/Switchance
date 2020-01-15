@@ -59,18 +59,12 @@ public class OtherUser extends AppCompatActivity {
         setFirebase();
 
 
-
-
-
-
-
-
-
     }
 
     public void getUserData() {
         userInfo = (UserInfo) getIntent().getExtras().getSerializable("userInfo");
         Log.v("testId", userInfo.getId());
+
     }
 
     public void initView() {

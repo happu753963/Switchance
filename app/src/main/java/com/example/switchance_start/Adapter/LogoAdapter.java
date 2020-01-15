@@ -55,6 +55,11 @@ public class LogoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         notifyDataSetChanged();
     }
 
+    public void clearItem() {
+        userArrayList.clear();
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView txtAccount;
         TextView txtDepartment;

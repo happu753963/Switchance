@@ -76,16 +76,13 @@ public class InterestedSkillActivity extends AppCompatActivity {
                     Singleton.getInstance().setInterestedItem(interestedItemAdapter.getArrayList());
 				}
 
+				//將singleton的東西丟到firebase
                 databaseUserinfos.child(Singleton.getInstance().getAccount()).setValue(Singleton.getInstance());
-//                Intent intent = new Intent();
-//                intent.setClass(InterestedSkillActivity.this, HomePage.class);
-//                startActivity(intent);
-//                InterestedSkillActivity.this.finish();
 
 //                Intent intent = new Intent();
 //                intent.setClass(InterestedSkillActivity.this, HomePage.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 //                startActivity(intent);
+
             }
         });
     }

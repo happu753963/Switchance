@@ -11,17 +11,22 @@ import java.util.List;
 
 public class Singleton {
 
-        String id;
-        String name;
-        String mail;
-        String password;
-        String account;
-        String gender;
-        String school;
-        String department;
-        String birthday;
-        int check;
-        int icon;
+    String account;
+    String birthday;
+    String department;
+    String gender;
+    int icon;
+    String id;
+
+    String introduction="填寫簡單自我介紹\n讓大家認識你吧！";
+    String mail;
+    String name;
+    String password;
+    String place="無限制";
+    String school;
+    String time="無限制";
+
+    int check;
         private List<OwnedSkill> ownedSkill;
         private List<OwnedExperience> ownedExperience;
         private List<OwnedItem> ownedItem;
@@ -181,6 +186,30 @@ public class Singleton {
 
     public void setOwnedItem(List<OwnedItem> ownedItem) {
         this.ownedItem = ownedItem;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
     }
 }
 

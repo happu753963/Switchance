@@ -1,7 +1,5 @@
 package com.example.switchance_start.register;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,9 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.switchance_start.HomePage;
 import com.example.switchance_start.MainActivity;
 import com.example.switchance_start.R;
+import com.example.switchance_start.Singleton;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -21,9 +22,9 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        ImageButton btn_back= (ImageButton)findViewById(R.id.btn_back);
+        ImageButton btn_back = (ImageButton) findViewById(R.id.btn_back);
 
-        btn_back.setOnClickListener(new Button.OnClickListener(){
+        btn_back.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -34,17 +35,18 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
 
-        Button btn_logIn= (Button)findViewById(R.id.btn_logIn); //跳到主頁
-        btn_logIn.setOnClickListener(new Button.OnClickListener(){
+        Button btn_logIn = (Button) findViewById(R.id.btn_logIn); //跳到主頁
+        btn_logIn.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 //內存登入時輸入資料
                 EditText mail = findViewById(R.id.edtxt_account);
                 EditText password = findViewById(R.id.edtxt_password);
                 SharedPreferences preferences_login = getSharedPreferences("Log_in", MODE_PRIVATE);     //呼叫getSharedPreferences()方法，產生一個檔名為temp_storge.xml的設定儲存檔，並只供本專案(app)可讀取，物件名稱為pref。
                 preferences_login.edit()
-                        .putString("ACCOUNT",mail.getText().toString())
+                        .putString("ACCOUNT", mail.getText().toString())
                         .putString("PASSWORD", password.getText().toString())
                         .commit();
 
@@ -53,6 +55,7 @@ public class LogInActivity extends AppCompatActivity {
                         .putString("CHECK", "1") //檢查碼(確認是從登入進入APP)
                         .commit();
 
+                Singleton.getInstance().setAccount(mail.getText().toString());
 
 
                 Intent intent = new Intent();

@@ -58,13 +58,11 @@ public class UserInfo implements Serializable {
      * 感興趣的技能
      */
     private List<InterestedSkill> interestedSkill;
+
     /**
      * 自我介紹
      */
     private String introduction;
-
-
-
 
     /**
      * 學校信箱
@@ -102,11 +100,6 @@ public class UserInfo implements Serializable {
      * 時間
      */
     private String time;
-
-
-
-
-
 
     /* 感興趣的物品
      */
@@ -272,5 +265,36 @@ public class UserInfo implements Serializable {
             }
         }
         return result;
+    }
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public List<OwnedItem> getOwnedItem() {
+        return ownedItem;
+    }
+
+    public void setOwnedItem(List<OwnedItem> ownedItem) {
+        this.ownedItem = ownedItem;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }
