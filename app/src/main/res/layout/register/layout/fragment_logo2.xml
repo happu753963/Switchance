@@ -13,12 +13,17 @@
 
     </SearchView>
 
-    <GridView
-        android:id="@+id/gridViewUserinfos"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:numColumns="2"
-        android:padding="10dp"
-        android:stretchMode="columnWidth" />
+        android:layout_height="match_parent" />
+
+    <!--    <GridView-->
+<!--        android:id="@+id/gridViewUserinfos"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:numColumns="2"-->
+<!--        android:padding="10dp"-->
+<!--        android:stretchMode="columnWidth" />-->
 
 </LinearLayout>

@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 public class Personal extends Fragment {
     TextView txt_ansTime;
     TextView txt_place;
+    TextView txt_name;
     RecyclerView interestRecyclerView;
     RecyclerView ownedRecyclerView;
     PersonalInterestedExperienceAdapter personalInterestedExperienceAdapter;
@@ -61,7 +62,8 @@ public class Personal extends Fragment {
         txt_place = (TextView) view.findViewById(R.id.txt_place);
         interestRecyclerView = (RecyclerView) view.findViewById(R.id.interestRecyclerView);
         ownedRecyclerView = (RecyclerView) view.findViewById(R.id.ownedRecyclerView);
-
+        txt_name=(TextView)view.findViewById(R.id.txt_name);
+        txt_name.setText(Singleton.getInstance().getName());
         personalInterestedExperienceAdapter = new PersonalInterestedExperienceAdapter(getActivity());
         personalInterestedOwnedAdapter = new PersonalInterestedOwnedAdapter(getActivity());
     }

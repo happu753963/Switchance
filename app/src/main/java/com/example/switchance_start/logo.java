@@ -8,6 +8,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.switchance_start.Adapter.LogoAdapter;
 import com.example.switchance_start.model.Constant;
 import com.example.switchance_start.model.UserInfo;
 import com.example.switchance_start.register.OwnedSkill;
@@ -31,7 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class logo extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
 
@@ -40,18 +42,12 @@ public class logo extends Fragment {
 
     List<UserInfo> userinfos;
     DatabaseReference databaseUserinfos;
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference();
+    RecyclerView recyclerView;
+    LogoAdapter logoAdapter;
 
-    public logo() {
-        // Required empty public constructor
-    }
-
-    // TODO: Rename and change types and number of parameters
-    public static logo newInstance(String param1, String param2) {
-        logo fragment = new logo();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
+    public logo() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,70 +57,49 @@ public class logo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_logo2, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        gridViewUserinfos = (GridView) view.findViewById(R.id.gridViewUserinfos);
-
-        databaseUserinfos = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL).child(Constant.CHILD_REF_USERINFO);
-        userinfos = new ArrayList<>();
-//        p2_logo = (ImageView) view.findViewById(R.id.p2_logo);
-//        p2_logo.setOnClickListener(new ImageView.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-
-//                Intent intent = new Intent();
-//                intent.setClass(ChatList.this, ChatRoom.class);
-
-//                Intent intent = new Intent(getActivity(), OtherUser.class);
-//                startActivity(intent);
-//            }
-//        });
+//        gridViewUserinfos = (GridView) view.findViewById(R.id.gridViewUserinfos);
+//
+//        databaseUserinfos = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL).child(Constant.CHILD_REF_USERINFO);
+//        userinfos = new ArrayList<>();
+        initView(view);
+        setAdapter();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+    public void initView(View view){
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+    }
 
-        //attaching value event listener
-        databaseUserinfos.addValueEventListener(new ValueEventListener() {
+    public void setAdapter() {
+        logoAdapter = new LogoAdapter(getActivity());
+        recyclerView.setAdapter(logoAdapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+
+        databaseUserinfos = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL).child(Constant.CHILD_REF_USERINFO);
+        getUserData();
+    }
+
+    public void getUserData() {
+        myRef.child(Constant.CHILD_REF_USERINFO).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //clearing the previous artist list
-                userinfos.clear();
-
-                //iterating through all the nodes
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    //getting userinfo
-
+                    Log.v("ididid", postSnapshot.toString());
                     UserInfo userinfo = postSnapshot.getValue(UserInfo.class);
-                    Log.v("id", userinfo.getId());
+                    Log.v("ididid", userinfo.getId());
 
                     //adding artist to the list
-                    userinfos.add(userinfo);
+                    logoAdapter.addItem(userinfo);
                 }
-
-                //creating adapter
-                UserInfoList userinfotAdapter = new UserInfoList((HomePage) getActivity(), userinfos);
-                //attaching adapter to the listview
-                // gridViewUserinfos.setNumColumns(2);
-                gridViewUserinfos.setAdapter(userinfotAdapter);
-                gridViewUserinfos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                        Intent intent = new Intent(getActivity(), OtherUser.class);
-                        intent.putExtra("userInfo", userinfos.get(position));
-                        startActivity(intent);
-                    }
-                });
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
