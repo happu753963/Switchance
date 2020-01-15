@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class OwnedSkill implements Serializable {
 
-    String ownedSkill;
+    public String ownedSkill;
 
     public OwnedSkill() {
 

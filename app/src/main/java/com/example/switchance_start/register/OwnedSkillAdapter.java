@@ -43,6 +43,7 @@ public class OwnedSkillAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     public ArrayList getArrayList () {
+
         return ownedskillList;
     }
 

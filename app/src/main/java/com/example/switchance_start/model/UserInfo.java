@@ -70,8 +70,9 @@ public class UserInfo implements Serializable {
     /**
      * 擁有的物品
      */
-    private List<OwnedItem> ownedItem;
-    /**
+    private List<OwnedExperience> ownedItem;
+    /**private List<OwnedItem> ownedItem;
+     /**
      * 感興趣的技能
      */
     private List<InterestedSkill> interestedSkill;
@@ -79,8 +80,7 @@ public class UserInfo implements Serializable {
      * 感興趣的經歷
      */
     private List<InterestedExperience> interestedExperience;
-    /**
-     * 感興趣的物品
+    /* 感興趣的物品
      */
     private List<InterestedItem> interestedItem;
 
@@ -203,13 +203,13 @@ public class UserInfo implements Serializable {
         this.ownedExperience = ownedExperience;
     }
 
-    public List<OwnedItem> getOwnedItem() {
-        return ownedItem;
-    }
-
-    public void setOwnedItem(List<OwnedItem> ownedItem) {
-        this.ownedItem = ownedItem;
-    }
+//    public List<OwnedItem> getOwnedItem() {
+//        return ownedItem;
+//    }
+//
+//    public void setOwnedItem(List<OwnedItem> ownedItem) {
+//        this.ownedItem = ownedItem;
+//    }
 
     public List<InterestedSkill> getInterestedSkill() {
         return interestedSkill;

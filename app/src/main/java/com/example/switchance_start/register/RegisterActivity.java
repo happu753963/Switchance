@@ -1,11 +1,7 @@
 package com.example.switchance_start.register;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.text.util.Linkify;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,12 +18,8 @@ import com.example.switchance_start.MainActivity;
 import com.example.switchance_start.R;
 import com.example.switchance_start.Singleton;
 import com.example.switchance_start.model.Constant;
-import com.example.switchance_start.model.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
     ImageButton btn_back;
@@ -45,12 +37,14 @@ public class RegisterActivity extends AppCompatActivity {
     int icon;
     boolean checkMail;
     String strEmail;
+    String id;
 
     private static final String TAG = RegisterActivity.class.getSimpleName();
     public static FirebaseDatabase database = FirebaseDatabase.getInstance();
     public static final DatabaseReference myRef = database.getInstance().getReferenceFromUrl("https://switchance-e8900.firebaseio.com/");
 
     DatabaseReference databaseUserinfos;
+    String birthday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +54,6 @@ public class RegisterActivity extends AppCompatActivity {
         databaseUserinfos = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL).child(Constant.CHILD_REF_USERINFO);
 
         initViews();
-
 
         final String[] gender = {"男", "女", "其他"};
         ArrayAdapter<String> genderList = new ArrayAdapter<>(RegisterActivity.this,
@@ -83,31 +76,18 @@ public class RegisterActivity extends AppCompatActivity {
                 department);
         spin_department.setAdapter(departmentList);
 
-        edtxt_schoolMail.setOnKeyListener(new EditText.OnKeyListener() {
+//        String mail = edtxt_schoolMail.getText().toString();
+//        if (mail.trim().equals("")) {
+//            if (mail.matches("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*")) {
+//
+//            }
+////                    if (null == edtxt_schoolMail || "".equals(edtxt_schoolMail)) return false;
+////                    //Pattern p = Pattern.compile("\\w+@(\\w+.)+[a-z]{2,3}"); //简单匹配
+////                    Pattern p = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");//复杂匹配
+////                    Matcher m = p.matcher(edtxt_schoolMail.toString());
+////                    return m.matches();
+//        }
 
-            @Override
-            public boolean onKey(View arg0, int arg1, KeyEvent arg2) {
-                // TODO Auto-generated method stub
-                if (Linkify.addLinks(edtxt_schoolMail.getText(), Linkify.EMAIL_ADDRESSES)) {
-                    checkMail = true;
-//                    Toast toast = Toast.makeText(RegisterActivity.this, "mail輸入正確", Toast.LENGTH_LONG);
-//                    toast.show();
-                } else {
-                    checkMail = false;
-//                    Toast toast = Toast.makeText(RegisterActivity.this, "請完整輸入Mail", Toast.LENGTH_LONG);
-//                    toast.show();
-                }
-                return false;
-
-//                    if (null==edtxt_schoolMail || "".equals(edtxt_schoolMail)) return false;
-//                    //Pattern p = Pattern.compile("\\w+@(\\w+.)+[a-z]{2,3}"); //简单匹配
-//                    Pattern p =  Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");//复杂匹配
-//                    Matcher m = p.matcher(edtxt_schoolMail);
-//                    return m.matches();
-//                }
-
-            }
-        });
 
         btn_back.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -139,112 +119,111 @@ public class RegisterActivity extends AppCompatActivity {
                 int year = datePicker.getYear();
                 int month = datePicker.getMonth() + 1;
                 int day = datePicker.getDayOfMonth();
-                String birthday = year + "-" + month + "-" + day;
+                birthday = year + "-" + month + "-" + day;
+                String mail = edtxt_schoolMail.getText().toString();
+                boolean flag = true;
 
+//                if (edtxt_account.getText().toString().trim().equals("")) {
+//                    Toast toast = Toast.makeText(RegisterActivity.this, "帳號不可為空白!", Toast.LENGTH_LONG);
+//                    toast.show();
+//                    flag = false;
+//                    return;
+//                }
+//                if (edtxt_schoolMail.getText().toString().trim().equals("")) {
+//                    Toast toast = Toast.makeText(RegisterActivity.this, "信箱不可為空白!", Toast.LENGTH_LONG);
+//                    toast.show();
+//                    flag = false;
+//                    return;
+//                }
+//                if (edtxt_password.getText().toString().trim().equals("")) {
+//                    Toast toast = Toast.makeText(RegisterActivity.this, "密碼不可為空白!", Toast.LENGTH_LONG);
+//                    toast.show();
+//                }
+//                if (edtxt_doubleCheck.getText().toString().trim().equals("")) {
+//                    Toast toast = Toast.makeText(RegisterActivity.this, "確認密碼不可為空白!", Toast.LENGTH_LONG);
+//                    toast.show();
+//                    flag = false;
+//                    return;
+//                }
+//                if (edtxt_name.getText().toString().trim().equals("")) {
+//                    Toast toast = Toast.makeText(RegisterActivity.this, "姓名不可為空白!", Toast.LENGTH_LONG);
+//                    toast.show();
+//                    flag = false;
+//                    return;
+//                }
+//                if (mail.trim().equals("")) {
+//                    if (mail.matches("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*")) {
+//                        Toast toast = Toast.makeText(RegisterActivity.this, "信箱格式不符", Toast.LENGTH_LONG);
+//                        toast.show();
+//                    }
+////                    if (null == edtxt_schoolMail || "".equals(edtxt_schoolMail)) return false;
+////                    //Pattern p = Pattern.compile("\\w+@(\\w+.)+[a-z]{2,3}"); //简单匹配
+////                    Pattern p = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");//复杂匹配
+////                    Matcher m = p.matcher(edtxt_schoolMail.toString());
+////                    return m.matches();
+//                }
+//                if (!edtxt_password.getText().toString().equals(edtxt_doubleCheck.getText().toString())) {
+//                    Toast toast = Toast.makeText(RegisterActivity.this, "確認密碼錯誤", Toast.LENGTH_LONG);
+//                    toast.show();
+//                    flag = false;
+//                    return;
+//                }
 
-                if (edtxt_account.getText().toString().matches(" ")) {
-                    Toast toast = Toast.makeText(RegisterActivity.this, "帳號不可為空白!", Toast.LENGTH_LONG);
-                    toast.show();
-                } else if (spin_gender.getSelectedItem().toString().matches("")) {
-                    Toast toast = Toast.makeText(RegisterActivity.this, "性別不可為空白!", Toast.LENGTH_LONG);
-                    toast.show();
-                } else if (birthday.equals("")) {
-                    Toast toast = Toast.makeText(RegisterActivity.this, "生日不可為空白!", Toast.LENGTH_LONG);
-                    toast.show();
-                } else if (spin_school.getSelectedItem().toString().matches("")) {
-                    Toast toast = Toast.makeText(RegisterActivity.this, "學校不可為空白!", Toast.LENGTH_LONG);
-                    toast.show();
-                } else if (spin_department.getSelectedItem().toString().matches("")) {
-                    Toast toast = Toast.makeText(RegisterActivity.this, "系所不可為空白!", Toast.LENGTH_LONG);
-                    toast.show();
-                } else if (edtxt_schoolMail.getText().toString().matches("")) {
-                    Toast toast = Toast.makeText(RegisterActivity.this, "信箱不可為空白!", Toast.LENGTH_LONG);
-                    toast.show();
-                } else if (edtxt_password.getText().toString().matches("")) {
-                    Toast toast = Toast.makeText(RegisterActivity.this, "密碼不可為空白!", Toast.LENGTH_LONG);
-                    toast.show();
-                } else if (edtxt_doubleCheck.getText().toString().matches("")) {
-                    Toast toast = Toast.makeText(RegisterActivity.this, "確認密碼不可為空白!", Toast.LENGTH_LONG);
-                    toast.show();
-                } else if (edtxt_name.getText().toString().matches("")) {
-                    Toast toast = Toast.makeText(RegisterActivity.this, "姓名不可為空白!", Toast.LENGTH_LONG);
-                    toast.show();
-                } else if (checkMail == false) {
-                    Toast toast = Toast.makeText(RegisterActivity.this, "信箱格式不符", Toast.LENGTH_LONG);
-                    toast.show();
-                } else if (!edtxt_password.getText().toString().equals(edtxt_doubleCheck.getText().toString())) {
-                    Toast toast = Toast.makeText(RegisterActivity.this, "確認密碼錯誤", Toast.LENGTH_LONG);
-                    toast.show();
-                } else {
-                    String id = databaseUserinfos.push().getKey();
-                    UserInfo userInfo = new UserInfo(id, icon, spin_gender.getSelectedItem().toString(), birthday,
-                            spin_school.getSelectedItem().toString(), spin_department.getSelectedItem().toString(), edtxt_schoolMail.getText().toString(),
-                            edtxt_password.getText().toString(), edtxt_name.getText().toString(), edtxt_account.getText().toString());
-                    databaseUserinfos.child(id).setValue(userInfo);
-//                    Log.v("idid",id);
-
-                    Singleton.getInstance().setmName(edtxt_name.getText().toString());
-                    Singleton.getInstance().setmID(id);
-                    Singleton.getInstance().setmIcon(icon);
-                    Singleton.getInstance().setmBirthday(birthday);
-                    Singleton.getInstance().setmAccount(edtxt_account.getText().toString());
-                    Singleton.getInstance().setmPassword(edtxt_password.getText().toString());
-                    Singleton.getInstance().setmSchoolMail(edtxt_schoolMail.getText().toString());
-                    Singleton.getInstance().setmDepartment(spin_department.getSelectedItem().toString());
-                    Singleton.getInstance().setmGender(spin_gender.getSelectedItem().toString());
-                    Singleton.getInstance().setmSchool(spin_school.getSelectedItem().toString());
-                    Singleton.getInstance().setmCheck(0);
-
-
-                    //內存個人註冊設定
-                    SharedPreferences preferences_register = getSharedPreferences("Register", MODE_PRIVATE);     //呼叫getSharedPreferences()方法，產生一個檔名為temp_storge.xml的設定儲存檔，並只供本專案(app)可讀取，物件名稱為pref。
-                    preferences_register.edit()
-                            .putString("ID", id)  //呼叫edit()方法取得編輯器物件，此時使用匿名方式呼叫Editor的putString()方法將字串的內容寫入設定檔，資料標籤為”ACCOUNT”。
-                            .putString("ACCOUNT", edtxt_account.getText().toString())  //呼叫edit()方法取得編輯器物件，此時使用匿名方式呼叫Editor的putString()方法將字串的內容寫入設定檔，資料標籤為”ACCOUNT”。
-                            .putInt("ICON", icon)
-                            .putString("GENDER", spin_gender.getSelectedItem().toString())
-                            .putString("BIRTHDAY", birthday)
-                            .putString("SCHOOL", spin_school.getSelectedItem().toString())
-                            .putString("DEPARTMENT", spin_department.getSelectedItem().toString())
-                            .putString("EMAIL", edtxt_schoolMail.getText().toString())
-                            .putString("PASSWORD", edtxt_password.getText().toString())
-                            .putString("NAME", edtxt_name.getText().toString())
-                            .putString("CHECK", "0") //檢查碼(確認是從註冊進入APP)
-                            .commit();      //最後必須呼叫commit()方法，此時資料才真正寫入到設定檔中。
-
-
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("icon").setValue(icon);
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("gender").setValue(spin_gender.getSelectedItem().toString());
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("birthday").setValue(birthday);
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("school").setValue(spin_school.getSelectedItem().toString());
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("department").setValue(spin_department.getSelectedItem().toString());
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("mail").setValue(edtxt_schoolMail.getText().toString());
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("password").setValue(edtxt_password.getText().toString());
-//                    myRef.child("user_info").child(edtxt_account.getText().toString()).child("name").setValue(edtxt_name.getText().toString());
-
-//                myRef.child("user_info").child("xuansun").child("icon").setValue(R.drawable.lion);
-//                myRef.child("user_info").child("xuansun").child("gender").setValue("女");
-//                myRef.child("user_info").child("xuansun").child("birthday").setValue("20190724");
-//                myRef.child("user_info").child("xuansun").child("school").setValue("國立成功大學");
-//                myRef.child("user_info").child("xuansun").child("department").setValue("管理學院");
-//                myRef.child("user_info").child("xuansun").child("mail").setValue("ncku123@ncku.edu.tw");
-////                myRef.child("user_info").child("xuansun").child("password").setValue("878787");
-////                myRef.child("user_info").child("xuansun").child("name").setValue("sunxuanxuan");
-
-                    Intent intent = new Intent();
-                    //把資料丟給下一頁
-                    intent.putExtra("account", edtxt_account.getText().toString());
-                    intent.putExtra("userInfo", userInfo);
-//                intent.putExtra("account","xuansun");
-                    intent.setClass(RegisterActivity.this, OwnedSkillActivity.class);
-                    startActivity(intent);
-                }
+//                if (flag) {
+//                    testting();
+//                }
+                setUserInfo();
+                testting();
             }
         });
 
     }
+    // TODO  need  refactor
+    public void testting() {
+//        id = databaseUserinfos.push().getKey();
+//        setUserInfo();
 
-    private void initViews(){
+        //內存個人註冊設定
+//                    SharedPreferences preferences_register = getSharedPreferences("Register", MODE_PRIVATE);     //呼叫getSharedPreferences()方法，產生一個檔名為temp_storge.xml的設定儲存檔，並只供本專案(app)可讀取，物件名稱為pref。
+//                    preferences_register.edit()
+//                            .putString("ID", id)  //呼叫edit()方法取得編輯器物件，此時使用匿名方式呼叫Editor的putString()方法將字串的內容寫入設定檔，資料標籤為”ACCOUNT”。
+//                            .putString("ACCOUNT", edtxt_account.getText().toString())  //呼叫edit()方法取得編輯器物件，此時使用匿名方式呼叫Editor的putString()方法將字串的內容寫入設定檔，資料標籤為”ACCOUNT”。
+//                            .putInt("ICON", icon)
+//                            .putString("GENDER", spin_gender.getSelectedItem().toString())
+//                            .putString("BIRTHDAY", birthday)
+//                            .putString("SCHOOL", spin_school.getSelectedItem().toString())
+//                            .putString("DEPARTMENT", spin_department.getSelectedItem().toString())
+//                            .putString("EMAIL", edtxt_schoolMail.getText().toString())
+//                            .putString("PASSWORD", edtxt_password.getText().toString())
+//                            .putString("NAME", edtxt_name.getText().toString())
+//                            .putString("CHECK", "0") //檢查碼(確認是從註冊進入APP)
+//                            .commit();      //最後必須呼叫commit()方法，此時資料才真正寫入到設定檔中。
+
+        Intent intent = new Intent();
+        //把資料丟給下一頁
+//                    intent.putExtra("account", edtxt_account.getText().toString());
+//                intent.putExtra("account","xuansun");
+        intent.setClass(RegisterActivity.this, OwnedSkillActivity.class);
+        startActivity(intent);
+    }
+
+    public void setUserInfo() {
+        Singleton.getInstance().setName(edtxt_name.getText().toString());
+        Singleton.getInstance().setId(id);
+        Singleton.getInstance().setIcon(icon);
+        Singleton.getInstance().setBirthday(birthday);
+        Singleton.getInstance().setAccount(edtxt_account.getText().toString());
+        Singleton.getInstance().setPassword(edtxt_password.getText().toString());
+        Singleton.getInstance().setMail(edtxt_schoolMail.getText().toString());
+        Singleton.getInstance().setDepartment(spin_department.getSelectedItem().toString());
+        Singleton.getInstance().setGender(spin_gender.getSelectedItem().toString());
+        Singleton.getInstance().setSchool(spin_school.getSelectedItem().toString());
+        Singleton.getInstance().setCheck(0);
+    }
+
+
+
+    private void initViews() {
 
         edtxt_schoolMail = (EditText) findViewById(R.id.edtxt_schoolMail);
         datePicker = (DatePicker) findViewById(R.id.datePicker);

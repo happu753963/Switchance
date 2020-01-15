@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import android.widget.ImageButton;
 
 import com.example.switchance_start.HomePage;
 import com.example.switchance_start.R;
+import com.example.switchance_start.Singleton;
 import com.example.switchance_start.model.Constant;
 import com.example.switchance_start.model.UserInfo;
 import com.google.firebase.database.DatabaseReference;
@@ -64,37 +66,26 @@ public class InterestedSkillActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                interestedSkillAdapter.addItem(new InterestedSkill("攝影"));
-//                interestedSkillAdapter.addItem(new InterestedSkill("寫程式"));
-//
-//                interestedExperienceAdapter.addItem(new InterestedExperience("打工"));
-//                interestedExperienceAdapter.addItem(new InterestedExperience("換宿"));
-//
-//                interestedItemAdapter.addItem(new InterestedItem("鈴鼓"));
-//                interestedItemAdapter.addItem(new InterestedItem("唱歌神器"));
-                //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("interestedSkill").setValue(interestedSkillAdapter.getArrayList());
-                //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("interestedExperience").setValue(interestedExperienceAdapter.getArrayList());
-                //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("interestedItem").setValue(interestedItemAdapter.getArrayList());
 				if(interestedSkillAdapter.getItemCount() > 0) {
-					userInfo.setInterestedSkill(interestedSkillAdapter.getArrayList());
+                    Singleton.getInstance().setInterestedSkill(interestedSkillAdapter.getArrayList());
 				}
 				if(interestedExperienceAdapter.getItemCount() > 0) {
-					userInfo.setInterestedExperience(interestedExperienceAdapter.getArrayList());
+                    Singleton.getInstance().setInterestedExperience(interestedExperienceAdapter.getArrayList());
 				}
 				if(interestedItemAdapter.getItemCount() > 0) {
-					userInfo.setInterestedItem(interestedItemAdapter.getArrayList());
+                    Singleton.getInstance().setInterestedItem(interestedItemAdapter.getArrayList());
 				}
 
-                databaseUserinfos.child(userInfo.getId()).setValue(userInfo);
+                databaseUserinfos.child(Singleton.getInstance().getAccount()).setValue(Singleton.getInstance());
 //                Intent intent = new Intent();
 //                intent.setClass(InterestedSkillActivity.this, HomePage.class);
 //                startActivity(intent);
 //                InterestedSkillActivity.this.finish();
 
-                Intent intent = new Intent();
-                intent.setClass(InterestedSkillActivity.this, HomePage.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+//                Intent intent = new Intent();
+//                intent.setClass(InterestedSkillActivity.this, HomePage.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(intent);
             }
         });
     }

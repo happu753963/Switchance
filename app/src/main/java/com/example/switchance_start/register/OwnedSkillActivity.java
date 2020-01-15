@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.switchance_start.R;
+import com.example.switchance_start.Singleton;
 import com.example.switchance_start.model.Constant;
 import com.example.switchance_start.model.UserInfo;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +38,7 @@ public class OwnedSkillActivity extends AppCompatActivity {
 
     DatabaseReference databaseUserinfos;
     //  String id;
-    UserInfo userInfo;
+//    UserInfo userInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class OwnedSkillActivity extends AppCompatActivity {
         databaseUserinfos = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL).child(Constant.CHILD_REF_USERINFO);
 
         //id = getIntent().getStringExtra("id");
-        userInfo = (UserInfo) getIntent().getSerializableExtra("userInfo");
+//        userInfo = (UserInfo) getIntent().getSerializableExtra("userInfo");
 
         ImageButton btn_back = (ImageButton) findViewById(R.id.btn_back);
         Button btn_next = (Button) findViewById(R.id.btn_next);
@@ -67,34 +68,28 @@ public class OwnedSkillActivity extends AppCompatActivity {
         btn_next.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ownedSkillAdapter.addItem(new OwnedSkill("吃飯"));
-//                ownedSkillAdapter.addItem(new OwnedSkill("寫食記"));
-//
-//                ownedExperienceAdapter.addItem(new OwnedExperience("留學"));
-//                ownedExperienceAdapter.addItem(new OwnedExperience("實習"));
-//
-//                ownedItemAdapter.addItem(new OwnedItem("碗"));
-//                ownedItemAdapter.addItem(new OwnedItem("吉他"));
-                //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("ownedSkill").setValue(ownedSkillAdapter.getArrayList());
-                //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("ownedExperience").setValue(ownedExperienceAdapter.getArrayList());
-                //myRef.child(Constant.CHILD_REF_USERINFO).child(id).child("ownedItem").setValue(ownedItemAdapter.getArrayList());
 
 				if(ownedSkillAdapter.getItemCount() > 0) {
-					userInfo.setOwnedSkill(ownedSkillAdapter.getArrayList());
+                    Singleton.getInstance().setOwnedSkill(ownedSkillAdapter.getArrayList());
+//                    OwnedSkill skill = (OwnedSkill) ownedSkillAdapter.getArrayList().get(0);
+					Log.v("Ownedskill", Singleton.getInstance().getOwnedSkill().get(0).ownedSkill);
 				}
 //                Log.v("ownedSkillAdapter",ownedSkillAdapter.getArrayList());
 				if(ownedExperienceAdapter.getItemCount() > 0) {
-					userInfo.setOwnedExperience(ownedExperienceAdapter.getArrayList());
+                    Singleton.getInstance().setOwnedExperience(ownedExperienceAdapter.getArrayList());
+                    Log.v("OwnedExperience", Singleton.getInstance().getOwnedExperience().get(0).ownedExperience);
 				}
 				if(ownedItemAdapter.getItemCount() > 0) {
-					userInfo.setOwnedItem(ownedItemAdapter.getArrayList());
-				}
+                    Singleton.getInstance().setOwnedItem(ownedItemAdapter.getArrayList());
+                    Log.v("OwnedExperience", Singleton.getInstance().getOwnedItem().get(0).ownedItem);
 
-                databaseUserinfos.child(userInfo.getId()).setValue(userInfo);
+                }
+
+//                databaseUserinfos.child(Singleton.getInstance().getId()).setValue(Singleton.getInstance());
 
                 Intent intent = new Intent();
 //                intent.putExtra("account","xuansun");
-                intent.putExtra("userInfo",userInfo);
+//                intent.putExtra("userInfo",userInfo);
 
                 intent.setClass(OwnedSkillActivity.this, InterestedSkillActivity.class);
                 startActivity(intent);

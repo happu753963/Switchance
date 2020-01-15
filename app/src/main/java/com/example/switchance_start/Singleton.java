@@ -1,18 +1,33 @@
 package com.example.switchance_start;
 
+import com.example.switchance_start.register.InterestedExperience;
+import com.example.switchance_start.register.InterestedItem;
+import com.example.switchance_start.register.InterestedSkill;
+import com.example.switchance_start.register.OwnedExperience;
+import com.example.switchance_start.register.OwnedItem;
+import com.example.switchance_start.register.OwnedSkill;
+
+import java.util.List;
+
 public class Singleton {
 
-        String mID;
-        String mName;
-        String mSchoolMail;
-        String mPassword;
-        String mAccount;
-        String mGender;
-        String mSchool;
-        String mDepartment;
-        String mBirthday;
-        int mCheck;
-        int mIcon;
+        String id;
+        String name;
+        String mail;
+        String password;
+        String account;
+        String gender;
+        String school;
+        String department;
+        String birthday;
+        int check;
+        int icon;
+        private List<OwnedSkill> ownedSkill;
+        private List<OwnedExperience> ownedExperience;
+        private List<OwnedItem> ownedItem;
+        private List<InterestedSkill> interestedSkill;
+        private List<InterestedExperience> interestedExperience;
+        private List<InterestedItem> interestedItem;
 
         //儲存唯一的物件實體
         private static Singleton instance;
@@ -32,93 +47,140 @@ public class Singleton {
             return instance;
         }
 
-        public String getmID() {
-        return mID;
+    public String getId() {
+        return id;
     }
 
-    public void setmID(String mID) {
-        this.mID = mID;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getmName() {
-        return mName;
+    public String getName() {
+        return name;
     }
 
-    public void setmName(String mName) {
-        this.mName = mName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getmSchoolMail() {
-        return mSchoolMail;
+    public String getMail() {
+        return mail;
     }
 
-    public void setmSchoolMail(String mSchoolMail) {
-        this.mSchoolMail = mSchoolMail;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
-    public String getmPassword() {
-        return mPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setmPassword(String mPassword) {
-        this.mPassword = mPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getmAccount() {
-        return mAccount;
+    public String getAccount() {
+        return account;
     }
 
-    public void setmAccount(String mAccount) {
-        this.mAccount = mAccount;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
-    public String getmGender() {
-        return mGender;
+    public String getGender() {
+        return gender;
     }
 
-    public void setmGender(String mGender) {
-        this.mGender = mGender;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public String getmSchool() {
-        return mSchool;
+    public String getSchool() {
+        return school;
     }
 
-    public void setmSchool(String mSchool) {
-        this.mSchool = mSchool;
+    public void setSchool(String school) {
+        this.school = school;
     }
 
-    public String getmDepartment() {
-        return mDepartment;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setmDepartment(String mDepartment) {
-        this.mDepartment = mDepartment;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
-    public int getmIcon() {
-        return mIcon;
+    public String getBirthday() {
+        return birthday;
     }
 
-    public void setmIcon(int icon) {
-        this.mIcon = icon;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
-    public String getmBirthday() {
-        return mBirthday;
+    public int getCheck() {
+        return check;
     }
 
-    public void setmBirthday(String mBirthday) {
-        this.mBirthday = mBirthday;
+    public void setCheck(int check) {
+        this.check = check;
     }
 
-    public int getmCheck() {
-        return mCheck;
+    public int getIcon() {
+        return icon;
     }
 
-    public void setmCheck(int mCheck) {
-        this.mCheck = mCheck;
+    public void setIcon(int icon) {
+        this.icon = icon;
     }
 
+    public List<OwnedSkill> getOwnedSkill() {
+        return ownedSkill;
+    }
+
+    public void setOwnedSkill(List<OwnedSkill> ownedSkill) {
+        this.ownedSkill = ownedSkill;
+    }
+
+    public List<OwnedExperience> getOwnedExperience() {
+        return ownedExperience;
+    }
+
+    public void setOwnedExperience(List<OwnedExperience> ownedExperience) {
+        this.ownedExperience = ownedExperience;
+    }
+
+    public List<InterestedSkill> getInterestedSkill() {
+        return interestedSkill;
+    }
+
+    public void setInterestedSkill(List<InterestedSkill> interestedSkill) {
+        this.interestedSkill = interestedSkill;
+    }
+
+    public List<InterestedExperience> getInterestedExperience() {
+        return interestedExperience;
+    }
+
+    public void setInterestedExperience(List<InterestedExperience> interestedExperience) {
+        this.interestedExperience = interestedExperience;
+    }
+
+    public List<InterestedItem> getInterestedItem() {
+        return interestedItem;
+    }
+
+    public void setInterestedItem(List<InterestedItem> interestedItem) {
+        this.interestedItem = interestedItem;
+    }
+
+    public List<OwnedItem> getOwnedItem() {
+        return ownedItem;
+    }
+
+    public void setOwnedItem(List<OwnedItem> ownedItem) {
+        this.ownedItem = ownedItem;
+    }
 }
 
