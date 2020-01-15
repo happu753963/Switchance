@@ -19,6 +19,8 @@ import com.example.switchance_start.register.InterestedExperience;
 import com.example.switchance_start.register.InterestedItem;
 import com.example.switchance_start.register.InterestedSkill;
 import com.example.switchance_start.register.OwnedExperience;
+import com.example.switchance_start.register.OwnedItem;
+import com.example.switchance_start.register.OwnedSkill;
 
 import java.util.ArrayList;
 
@@ -91,21 +93,8 @@ public class LogoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             txtAccount.setText(userInfo.getAccount());
             txtDepartment.setText(userInfo.getDepartment());
 
+            setOwnedItem(userInfo,logoItemAdapter);
 
-            for(int i=0;i<userInfo.getInterestedSkill().size();i++){
-                InterestedSkill interestedSkill = userInfo.getInterestedSkill().get(i);
-                logoItemAdapter.addItem(new OwnedExperience(interestedSkill.getInterestedSkill(),"interestedSkill"));
-            }
-
-            for(int i=0;i<userInfo.getInterestedExperience().size();i++){
-                InterestedExperience interestedExperience  = userInfo.getInterestedExperience().get(i);
-                logoItemAdapter.addItem(new OwnedExperience(interestedExperience.getInterestedExperience(),"interestedExperience"));
-            }
-
-            for(int i=0;i<userInfo.getInterestedItem().size();i++){
-                InterestedItem interestedItem  = userInfo.getInterestedItem().get(i);
-                logoItemAdapter.addItem(new OwnedExperience(interestedItem.getInterestedItem(),"interestedItem"));
-            }
         }
 
         @Override
@@ -114,6 +103,23 @@ public class LogoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             intent.putExtra("userInfo", (UserInfo) userArrayList.get(getLayoutPosition()));
             intent.setClass(mContext, OtherUser.class);
             mContext.startActivity(intent);
+        }
+    }
+
+    public void setOwnedItem(UserInfo userInfo,LogoItemAdapter logoItemAdapter){
+        for(int i=0;i<userInfo.getOwnedSkill().size();i++){
+            OwnedSkill ownedSkill  = userInfo.getOwnedSkill().get(i);
+            logoItemAdapter.addItem(new OwnedExperience(ownedSkill.getOwnedSkill(),"ownedSkill"));
+        }
+
+        for(int i=0;i<userInfo.getOwnedExperience().size();i++){
+            OwnedExperience ownedExperience  = userInfo.getOwnedExperience().get(i);
+            logoItemAdapter.addItem(new OwnedExperience(ownedExperience.getOwnedExperience(),"ownedExperience"));
+        }
+
+        for(int i=0;i<userInfo.getOwnedItem().size();i++){
+            OwnedItem ownedItem  = userInfo.getOwnedItem().get(i);
+            logoItemAdapter.addItem(new OwnedExperience(ownedItem.getOwnedItem(),"ownedItem"));
         }
     }
 }
