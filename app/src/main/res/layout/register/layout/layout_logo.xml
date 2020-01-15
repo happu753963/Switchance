@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_account" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+        android:id="@+id/logo_item_recyclerview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

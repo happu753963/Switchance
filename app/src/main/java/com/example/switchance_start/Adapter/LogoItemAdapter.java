@@ -12,43 +12,44 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.switchance_start.R;
 import com.example.switchance_start.register.InterestedExperience;
+import com.example.switchance_start.register.OwnedExperience;
 
 import java.util.ArrayList;
 
-public class OtherUserInterestedExperienceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class LogoItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-    ArrayList interestedExperienceList;
+    ArrayList logoItemList;
     Context mContext;
 
-    public OtherUserInterestedExperienceAdapter(Context context) {
+    public LogoItemAdapter(Context context) {
         mContext = context;
-        interestedExperienceList = new ArrayList<InterestedExperience>();
+        logoItemList = new ArrayList<OwnedExperience>();
     }
 
     @NonNull
     @Override
-    public OtherUserInterestedExperienceAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.recycler_view_owned_personal_experience, parent, false);
-        return new OtherUserInterestedExperienceAdapter.ViewHolder(view);
+    public LogoItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_logo_item, parent, false);
+        return new LogoItemAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        InterestedExperience experience = (InterestedExperience) interestedExperienceList.get(position);
-        ((OtherUserInterestedExperienceAdapter.ViewHolder)holder).bindToInterestedExperience(experience);
+        OwnedExperience experience = (OwnedExperience) logoItemList.get(position);
+        ((LogoItemAdapter.ViewHolder)holder).bindToOwnedExperience(experience);
     }
 
     @Override
     public int getItemCount() {
-        return interestedExperienceList.size();
+        return logoItemList.size();
     }
 
     public ArrayList getArrayList () {
-        return interestedExperienceList;
+        return logoItemList;
     }
 
-    public void addItem(InterestedExperience experience) {
-        interestedExperienceList.add(experience);
+    public void addItem(OwnedExperience experience) {
+        logoItemList.add(experience);
         notifyDataSetChanged();
     }
 
@@ -58,7 +59,7 @@ public class OtherUserInterestedExperienceAdapter extends RecyclerView.Adapter<R
 //        ImageView imageView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.txt_interestedExperience);
+            textView = (TextView) itemView.findViewById(R.id.txt_ownedExperience);
             layoutBackground = (LinearLayout)itemView.findViewById(R.id.layoutBackground);
 //            imageView = (ImageView) itemView.findViewById(R.id.btn_add);
 //            imageView.setOnClickListener(new View.OnClickListener() {
@@ -71,15 +72,15 @@ public class OtherUserInterestedExperienceAdapter extends RecyclerView.Adapter<R
 //            });
         }
 
-        public void bindToInterestedExperience(InterestedExperience experience) {
-            if(experience.getType().equals("interestedSkill")) {
+        public void bindToOwnedExperience(OwnedExperience experience) {
+            if(experience.getType().equals("ownedSkill")) {
                 layoutBackground.setBackgroundResource(R.color.colorSkillLight);
-            } else if(experience.getType().equals("interestedExperience")){
+            } else if(experience.getType().equals("ownedExperience")){
                 layoutBackground.setBackgroundResource(R.color.colorSkillMiddle);
-            } else if(experience.getType().equals("interestedItem")){
+            } else if(experience.getType().equals("ownedItem")){
                 layoutBackground.setBackgroundResource(R.color.colorSkillDark);
             }
-            textView.setText(experience.getInterestedExperience());
+            textView.setText(experience.getOwnedExperience());
         }
     }
 }

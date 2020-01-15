@@ -21,7 +21,11 @@ import com.example.switchance_start.Adapter.PersonalInterestedExperienceAdapter;
 import com.example.switchance_start.Adapter.PersonalInterestedOwnedAdapter;
 import com.example.switchance_start.model.UserInfo;
 import com.example.switchance_start.register.InterestedExperience;
+import com.example.switchance_start.register.InterestedItem;
+import com.example.switchance_start.register.InterestedSkill;
 import com.example.switchance_start.register.OwnedExperience;
+import com.example.switchance_start.register.OwnedItem;
+import com.example.switchance_start.register.OwnedSkill;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +40,9 @@ public class OtherUser extends AppCompatActivity {
     boolean followFlag = false;
 
     TextView txt_ansTime;
-    TextView txt_place;
+    TextView txt_ansplace;
+    TextView txt_information;
+
     TextView txt_name;
     ImageView img_icon;
     RecyclerView interestRecyclerView;
@@ -57,8 +63,6 @@ public class OtherUser extends AppCompatActivity {
         setFollow();
         setAdapter();
         setFirebase();
-
-
     }
 
     public void getUserData() {
@@ -71,7 +75,8 @@ public class OtherUser extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         follow = (Button) findViewById(R.id.follow);
         txt_ansTime = (TextView) findViewById(R.id.txt_ansTime);
-        txt_place = (TextView) findViewById(R.id.txt_place);
+        txt_ansplace = (TextView) findViewById(R.id.txt_ansPlace);
+        txt_information=(TextView)findViewById(R.id.txt_information);
         img_icon = (ImageView) findViewById(R.id.img_icon);
         txt_name = (TextView) findViewById(R.id.txt_name);
 
@@ -116,18 +121,49 @@ public class OtherUser extends AppCompatActivity {
         ownedRecyclerView.setLayoutManager(new GridLayoutManager(this,3));
         ownedRecyclerView.setAdapter(otherUserInterestedOwnedAdapter);
 
-        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","ownedSkill"));
-        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","colorSkillMiddle"));
-        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","ownedSkill"));
-        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","ownedSkill"));
-        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","ownedSkill"));
-        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","ownedSkill"));
-        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","ownedSkill"));
-        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","colorSkillDark"));
+        //interested&owned資料加進recyclerView
+        for(int i=0;i<userInfo.getInterestedSkill().size();i++){
+            InterestedSkill interestedSkill  = userInfo.getInterestedSkill().get(i);
+            otherUserInterestedExperienceAdapter.addItem(new InterestedExperience(interestedSkill.getInterestedSkill(),"interestedSkill"));
+        }
+
+        for(int i=0;i<userInfo.getInterestedExperience().size();i++){
+            InterestedExperience interestedExperience  = userInfo.getInterestedExperience().get(i);
+            otherUserInterestedExperienceAdapter.addItem(new InterestedExperience(interestedExperience.getInterestedExperience(),"interestedExperience"));
+        }
+
+        for(int i=0;i<userInfo.getInterestedItem().size();i++){
+            InterestedItem interestedItem  = userInfo.getInterestedItem().get(i);
+            otherUserInterestedExperienceAdapter.addItem(new InterestedExperience(interestedItem.getInterestedItem(),"interestedItem"));
+        }
+
+        for(int i=0;i<userInfo.getOwnedSkill().size();i++){
+            OwnedSkill ownedSkill  = userInfo.getOwnedSkill().get(i);
+            otherUserInterestedOwnedAdapter.addItem(new OwnedExperience(ownedSkill.getOwnedSkill(),"ownedSkill"));
+        }
+
+        for(int i=0;i<userInfo.getOwnedExperience().size();i++){
+            OwnedExperience ownedExperience  = userInfo.getOwnedExperience().get(i);
+            otherUserInterestedOwnedAdapter.addItem(new OwnedExperience(ownedExperience.getOwnedExperience(),"ownedExperience"));
+        }
+
+        for(int i=0;i<userInfo.getOwnedItem().size();i++){
+           OwnedItem ownedItem  = userInfo.getOwnedItem().get(i);
+            otherUserInterestedOwnedAdapter.addItem(new OwnedExperience(ownedItem.getOwnedItem(),"ownedItem"));
+        }
 
 
-        otherUserInterestedOwnedAdapter.addItem(new OwnedExperience("測試1","colorSkillDark"));
-        otherUserInterestedOwnedAdapter.addItem(new OwnedExperience("測試1","colorSkillDark"));
+//        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","ownedSkill"));
+//        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","colorSkillMiddle"));
+//        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","ownedSkill"));
+//        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","ownedSkill"));
+//        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","ownedSkill"));
+//        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","ownedSkill"));
+//        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","ownedSkill"));
+//        otherUserInterestedExperienceAdapter.addItem(new InterestedExperience("測試1","colorSkillDark"));
+//
+//        otherUserInterestedOwnedAdapter.addItem(new OwnedExperience("測試1","colorSkillDark"));
+//        otherUserInterestedOwnedAdapter.addItem(new OwnedExperience("測試1","colorSkillDark"));
     }
 
     public void setFirebase() {
@@ -135,6 +171,13 @@ public class OtherUser extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 txt_name.setText(String.valueOf(dataSnapshot.child("account").getValue()));
+                txt_ansplace.setText(String.valueOf(dataSnapshot.child("place").getValue()));
+//                Log.v("place",String.valueOf(dataSnapshot.child("place").getValue()));
+//                Log.v("introduction",String.valueOf(dataSnapshot.child("introduction").getValue()));
+                txt_ansTime.setText(String.valueOf(dataSnapshot.child("time").getValue()));
+
+                txt_information.setText(String.valueOf(dataSnapshot.child("introduction").getValue()));
+
                 String icon_num = String.valueOf(dataSnapshot.child("icon").getValue());
                 switch (icon_num){
                     case "2131165282":  //雞

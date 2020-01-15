@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -73,7 +72,7 @@ public class LogoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             imgIcon = (ImageView) itemView.findViewById(R.id.img_icon);
             txtAccount = (TextView) itemView.findViewById(R.id.txt_account);
             txtDepartment = (TextView) itemView.findViewById(R.id.txt_department);
-            recyclerView = (RecyclerView) itemView.findViewById(R.id.recyclerview);
+            recyclerView = (RecyclerView) itemView.findViewById(R.id.logo_item_recyclerview);
         }
 
         public void bindToInterestedExperience(UserInfo userInfo) {

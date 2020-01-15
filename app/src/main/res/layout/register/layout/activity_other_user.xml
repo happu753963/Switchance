@@ -116,22 +116,6 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/txt_place"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="15dp"
-                    android:text="希望地點"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/txt_ansPlace"
-                    android:layout_width="111dp"
-                    android:layout_height="wrap_content"
-                    android:text="成大光復校區"
-                    android:textColor="@color/colorBlack" />
-
-                <TextView
                     android:id="@+id/txt_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -145,6 +129,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="周末下午"
+                    android:textColor="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/txt_place"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="15dp"
+                    android:text="希望地點"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txt_ansPlace"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="成大光復校區"
                     android:textColor="@color/colorBlack" />
 
                 <TextView
