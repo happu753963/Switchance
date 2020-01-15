@@ -56,7 +56,7 @@ public class OwnedExperienceAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         ImageView imageView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.txt_ownedExperience);
+            textView = (TextView) itemView.findViewById(R.id.txt_interestedExperience);
             imageView = (ImageView) itemView.findViewById(R.id.btn_add);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
