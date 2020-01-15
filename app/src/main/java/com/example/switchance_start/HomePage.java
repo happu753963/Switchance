@@ -1,5 +1,6 @@
 package com.example.switchance_start;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.drawable.Drawable;
@@ -16,9 +17,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class HomePage extends AppCompatActivity
-        implements ChatList.OnFragmentInteractionListener {
+public class HomePage extends AppCompatActivity {
 
     Toolbar toolbar;
     TabLayout tabLayout;
@@ -26,6 +31,8 @@ public class HomePage extends AppCompatActivity
     TabItem tabEnvelope;
     TabItem tabPerson;
     ViewPager viewPager;
+    final FirebaseDatabase database=FirebaseDatabase.getInstance();
+    DatabaseReference myRef=database.getReference();
 
     PageAdapter pageAdapter;
     private int[] icons = {R.drawable.home, R.drawable.chat, R.drawable.user};
@@ -47,6 +54,25 @@ public class HomePage extends AppCompatActivity
         for (int i = 0; i < icons.length; i++) {
             tabLayout.getTabAt(i).setCustomView(getTabView(i, icons[i]));
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        myRef.addValueEventListener(new ValueEventListener(){
+
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public View getTabView(int position, int icon) {

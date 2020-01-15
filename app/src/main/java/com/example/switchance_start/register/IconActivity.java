@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.switchance_start.R;
 
@@ -16,7 +15,7 @@ public class IconActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_icon_avtivity);
+        setContentView(R.layout.activity_icon_activity);
 
         ImageButton btn_back= (ImageButton)findViewById(R.id.btn_back);
 

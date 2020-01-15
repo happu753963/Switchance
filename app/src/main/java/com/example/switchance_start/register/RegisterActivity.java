@@ -76,17 +76,6 @@ public class RegisterActivity extends AppCompatActivity {
                 department);
         spin_department.setAdapter(departmentList);
 
-//        String mail = edtxt_schoolMail.getText().toString();
-//        if (mail.trim().equals("")) {
-//            if (mail.matches("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*")) {
-//
-//            }
-////                    if (null == edtxt_schoolMail || "".equals(edtxt_schoolMail)) return false;
-////                    //Pattern p = Pattern.compile("\\w+@(\\w+.)+[a-z]{2,3}"); //简单匹配
-////                    Pattern p = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");//复杂匹配
-////                    Matcher m = p.matcher(edtxt_schoolMail.toString());
-////                    return m.matches();
-//        }
 
 
         btn_back.setOnClickListener(new Button.OnClickListener() {
