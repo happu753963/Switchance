@@ -47,7 +47,8 @@ public class logo extends Fragment {
     RecyclerView recyclerView;
     LogoAdapter logoAdapter;
 
-    public logo() {}
+    public logo() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,15 +64,13 @@ public class logo extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        gridViewUserinfos = (GridView) view.findViewById(R.id.gridViewUserinfos);
-//
-//        databaseUserinfos = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL).child(Constant.CHILD_REF_USERINFO);
-//        userinfos = new ArrayList<>();
+
         initView(view);
         setAdapter();
+        getUserData();
     }
 
-    public void initView(View view){
+    public void initView(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
     }
 
@@ -81,7 +80,6 @@ public class logo extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
         databaseUserinfos = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL).child(Constant.CHILD_REF_USERINFO);
-        getUserData();
     }
 
     public void getUserData() {
@@ -89,12 +87,11 @@ public class logo extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Log.v("ididid", postSnapshot.toString());
-                    UserInfo userinfo = postSnapshot.getValue(UserInfo.class);
-                    Log.v("ididid", userinfo.getId());
-
-                    //adding artist to the list
-                    logoAdapter.addItem(userinfo);
+                    if (!postSnapshot.getKey().equals("Willy")) {
+                        UserInfo userinfo = postSnapshot.getValue(UserInfo.class);
+                        //adding artist to the list
+                        logoAdapter.addItem(userinfo);
+                    }
                 }
             }
 
