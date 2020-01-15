@@ -103,14 +103,16 @@ public class ChatRoom extends AppCompatActivity {
                 Log.v("aaaaatag", dataSnapshot.toString());
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     chatId.add(snapshot.getValue().toString());
-                    Log.v("aaaaatag", snapshot.toString());
+                    Log.v("aaaaatag", snapshot.getValue().toString()+"yesh");
 
                 }
+                Log.v("aaaaatag", chatId.size()+"size");
                 for (int i = 0; i < chatId.size(); i++) {
                     final String id = chatId.get(i);
                     myRef.child("chatroom").child(chatId.get(i)).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Log.v("aaaaatag", id);
                             ChatData tmpChatData = dataSnapshot.getValue(ChatData.class);
                             if (!id.equals(Singleton.getInstance().getAccount())) {
                                 tmpChatData.setIcon(chatData.getIcon());

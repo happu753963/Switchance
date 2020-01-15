@@ -93,7 +93,7 @@ public class logo extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 logoAdapter.clearItem();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    if (!postSnapshot.getKey().equals("Willy")) {
+                    if (!postSnapshot.getKey().equals(Singleton.getInstance().getAccount())) {
                         UserInfo userinfo = postSnapshot.getValue(UserInfo.class);
                         //adding artist to the list
                         logoAdapter.addItem(userinfo);

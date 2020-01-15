@@ -82,6 +82,7 @@ public class ChatList extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 envelopeAdapter.clearItem();
+                friendIdArrayList.clear();
                 Log.v("messageId", dataSnapshot.toString());
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Log.v("messageId", snapshot.toString());

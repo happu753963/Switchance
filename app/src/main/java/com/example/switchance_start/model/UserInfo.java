@@ -41,10 +41,6 @@ public class UserInfo implements Serializable {
      */
     private int icon;
     /**
-     * 識別碼
-     */
-    private String id;
-    /**
      * 感興趣的經歷
      */
     private List<InterestedExperience> interestedExperience;
@@ -114,9 +110,8 @@ public class UserInfo implements Serializable {
         interestedItem = new ArrayList<>();
     }
 
-    public UserInfo(String id, int icon, String gender, String birthday, String school, String department, String mail, String password, String name, String account) {
+    public UserInfo(int icon, String gender, String birthday, String school, String department, String mail, String password, String name, String account) {
         this();
-        this.id = id;
         this.icon = icon;
         this.gender = gender;
         this.birthday = birthday;
@@ -128,13 +123,6 @@ public class UserInfo implements Serializable {
         this.account = account;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public int getIcon() {
         return icon;

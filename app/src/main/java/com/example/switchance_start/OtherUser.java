@@ -67,8 +67,6 @@ public class OtherUser extends AppCompatActivity {
 
     public void getUserData() {
         userInfo = (UserInfo) getIntent().getExtras().getSerializable("userInfo");
-        Log.v("testId", userInfo.getId());
-
     }
 
     public void initView() {
@@ -179,6 +177,7 @@ public class OtherUser extends AppCompatActivity {
                 txt_information.setText(String.valueOf(dataSnapshot.child("introduction").getValue()));
 
                 String icon_num = String.valueOf(dataSnapshot.child("icon").getValue());
+                Log.v("iconicon", icon_num+"");
                 switch (icon_num){
                     case "2131165282":  //雞
                         img_icon.setImageResource(R.drawable.chicken);
@@ -186,7 +185,7 @@ public class OtherUser extends AppCompatActivity {
                     case "2131165280":  //變色龍
                         img_icon.setImageResource(R.drawable.chameleon);
                         break;
-                    case "2131165324":  //獅子
+                    case "2131165325":  //獅子
                         img_icon.setImageResource(R.drawable.lion);
                         break;
                     case "2131165315":  //刺蝟

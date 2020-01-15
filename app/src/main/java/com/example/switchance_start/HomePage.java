@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 public class HomePage extends AppCompatActivity {
 
     Toolbar toolbar;
@@ -72,9 +74,18 @@ public class HomePage extends AppCompatActivity {
                 Singleton.getInstance().setDepartment(dataSnapshot.child("department").getValue().toString());
                 Singleton.getInstance().setGender(dataSnapshot.child("gender").getValue().toString());
                 Singleton.getInstance().setIcon(Integer.parseInt(dataSnapshot.child("icon").getValue().toString()));
-                Singleton.getInstance().setId(dataSnapshot.child("id").getValue().toString());
-//                Singleton.getInstance().setInterestedExperience(dataSnapshot.getValue(InterestedExperience.class));
+                //需要刪掉
+//                Singleton.getInstance().setId(dataSnapshot.child("id").getValue().toString());
+
+                Log.v("wtf1123",dataSnapshot.child("interestedExperiences").toString());
+                for(DataSnapshot snapshot: dataSnapshot.child("interestedExperiences").getChildren()) {
+                    Log.v("wtf1123",(snapshot.getValue(InterestedExperience.class)).getInterestedExperience());
+
+                }
+//                dataSnapshot.getValue(InterestedExperience.class)
+//                Singleton.getInstance().setInterestedExperience((List<InterestedExperience>)dataSnapshot.getValue(InterestedExperience.class));
 //                Singleton.getInstance().setInterestedExperience((InterestedExperience)dataSnapshot.child("interestedExperiences").getValue());
+
 
                 Singleton.getInstance().setIntroduction(dataSnapshot.child("introduction").getValue().toString());
                 Singleton.getInstance().setMail(dataSnapshot.child("mail").getValue().toString());
