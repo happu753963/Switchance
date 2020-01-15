@@ -19,50 +19,61 @@ import java.util.List;
  */
 @IgnoreExtraProperties
 public class UserInfo implements Serializable {
-    /**
-     * 識別碼
-     */
-    private String id;
-    /**
-     * 大頭照
-     */
-    private int icon;
-    /**
-     * 性別
-     */
-    private String gender;
-    /**
-     * 出生日期
-     */
-    private String birthday;
-    /**
-     * 學校
-     */
-    private String school;
-    /**
-     * 系所
-     */
-    private String department;
-    /**
-     * 學校信箱
-     */
-    private String mail;
-    /**
-     * 密碼
-     */
-    private String password;
-    /**
-     * 本名 姓名
-     */
-    private String name;
+
     /**
      * 帳號
      */
     private String account;
     /**
-     * 擁有的技能
+     * 出生日期
      */
-    private List<OwnedSkill> ownedSkill;
+    private String birthday;
+    /**
+     * 系所
+     */
+    private String department;
+    /**
+     * 性別
+     */
+    private String gender;
+    /**
+     * 大頭照
+     */
+    private int icon;
+    /**
+     * 識別碼
+     */
+    private String id;
+    /**
+     * 感興趣的經歷
+     */
+    private List<InterestedExperience> interestedExperience;
+    /**
+     * 感興趣的物件
+     */
+    private List<InterestedItem> interestedItem;
+
+
+     /**
+     * 感興趣的技能
+     */
+    private List<InterestedSkill> interestedSkill;
+    /**
+     * 自我介紹
+     */
+    private String introduction;
+
+
+
+
+    /**
+     * 學校信箱
+     */
+    private String mail;
+    /**
+     * 本名 姓名
+     */
+    private String name;
     /**
      * 擁有的經歷
      */
@@ -70,19 +81,36 @@ public class UserInfo implements Serializable {
     /**
      * 擁有的物品
      */
-    private List<OwnedExperience> ownedItem;
-    /**private List<OwnedItem> ownedItem;
-     /**
-     * 感興趣的技能
-     */
-    private List<InterestedSkill> interestedSkill;
+    private List<OwnedItem> ownedItem;
     /**
-     * 感興趣的經歷
+     * 擁有的技能
      */
-    private List<InterestedExperience> interestedExperience;
+    private List<OwnedSkill> ownedSkill;
+    /**
+     * 密碼
+     */
+    private String password;
+    /**
+     * 地點
+     */
+    private String place;
+    /**
+     * 學校
+     */
+    private String school;
+    /**
+     * 時間
+     */
+    private String time;
+
+
+
+
+
+
     /* 感興趣的物品
      */
-    private List<InterestedItem> interestedItem;
+
 
     public UserInfo() {
         ownedSkill = new ArrayList<>();
