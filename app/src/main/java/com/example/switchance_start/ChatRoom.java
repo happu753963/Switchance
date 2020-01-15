@@ -78,7 +78,6 @@ public class ChatRoom extends AppCompatActivity {
     }
 
     public void onMessageSend(View view) {
-        editText.setText("");
         String timesamp = Calendar.getInstance().getTimeInMillis()+"";
         String message = editText.getText().toString();
 
@@ -88,6 +87,7 @@ public class ChatRoom extends AppCompatActivity {
         myRef.child("chatroom").child(timesamp).setValue(tempChatData);
         myRef.child("user_info").child(Singleton.getInstance().getAccount()).child("friends").child(chatData.getId()).child("messageId").child(chatRoomAdapter.getItemCount()+"").setValue(timesamp);
         myRef.child("user_info").child(chatData.getId()).child("friends").child(Singleton.getInstance().getAccount()).child("messageId").child(chatRoomAdapter.getItemCount()+"").setValue(timesamp);
+        editText.setText("");
     }
 
     public void getChatMessenge() {
