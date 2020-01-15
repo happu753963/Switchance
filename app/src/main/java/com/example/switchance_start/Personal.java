@@ -60,6 +60,7 @@ public class Personal extends Fragment {
     public void initView(View view) {
         txt_ansTime = (TextView) view.findViewById(R.id.txt_ansTime);
         txt_place = (TextView) view.findViewById(R.id.txt_place);
+        txt_name = (TextView) view.findViewById(R.id.txt_name);
         interestRecyclerView = (RecyclerView) view.findViewById(R.id.interestRecyclerView);
         ownedRecyclerView = (RecyclerView) view.findViewById(R.id.ownedRecyclerView);
         txt_name=(TextView)view.findViewById(R.id.txt_name);
