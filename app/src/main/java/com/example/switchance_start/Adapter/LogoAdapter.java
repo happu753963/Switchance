@@ -9,11 +9,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.switchance_start.OtherUser;
 import com.example.switchance_start.R;
 import com.example.switchance_start.model.UserInfo;
+import com.example.switchance_start.register.InterestedExperience;
+import com.example.switchance_start.register.InterestedItem;
+import com.example.switchance_start.register.InterestedSkill;
+import com.example.switchance_start.register.OwnedExperience;
 
 import java.util.ArrayList;
 
@@ -64,6 +69,7 @@ public class LogoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         TextView txtDepartment;
         ImageView imgIcon;
         RecyclerView recyclerView;
+        LogoItemAdapter logoItemAdapter;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,12 +79,33 @@ public class LogoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             txtAccount = (TextView) itemView.findViewById(R.id.txt_account);
             txtDepartment = (TextView) itemView.findViewById(R.id.txt_department);
             recyclerView = (RecyclerView) itemView.findViewById(R.id.logo_item_recyclerview);
+
+
+            logoItemAdapter = new LogoItemAdapter(mContext);
+            recyclerView.setAdapter(logoItemAdapter);
+            recyclerView.setLayoutManager(new GridLayoutManager(mContext,3));
         }
 
         public void bindToInterestedExperience(UserInfo userInfo) {
             imgIcon.setImageResource(userInfo.getIcon());
             txtAccount.setText(userInfo.getAccount());
             txtDepartment.setText(userInfo.getDepartment());
+
+
+            for(int i=0;i<userInfo.getInterestedSkill().size();i++){
+                InterestedSkill interestedSkill = userInfo.getInterestedSkill().get(i);
+                logoItemAdapter.addItem(new OwnedExperience(interestedSkill.getInterestedSkill(),"interestedSkill"));
+            }
+
+            for(int i=0;i<userInfo.getInterestedExperience().size();i++){
+                InterestedExperience interestedExperience  = userInfo.getInterestedExperience().get(i);
+                logoItemAdapter.addItem(new OwnedExperience(interestedExperience.getInterestedExperience(),"interestedExperience"));
+            }
+
+            for(int i=0;i<userInfo.getInterestedItem().size();i++){
+                InterestedItem interestedItem  = userInfo.getInterestedItem().get(i);
+                logoItemAdapter.addItem(new OwnedExperience(interestedItem.getInterestedItem(),"interestedItem"));
+            }
         }
 
         @Override

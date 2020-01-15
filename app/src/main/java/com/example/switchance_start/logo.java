@@ -48,7 +48,7 @@ public class logo extends Fragment {
     RecyclerView recyclerView;
     RecyclerView logoItemView;
     LogoAdapter logoAdapter;
-    LogoItemAdapter logoItemAdapter;
+
 
     public logo() {
     }
@@ -75,7 +75,6 @@ public class logo extends Fragment {
 
     public void initView(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        logoItemView=(RecyclerView)view.findViewById(R.id.logo_item_recyclerview);
     }
 
     public void setAdapter() {
@@ -83,9 +82,7 @@ public class logo extends Fragment {
         recyclerView.setAdapter(logoAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-        //        logoItemView.setAdapter(logoItemAdapter);
 
-//        logoItemView.setLayoutManager(new GridLayoutManager(getActivity(),3));
 
         databaseUserinfos = FirebaseDatabase.getInstance().getReferenceFromUrl(Constant.DB_URL).child(Constant.CHILD_REF_USERINFO);
     }
