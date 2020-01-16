@@ -2,6 +2,7 @@ package com.example.switchance_start.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,7 +84,8 @@ public class EnvelopeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         public void onClick(View view) {
             Intent intent = new Intent();
             intent.setClass(mContext, ChatRoom.class);
-            intent.putExtra("userInfo", ((ChatData) chatList.get(getLayoutPosition())));
+            intent.putExtra("userInfo", chatList.get(getLayoutPosition()));
+            Log.v("iconiconi123", ((ChatData) chatList.get(getLayoutPosition())).getIcon()+"");
             mContext.startActivity(intent);
         }
     }

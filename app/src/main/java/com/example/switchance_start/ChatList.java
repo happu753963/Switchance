@@ -95,6 +95,7 @@ public class ChatList extends Fragment {
                         envelopeAdapter.clearItem();
                         for(int i=0; i < friendIdArrayList.size();i++) {
                             if(dataSnapshot.child(friendIdArrayList.get(i)).hasChild("icon")){
+//                                Log.v("iconiconi123", dataSnapshot.child(friendIdArrayList.get(i)).child("icon").getValue().toString());
                                 envelopeAdapter.addItem(new ChatData(friendIdArrayList.get(i), Integer.parseInt(dataSnapshot.child(friendIdArrayList.get(i)).child("icon").getValue().toString())));
                             }
 //                            Log.v("tetetetete", snapshot.toString());

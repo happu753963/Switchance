@@ -116,9 +116,11 @@ public class ChatRoom extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             Log.v("aaaaatag", id);
                             ChatData tmpChatData = dataSnapshot.getValue(ChatData.class);
-                            if (!id.equals(Singleton.getInstance().getAccount())) {
-                                tmpChatData.setIcon(chatData.getIcon());
-                            }
+                            Log.v("aaaaatagwtf", tmpChatData.getIcon()+"");
+                            Log.v("aaaaatagwtf", chatData.getIcon()+" 123");
+                            tmpChatData.setIcon(chatData.getIcon());
+//                            if (!id.equals(Singleton.getInstance().getAccount())) {
+//                            }
                             chatRoomAdapter.addItem(tmpChatData);
                         }
 

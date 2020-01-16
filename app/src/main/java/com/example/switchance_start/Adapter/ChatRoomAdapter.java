@@ -117,7 +117,7 @@ public class ChatRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             } catch (Exception e) {
                 Log.v("error", e.toString());
             }
-
+            imgHeader.setImageResource(chatData.getIcon());
             txtContent.setText(chatData.getMessage());
         }
     }
