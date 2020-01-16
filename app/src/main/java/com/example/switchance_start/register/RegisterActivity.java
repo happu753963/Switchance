@@ -154,12 +154,12 @@ public class RegisterActivity extends AppCompatActivity {
 //                    Matcher m = p.matcher(edtxt_schoolMail.toString());
 //                    return m.matches();
                 }
-                if (!edtxt_password.getText().toString().equals(edtxt_doubleCheck.getText().toString())) {
-                    Toast toast = Toast.makeText(RegisterActivity.this, "確認密碼錯誤", Toast.LENGTH_LONG);
-                    toast.show();
-                    flag = false;
-                    return;
-                }
+//                if (!edtxt_password.getText().toString().equals(edtxt_doubleCheck.getText().toString())) {
+//                    Toast toast = Toast.makeText(RegisterActivity.this, "確認密碼錯誤", Toast.LENGTH_LONG);
+//                    toast.show();
+//                    flag = false;
+//                    return;
+//                }
 
                 if (flag) {
                     testting();

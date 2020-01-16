@@ -179,7 +179,7 @@ public class OtherUser extends AppCompatActivity {
                     case "2131165325":  //獅子
                         img_icon.setImageResource(R.drawable.lion);
                         break;
-                    case "2131165315":  //刺蝟
+                    case "2131165316":  //刺蝟
                         img_icon.setImageResource(R.drawable.hedgehog);
                         break;
                     case "2131165314":  //鵝
