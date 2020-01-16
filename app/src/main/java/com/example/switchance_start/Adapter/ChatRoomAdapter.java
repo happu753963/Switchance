@@ -67,6 +67,7 @@ public class ChatRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void addItem(ChatData experience) {
         messageList.add(experience);
+        Log.v("teees","yes");
         chatRecyclerView.smoothScrollToPosition(messageList.size());
         notifyDataSetChanged();
     }

@@ -86,9 +86,11 @@ public class ChatRoom extends AppCompatActivity {
         ChatData tempChatData = new ChatData(message, chatData.getId(), Singleton.getInstance().account);
 
 
+        Log.v("siszzz",chatRoomAdapter.getItemCount()+"");
+        int len = (chatRoomAdapter.getItemCount()+1);
         myRef.child("chatroom").child(timesamp).setValue(tempChatData);
-        myRef.child("user_info").child(Singleton.getInstance().getAccount()).child("friends").child(chatData.getId()).child("messageId").child(chatRoomAdapter.getItemCount()+"").setValue(timesamp);
-        myRef.child("user_info").child(chatData.getId()).child("friends").child(Singleton.getInstance().getAccount()).child("messageId").child(chatRoomAdapter.getItemCount()+"").setValue(timesamp);
+        myRef.child("user_info").child(Singleton.getInstance().getAccount()).child("friends").child(chatData.getId()).child("messageId").child(len+"").setValue(timesamp);
+        myRef.child("user_info").child(chatData.getId()).child("friends").child(Singleton.getInstance().getAccount()).child("messageId").child(len+"").setValue(timesamp);
         editText.setText("");
     }
 
@@ -105,6 +107,7 @@ public class ChatRoom extends AppCompatActivity {
                     chatId.add(snapshot.getValue().toString());
                     Log.v("aaaaatag", snapshot.getValue().toString()+"yesh");
                 }
+
                 Log.v("aaaaatag", chatId.size()+"size");
                 for (int i = 0; i < chatId.size(); i++) {
                     final String id = chatId.get(i);
