@@ -46,13 +46,13 @@
         app:layout_constraintTop_toBottomOf="@+id/recyclerView_interestedSkill" />
 
     <Button
-        android:id="@+id/btnSent"
+        android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="8dp"
-        android:text="Sent"
+        android:text="Send"
         android:background="@color/colorPink"
         android:onClick="onMessageSend"
         app:layout_constraintBottom_toBottomOf="parent"
