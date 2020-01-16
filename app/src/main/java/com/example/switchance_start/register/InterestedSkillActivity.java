@@ -79,9 +79,9 @@ public class InterestedSkillActivity extends AppCompatActivity {
 				//將singleton的東西丟到firebase
                 databaseUserinfos.child(Singleton.getInstance().getAccount()).setValue(Singleton.getInstance());
 
-//                Intent intent = new Intent();
-//                intent.setClass(InterestedSkillActivity.this, HomePage.class);
-//                startActivity(intent);
+                Intent intent = new Intent();
+                intent.setClass(InterestedSkillActivity.this, HomePage.class);
+                startActivity(intent);
 
             }
         });

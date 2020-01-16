@@ -2,6 +2,7 @@ package com.example.switchance_start.register;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -111,6 +112,8 @@ public class RegisterActivity extends AppCompatActivity {
                 birthday = year + "-" + month + "-" + day;
                 String mail = edtxt_schoolMail.getText().toString();
                 boolean flag = true;
+
+                Log.v("showicon",String.valueOf(icon));
 
 //                if (edtxt_account.getText().toString().trim().equals("")) {
 //                    Toast toast = Toast.makeText(RegisterActivity.this, "帳號不可為空白!", Toast.LENGTH_LONG);

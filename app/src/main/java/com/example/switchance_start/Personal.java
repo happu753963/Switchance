@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,7 @@ public class Personal extends Fragment {
     TextView txt_ansPlace;
     RecyclerView interestRecyclerView;
     RecyclerView ownedRecyclerView;
+    ImageView img_icon;
     PersonalInterestedExperienceAdapter personalInterestedExperienceAdapter;
     PersonalInterestedOwnedAdapter personalInterestedOwnedAdapter;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -56,6 +58,7 @@ public class Personal extends Fragment {
         initView(view);
         setAdapter();
         setFirebase();
+        setIcon();
     }
 
     public void initView(View view) {
@@ -67,6 +70,7 @@ public class Personal extends Fragment {
         ownedRecyclerView = (RecyclerView) view.findViewById(R.id.ownedRecyclerView);
         txt_name=(TextView)view.findViewById(R.id.txt_name);
 
+        img_icon=(ImageView)view.findViewById(R.id.img_icon);
         txt_name.setText(Singleton.getInstance().getName());
         txt_ansPlace.setText(Singleton.getInstance().getPlace());
         txt_ansTime.setText(Singleton.getInstance().getTime());
@@ -111,6 +115,31 @@ public class Personal extends Fragment {
         });
     }
 
+    public void setIcon(){
+
+                switch (Singleton.getInstance().getIcon()){
+                    case 2131165282:  //雞
+                        img_icon.setImageResource(R.drawable.chicken);
+                        break;
+                    case 2131165280:  //變色龍
+                        img_icon.setImageResource(R.drawable.chameleon);
+                        break;
+                    case 2131165324:  //獅子
+                        img_icon.setImageResource(R.drawable.lion);
+                        break;
+                    case 2131165315:  //刺蝟
+                        img_icon.setImageResource(R.drawable.hedgehog);
+                        break;
+                    case 2131165314:  //鵝
+                        img_icon.setImageResource(R.drawable.goose);
+                        break;
+                    case 0:  //狐狸
+                        img_icon.setImageResource(R.drawable.fox);
+                        break;
+
+                }
+    }
+
 //    public void setFirebase() {
 //        final ImageView icon = getActivity().findViewById(R.id.img_icon);
 //
@@ -143,6 +172,7 @@ public class Personal extends Fragment {
 //
 //                }
 ////                Log.d("count",String.valueOf(adapter.getItemViewType()));
+
 //                img_icon[0] = String.valueOf(dataSnapshot.child(account).child("icon").getValue());      //firebase抓icon資料
 //                switch (img_icon[0]){
 //                    case "2131165282":  //雞
