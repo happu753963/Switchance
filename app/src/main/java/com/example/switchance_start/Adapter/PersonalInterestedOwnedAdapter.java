@@ -73,11 +73,11 @@ public class PersonalInterestedOwnedAdapter extends RecyclerView.Adapter<Recycle
         }
 
         public void bindToInterestedExperience(OwnedExperience ownedExperience) {
-            if(ownedExperience.getType().equals("interestedSkill")) {
+            if(ownedExperience.getType().equals("ownedSkill")) {
                 layoutBackground.setBackgroundResource(R.color.colorSkillLight);
-            } else if(ownedExperience.getType().equals("interestedExperiences")){
+            } else if(ownedExperience.getType().equals("ownedExperience")){
                 layoutBackground.setBackgroundResource(R.color.colorSkillMiddle);
-            } else if(ownedExperience.getType().equals("interestedItem")){
+            } else if(ownedExperience.getType().equals("ownedItem")){
                 layoutBackground.setBackgroundResource(R.color.colorSkillDark);
             }
             textView.setText(ownedExperience.getOwnedExperience());
