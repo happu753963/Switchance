@@ -67,7 +67,7 @@ public class ChatRoom extends AppCompatActivity {
     }
 
     public void setAdapter() {
-        chatRoomAdapter = new ChatRoomAdapter(this);
+        chatRoomAdapter = new ChatRoomAdapter(this,recyclerViewInterestedSkill);
         recyclerViewInterestedSkill.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewInterestedSkill.setAdapter(chatRoomAdapter);
 

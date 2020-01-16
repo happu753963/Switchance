@@ -20,11 +20,13 @@ import java.util.ArrayList;
 public class ChatRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     ArrayList messageList;
     Context mContext;
+    RecyclerView chatRecyclerView;
     public static final int VIEW_TYPE_SELF_TEXT_CHAT = 10;
     public static final int VIEW_TYPE_FRIEND_TEXT_CHAT = 20;
 
-    public ChatRoomAdapter(Context context) {
+    public ChatRoomAdapter(Context context, RecyclerView chatRecyclerView) {
         mContext = context;
+        this.chatRecyclerView = chatRecyclerView;
         messageList = new ArrayList<ChatData>();
     }
 
@@ -65,6 +67,7 @@ public class ChatRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void addItem(ChatData experience) {
         messageList.add(experience);
+        chatRecyclerView.smoothScrollToPosition(messageList.size());
         notifyDataSetChanged();
     }
 
