@@ -115,55 +115,55 @@ public class RegisterActivity extends AppCompatActivity {
 
                 Log.v("showicon",String.valueOf(icon));
 
-//                if (edtxt_account.getText().toString().trim().equals("")) {
-//                    Toast toast = Toast.makeText(RegisterActivity.this, "帳號不可為空白!", Toast.LENGTH_LONG);
-//                    toast.show();
-//                    flag = false;
-//                    return;
-//                }
-//                if (edtxt_schoolMail.getText().toString().trim().equals("")) {
-//                    Toast toast = Toast.makeText(RegisterActivity.this, "信箱不可為空白!", Toast.LENGTH_LONG);
-//                    toast.show();
-//                    flag = false;
-//                    return;
-//                }
-//                if (edtxt_password.getText().toString().trim().equals("")) {
-//                    Toast toast = Toast.makeText(RegisterActivity.this, "密碼不可為空白!", Toast.LENGTH_LONG);
-//                    toast.show();
-//                }
-//                if (edtxt_doubleCheck.getText().toString().trim().equals("")) {
-//                    Toast toast = Toast.makeText(RegisterActivity.this, "確認密碼不可為空白!", Toast.LENGTH_LONG);
-//                    toast.show();
-//                    flag = false;
-//                    return;
-//                }
-//                if (edtxt_name.getText().toString().trim().equals("")) {
-//                    Toast toast = Toast.makeText(RegisterActivity.this, "姓名不可為空白!", Toast.LENGTH_LONG);
-//                    toast.show();
-//                    flag = false;
-//                    return;
-//                }
-//                if (mail.trim().equals("")) {
-//                    if (mail.matches("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*")) {
-//                        Toast toast = Toast.makeText(RegisterActivity.this, "信箱格式不符", Toast.LENGTH_LONG);
-//                        toast.show();
-//                    }
-////                    if (null == edtxt_schoolMail || "".equals(edtxt_schoolMail)) return false;
-////                    //Pattern p = Pattern.compile("\\w+@(\\w+.)+[a-z]{2,3}"); //简单匹配
-////                    Pattern p = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");//复杂匹配
-////                    Matcher m = p.matcher(edtxt_schoolMail.toString());
-////                    return m.matches();
-//                }
-//                if (!edtxt_password.getText().toString().equals(edtxt_doubleCheck.getText().toString())) {
-//                    Toast toast = Toast.makeText(RegisterActivity.this, "確認密碼錯誤", Toast.LENGTH_LONG);
-//                    toast.show();
-//                    flag = false;
-//                    return;
-//                }
+                if (edtxt_account.getText().toString().trim().equals("")) {
+                    Toast toast = Toast.makeText(RegisterActivity.this, "帳號不可為空白!", Toast.LENGTH_LONG);
+                    toast.show();
+                    flag = false;
+                    return;
+                }
+                if (edtxt_schoolMail.getText().toString().trim().equals("")) {
+                    Toast toast = Toast.makeText(RegisterActivity.this, "信箱不可為空白!", Toast.LENGTH_LONG);
+                    toast.show();
+                    flag = false;
+                    return;
+                }
+                if (edtxt_password.getText().toString().trim().equals("")) {
+                    Toast toast = Toast.makeText(RegisterActivity.this, "密碼不可為空白!", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                if (edtxt_doubleCheck.getText().toString().trim().equals("")) {
+                    Toast toast = Toast.makeText(RegisterActivity.this, "確認密碼不可為空白!", Toast.LENGTH_LONG);
+                    toast.show();
+                    flag = false;
+                    return;
+                }
+                if (edtxt_name.getText().toString().trim().equals("")) {
+                    Toast toast = Toast.makeText(RegisterActivity.this, "姓名不可為空白!", Toast.LENGTH_LONG);
+                    toast.show();
+                    flag = false;
+                    return;
+                }
+                if (mail.trim().equals("")) {
+                    if (mail.matches("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*")) {
+                        Toast toast = Toast.makeText(RegisterActivity.this, "信箱格式不符", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+//                    if (null == edtxt_schoolMail || "".equals(edtxt_schoolMail)) return false;
+//                    //Pattern p = Pattern.compile("\\w+@(\\w+.)+[a-z]{2,3}"); //简单匹配
+//                    Pattern p = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");//复杂匹配
+//                    Matcher m = p.matcher(edtxt_schoolMail.toString());
+//                    return m.matches();
+                }
+                if (!edtxt_password.getText().toString().equals(edtxt_doubleCheck.getText().toString())) {
+                    Toast toast = Toast.makeText(RegisterActivity.this, "確認密碼錯誤", Toast.LENGTH_LONG);
+                    toast.show();
+                    flag = false;
+                    return;
+                }
 
-//                if (flag) {
-//                    testting();
-//                }
+                if (flag) {
+                    testting();
+                }
                 setUserInfo();
                 testting();
             }

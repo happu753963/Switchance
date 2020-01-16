@@ -124,7 +124,7 @@ public class Personal extends Fragment {
                     case 2131165280:  //變色龍
                         img_icon.setImageResource(R.drawable.chameleon);
                         break;
-                    case 2131165324:  //獅子
+                    case 2131165325:  //獅子
                         img_icon.setImageResource(R.drawable.lion);
                         break;
                     case 2131165315:  //刺蝟
