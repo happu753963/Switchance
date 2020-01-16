@@ -91,8 +91,6 @@ public class ChatRoom extends AppCompatActivity {
     }
 
     public void getChatMessenge() {
-        Log.v("aaaaatag", chatData.getIcon()+"wtf");
-
         Log.v("aaaaatag", "yes2");
         final ArrayList<String> chatId = new ArrayList<String>();
         myRef.child("user_info").child(Singleton.getInstance().getAccount()).child("friends").child(chatData.getId()).child("messageId").addValueEventListener(new ValueEventListener() {
@@ -104,7 +102,6 @@ public class ChatRoom extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     chatId.add(snapshot.getValue().toString());
                     Log.v("aaaaatag", snapshot.getValue().toString()+"yesh");
-
                 }
                 Log.v("aaaaatag", chatId.size()+"size");
                 for (int i = 0; i < chatId.size(); i++) {
