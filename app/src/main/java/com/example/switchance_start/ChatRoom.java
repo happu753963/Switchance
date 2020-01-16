@@ -64,6 +64,7 @@ public class ChatRoom extends AppCompatActivity {
                 ChatRoom.this.finish();
             }
         });
+        toolbar.setTitle(chatData.getId());
     }
 
     public void setAdapter() {
