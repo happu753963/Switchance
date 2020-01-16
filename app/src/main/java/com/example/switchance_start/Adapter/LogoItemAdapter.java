@@ -53,6 +53,11 @@ public class LogoItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
+    public void clearItem() {
+        logoItemList.clear();
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
         LinearLayout layoutBackground;

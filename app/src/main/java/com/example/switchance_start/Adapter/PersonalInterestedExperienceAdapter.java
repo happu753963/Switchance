@@ -54,6 +54,11 @@ public class PersonalInterestedExperienceAdapter extends RecyclerView.Adapter<Re
         notifyDataSetChanged();
     }
 
+    public void clearItem() {
+        interestedExperienceList.clear();
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
         LinearLayout layoutBackground;

@@ -110,6 +110,7 @@ public class Personal extends Fragment {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                personalInterestedExperienceAdapter.clearItem();
                 for (int num = 0 ; num < dataSnapshot.child("interestedSkill").getChildrenCount() ; num++) {
                     personalInterestedExperienceAdapter.addItem(new InterestedExperience(String.valueOf(dataSnapshot.child("interestedSkill").child(String.valueOf(num)).child("interestedSkill").getValue()),"interestedSkill"));
                 }

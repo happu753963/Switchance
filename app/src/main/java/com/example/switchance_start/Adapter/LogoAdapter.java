@@ -107,6 +107,7 @@ public class LogoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public void setOwnedItem(UserInfo userInfo,LogoItemAdapter logoItemAdapter){
+        logoItemAdapter.clearItem();
         for(int i=0;i<userInfo.getOwnedSkill().size();i++){
             OwnedSkill ownedSkill  = userInfo.getOwnedSkill().get(i);
             logoItemAdapter.addItem(new OwnedExperience(ownedSkill.getOwnedSkill(),"ownedSkill"));
