@@ -240,7 +240,7 @@ public class RegisterActivity extends AppCompatActivity {
 //        Toast.makeText(this,"2",Toast.LENGTH_LONG).show();
         if (requestCode == 1) {
 
-            switch (data.getIntExtra("image", 0)) {
+            switch (data.getIntExtra("image", 2131165311)) {
                 case R.drawable.chameleon:
                     btn_icon.setImageResource(R.drawable.chameleon);
                     icon = R.drawable.chameleon;

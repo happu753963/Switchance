@@ -133,7 +133,7 @@ public class Personal extends Fragment {
                     case 2131165314:  //鵝
                         img_icon.setImageResource(R.drawable.goose);
                         break;
-                    case 0:  //狐狸
+                    case 2131165311:  //狐狸
                         img_icon.setImageResource(R.drawable.fox);
                         break;
 
