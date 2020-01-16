@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.switchance_start.Adapter.OtherUserInterestedExperienceAdapter;
 import com.example.switchance_start.Adapter.OtherUserInterestedOwnedAdapter;
@@ -59,8 +60,8 @@ public class OtherUser extends AppCompatActivity {
 
         getUserData();
         initView();
+        getFollow();
         setToolbar();
-        setFollow();
         setAdapter();
         setFirebase();
     }
@@ -74,7 +75,7 @@ public class OtherUser extends AppCompatActivity {
         follow = (Button) findViewById(R.id.follow);
         txt_ansTime = (TextView) findViewById(R.id.txt_ansTime);
         txt_ansplace = (TextView) findViewById(R.id.txt_ansPlace);
-        txt_information=(TextView)findViewById(R.id.txt_information);
+        txt_information = (TextView) findViewById(R.id.txt_information);
         img_icon = (ImageView) findViewById(R.id.img_icon);
         txt_name = (TextView) findViewById(R.id.txt_name);
 
@@ -102,52 +103,42 @@ public class OtherUser extends AppCompatActivity {
 
     }
 
-    public void setFollow() {
-        follow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                follow.setText("已要求");
-
-            }
-        });
-    }
-
     public void setAdapter() {
-        interestRecyclerView.setLayoutManager(new GridLayoutManager(this,3));
+        interestRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         interestRecyclerView.setAdapter(otherUserInterestedExperienceAdapter);
 
-        ownedRecyclerView.setLayoutManager(new GridLayoutManager(this,3));
+        ownedRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         ownedRecyclerView.setAdapter(otherUserInterestedOwnedAdapter);
 
         //interested&owned資料加進recyclerView
-        for(int i=0;i<userInfo.getInterestedSkill().size();i++){
-            InterestedSkill interestedSkill  = userInfo.getInterestedSkill().get(i);
-            otherUserInterestedExperienceAdapter.addItem(new InterestedExperience(interestedSkill.getInterestedSkill(),"interestedSkill"));
+        for (int i = 0; i < userInfo.getInterestedSkill().size(); i++) {
+            InterestedSkill interestedSkill = userInfo.getInterestedSkill().get(i);
+            otherUserInterestedExperienceAdapter.addItem(new InterestedExperience(interestedSkill.getInterestedSkill(), "interestedSkill"));
         }
 
-        for(int i=0;i<userInfo.getInterestedExperience().size();i++){
-            InterestedExperience interestedExperience  = userInfo.getInterestedExperience().get(i);
-            otherUserInterestedExperienceAdapter.addItem(new InterestedExperience(interestedExperience.getInterestedExperience(),"interestedExperience"));
+        for (int i = 0; i < userInfo.getInterestedExperience().size(); i++) {
+            InterestedExperience interestedExperience = userInfo.getInterestedExperience().get(i);
+            otherUserInterestedExperienceAdapter.addItem(new InterestedExperience(interestedExperience.getInterestedExperience(), "interestedExperience"));
         }
 
-        for(int i=0;i<userInfo.getInterestedItem().size();i++){
-            InterestedItem interestedItem  = userInfo.getInterestedItem().get(i);
-            otherUserInterestedExperienceAdapter.addItem(new InterestedExperience(interestedItem.getInterestedItem(),"interestedItem"));
+        for (int i = 0; i < userInfo.getInterestedItem().size(); i++) {
+            InterestedItem interestedItem = userInfo.getInterestedItem().get(i);
+            otherUserInterestedExperienceAdapter.addItem(new InterestedExperience(interestedItem.getInterestedItem(), "interestedItem"));
         }
 
-        for(int i=0;i<userInfo.getOwnedSkill().size();i++){
-            OwnedSkill ownedSkill  = userInfo.getOwnedSkill().get(i);
-            otherUserInterestedOwnedAdapter.addItem(new OwnedExperience(ownedSkill.getOwnedSkill(),"ownedSkill"));
+        for (int i = 0; i < userInfo.getOwnedSkill().size(); i++) {
+            OwnedSkill ownedSkill = userInfo.getOwnedSkill().get(i);
+            otherUserInterestedOwnedAdapter.addItem(new OwnedExperience(ownedSkill.getOwnedSkill(), "ownedSkill"));
         }
 
-        for(int i=0;i<userInfo.getOwnedExperience().size();i++){
-            OwnedExperience ownedExperience  = userInfo.getOwnedExperience().get(i);
-            otherUserInterestedOwnedAdapter.addItem(new OwnedExperience(ownedExperience.getOwnedExperience(),"ownedExperience"));
+        for (int i = 0; i < userInfo.getOwnedExperience().size(); i++) {
+            OwnedExperience ownedExperience = userInfo.getOwnedExperience().get(i);
+            otherUserInterestedOwnedAdapter.addItem(new OwnedExperience(ownedExperience.getOwnedExperience(), "ownedExperience"));
         }
 
-        for(int i=0;i<userInfo.getOwnedItem().size();i++){
-           OwnedItem ownedItem  = userInfo.getOwnedItem().get(i);
-            otherUserInterestedOwnedAdapter.addItem(new OwnedExperience(ownedItem.getOwnedItem(),"ownedItem"));
+        for (int i = 0; i < userInfo.getOwnedItem().size(); i++) {
+            OwnedItem ownedItem = userInfo.getOwnedItem().get(i);
+            otherUserInterestedOwnedAdapter.addItem(new OwnedExperience(ownedItem.getOwnedItem(), "ownedItem"));
         }
 
 
@@ -177,8 +168,8 @@ public class OtherUser extends AppCompatActivity {
                 txt_information.setText(String.valueOf(dataSnapshot.child("introduction").getValue()));
 
                 String icon_num = String.valueOf(dataSnapshot.child("icon").getValue());
-                Log.v("iconicon", icon_num+"");
-                switch (icon_num){
+                Log.v("iconicon", icon_num + "");
+                switch (icon_num) {
                     case "2131165282":  //雞
                         img_icon.setImageResource(R.drawable.chicken);
                         break;
@@ -210,8 +201,43 @@ public class OtherUser extends AppCompatActivity {
         });
     }
 
+    public void onClickFollow(View view) {
+//        Toast.makeText(this,follow.getText().toString(),Toast.LENGTH_LONG).show();
+        String followText = follow.getText().toString();
+        if (followText.equals("追蹤")) {
+            myRef.child("user_info").child(Singleton.getInstance().getAccount()).child("friends").child(userInfo.getAccount()).child("account").setValue(userInfo.getAccount());
+            myRef.child("user_info").child(userInfo.getAccount()).child("friends").child(Singleton.getInstance().getAccount()).child("account").setValue(Singleton.getInstance().getAccount());
+//            follow.setText("追蹤中");
+        } /*else if (followText.equals("已要求")) {
+//            myRef.child(userInfo.getAccount()).child("inviteList").child(Singleton.getInstance().getAccount()).removeValue();
+        }*/
+    }
 
+    public void getFollow() {
+        Log.v("tesssssss", "wttttttt");
+        myRef.child("user_info").child(Singleton.getInstance().getAccount()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild("friends") && dataSnapshot.child("friends").hasChild(userInfo.getAccount())) {
+                    for (DataSnapshot snapshot : dataSnapshot.child("friends").getChildren()) {
+                        if (snapshot.child("account").getValue().toString().equals(userInfo.getAccount())) {
+                            follow.setText("追蹤中");
+                        }
+                    }
+                } /*else if (dataSnapshot.hasChild("inviteList") && dataSnapshot.child("inviteList").hasChild(userInfo.getAccount())) {
+                    boolean flag = Boolean.parseBoolean(dataSnapshot.child("inviteList").child(userInfo.getAccount()).getValue().toString());
+                    if (flag) {
+                        follow.setText("已要求");
+                    }
+                }*/
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
 }
 

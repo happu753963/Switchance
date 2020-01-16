@@ -101,6 +101,7 @@
                             android:layout_marginTop="10dip"
                             android:background="@color/colorPink"
                             android:text="追蹤"
+                            android:onClick="onClickFollow"
                             android:textAlignment="center"
                             android:textColor="@color/colorBlack" />
                     </LinearLayout>
