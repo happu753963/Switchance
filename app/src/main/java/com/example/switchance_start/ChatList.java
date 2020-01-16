@@ -93,6 +93,7 @@ public class ChatList extends Fragment {
                     myRef.child("user_info").child(friendIdArrayList.get(i)).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            envelopeAdapter.clearItem();
                             envelopeAdapter.addItem(new ChatData(dataSnapshot.getKey(), Integer.parseInt(dataSnapshot.child("icon").getValue().toString())));
                         }
 
