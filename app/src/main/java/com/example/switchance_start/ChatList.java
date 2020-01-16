@@ -81,28 +81,57 @@ public class ChatList extends Fragment {
         myRef.child("user_info").child(Singleton.getInstance().getAccount()).child("friends").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                envelopeAdapter.clearItem();
+//                envelopeAdapter.clearItem();
                 friendIdArrayList.clear();
                 Log.v("messageId", dataSnapshot.toString());
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Log.v("messageId", snapshot.toString());
+                    Log.v("messageId", snapshot.getKey() + " test");
                     friendIdArrayList.add(snapshot.getKey());
                 }
 
-                for (int i = 0; i < friendIdArrayList.size(); i++) {
-                    myRef.child("user_info").child(friendIdArrayList.get(i)).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            envelopeAdapter.clearItem();
-                            envelopeAdapter.addItem(new ChatData(dataSnapshot.getKey(), Integer.parseInt(dataSnapshot.child("icon").getValue().toString())));
+                myRef.child("user_info").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        envelopeAdapter.clearItem();
+                        for(int i=0; i < friendIdArrayList.size();i++) {
+                            if(dataSnapshot.child(friendIdArrayList.get(i)).hasChild("icon")){
+                                envelopeAdapter.addItem(new ChatData(friendIdArrayList.get(i), Integer.parseInt(dataSnapshot.child(friendIdArrayList.get(i)).child("icon").getValue().toString())));
+                            }
+//                            Log.v("tetetetete", snapshot.toString());
                         }
+//                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                            if (snapshot.getKey().equals("icon")) {
+//                                envelopeAdapter.addItem(new ChatData(dataSnapshot.getKey(), Integer.parseInt(snapshot.getValue().toString())));
+//                            }
+//                        }
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                        }
-                    });
-                }
+                    }
+                });
+//                for (int i = 0; i < friendIdArrayList.size(); i++) {
+//                    Log.v("tetetetete123", friendIdArrayList.get(i));
+//
+//                    myRef.child("user_info").child(friendIdArrayList.get(i)).addValueEventListener(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                            envelopeAdapter.clearItem();
+//                            for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+//                                Log.v("tetetetete", snapshot.toString());
+//                                if(snapshot.getKey().equals("icon")) {
+//                                    envelopeAdapter.addItem(new ChatData(dataSnapshot.getKey(), Integer.parseInt(snapshot.getValue().toString())));
+//                                }
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                        }
+//                    });
+//                }
             }
 
             @Override

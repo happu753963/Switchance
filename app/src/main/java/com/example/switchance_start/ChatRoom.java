@@ -41,6 +41,7 @@ public class ChatRoom extends AppCompatActivity {
         chatData = (ChatData) getIntent().getSerializableExtra("userInfo");
         Log.v("aaaaatag", chatData.getIcon()+"");
         initView();
+
         setToolbar();
         setAdapter();
         getChatMessenge();
